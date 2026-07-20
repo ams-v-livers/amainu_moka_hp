@@ -1,0 +1,446 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Noto Serif JP', serif;
+
+  background:url("images/wallpaper.webp");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+
+  color:white;
+  overflow-x:hidden;
+}
+
+/* 背景暗く */
+body::before{
+  content:"";
+
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,0.45);
+
+  z-index:-1;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:100%;
+
+  padding:20px 50px;
+
+  display:flex;
+  align-items:center;
+
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+
+  z-index:1000;
+}
+
+/* 左上ロゴ */
+
+.logo{
+  position:absolute;
+
+  top:15px;
+  left:40px;
+
+  z-index:1001;
+}
+
+.logo img{
+  width:180px;
+
+  object-fit:contain;
+
+  display:block;
+}
+
+/* 右メニュー */
+
+nav{
+  margin-left:auto;
+
+  display:flex;
+  align-items:center;
+
+  gap:35px;
+}
+
+nav a{
+  color:white;
+
+  text-decoration:none;
+
+  font-size:16px;
+  letter-spacing:2px;
+
+  transition:0.3s;
+}
+
+nav a:hover{
+  opacity:0.6;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  position:relative;
+
+  width:100%;
+  height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  overflow:hidden;
+}
+
+/* 左側文字 */
+
+.hero-text{
+  position:absolute;
+
+  left:10%;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  z-index:10;
+
+  text-align:left;
+}
+
+.hero h1{
+  font-size:90px;
+
+  margin-bottom:15px;
+
+  font-family:'Cinzel', serif;
+
+  line-height:1;
+}
+
+.hero p{
+  font-size:18px;
+
+  letter-spacing:4px;
+
+  opacity:0.9;
+}
+
+/* 月 */
+
+.moon{
+  position:absolute;
+
+  top:8%;
+  right:8%;
+
+  width:550px;
+  height:550px;
+
+  background:url("images/moon.png");
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+
+  opacity:0.85;
+
+  filter:blur(1px);
+
+  z-index:1;
+
+  animation:float 6s ease-in-out infinite;
+}
+
+/* キャラクター */
+
+.character{
+  width:430px;
+
+  position:relative;
+
+  z-index:5;
+
+  animation:float 5s ease-in-out infinite;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.content{
+  padding:120px 10%;
+}
+
+.content h2{
+  text-align:center;
+
+  margin-bottom:50px;
+
+  font-size:40px;
+
+  font-family:'Cinzel', serif;
+
+  letter-spacing:2px;
+}
+
+/* =========================
+   INFORMATION
+========================= */
+
+.info-list{
+  display:flex;
+  flex-direction:column;
+
+  gap:20px;
+}
+
+.info-item{
+  background:rgba(255,255,255,0.08);
+
+  padding:20px;
+
+  border-radius:20px;
+
+  backdrop-filter:blur(10px);
+
+  transition:0.3s;
+}
+
+.info-item:hover{
+  transform:translateY(-5px);
+}
+
+.info-item span{
+  margin-right:20px;
+
+  color:#d8dcff;
+}
+
+/* =========================
+   SCHEDULE
+========================= */
+
+.schedule-box{
+  display:flex;
+  justify-content:center;
+}
+
+.schedule-box img{
+  width:80%;
+
+  border-radius:20px;
+
+  transition:0.3s;
+}
+
+.schedule-box img:hover{
+  transform:scale(1.02);
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.link-list{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+
+  gap:25px;
+
+  margin-bottom:50px;
+}
+
+.link-list a{
+  padding:15px 30px;
+
+  background:rgba(255,255,255,0.08);
+
+  border-radius:999px;
+
+  text-decoration:none;
+
+  color:white;
+
+  transition:0.3s;
+}
+
+.link-list a:hover{
+  background:rgba(255,255,255,0.15);
+
+  transform:translateY(-3px);
+}
+
+/* =========================
+   MEDIA
+========================= */
+
+.media-gallery{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+
+  gap:20px;
+}
+
+.media-gallery img{
+  width:250px;
+
+  border-radius:20px;
+
+  transition:0.3s;
+}
+
+.media-gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* =========================
+   PRODUCTION
+========================= */
+
+.production-btn{
+  display:block;
+
+  width:fit-content;
+
+  margin:auto;
+
+  padding:20px 40px;
+
+  background:rgba(255,255,255,0.08);
+
+  border-radius:999px;
+
+  color:white;
+
+  text-decoration:none;
+
+  transition:0.3s;
+}
+
+.production-btn:hover{
+  background:rgba(255,255,255,0.15);
+
+  transform:translateY(-3px);
+}
+
+/* =========================
+   FLOAT ANIMATION
+========================= */
+
+@keyframes float{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+/* =========================
+   SMARTPHONE
+========================= */
+
+@media(max-width:768px){
+
+  header{
+    padding:20px;
+  }
+
+  .logo{
+    left:20px;
+    top:15px;
+  }
+
+  .logo img{
+    width:120px;
+  }
+
+  nav{
+    margin-left:auto;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    justify-content:flex-end;
+  }
+
+  nav a{
+    font-size:13px;
+  }
+
+  .hero{
+    padding:0 20px;
+  }
+
+  .hero-text{
+    left:5%;
+    top:20%;
+
+    transform:none;
+  }
+
+  .hero h1{
+    font-size:50px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .character{
+    width:80%;
+    margin-top:120px;
+  }
+
+  .moon{
+    width:300px;
+    height:300px;
+
+    top:10%;
+    right:-50px;
+  }
+
+  .schedule-box img{
+    width:100%;
+  }
+
+  .media-gallery{
+    flex-direction:column;
+    align-items:center;
+  }
+
+}
