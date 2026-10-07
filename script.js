@@ -1,213 +1,215 @@
 "use strict";
 
-/* ==================================================
-   画像・リンク設定
-
-   画像例：
-   main: "images/moka-main.png"
-   image: "images/yamato.png"
-
-   空欄の場合は画像枠を表示します。
-   ================================================== */
+/* =========================
+   編集用の基本設定
+========================= */
 
 const siteConfig = {
   images: {
+    // 例： "./images/moka-main.png"
     main: "",
-    profile: "",
+
+    // 空欄の場合は main の画像を使用します。
+    profile: ""
   },
 
   partners: [
     {
       relation: "兄",
       name: "やまと",
-      english: "YAMATO",
+      english: "Yamato",
+
+      // 例： "./images/yamato.png"
       image: "",
-      alt: "やまと",
+      alt: "兄猫 やまと"
     },
     {
       relation: "妹",
       name: "はる",
-      english: "HARU",
+      english: "Haru",
+
+      // 例： "./images/haru.png"
       image: "",
-      alt: "はる",
-    },
+      alt: "妹猫 はる"
+    }
   ],
 
   gallery: [
     {
       title: "キャラクター紹介",
       image: "",
-      alt: "甘犬もか キャラクター紹介",
+      alt: "甘犬もかのキャラクター紹介"
     },
     {
-      title: "キャラクター設定資料",
+      title: "キャラクターデザイン",
       image: "",
-      alt: "甘犬もか キャラクター設定資料",
+      alt: "甘犬もかのキャラクターデザイン"
     },
     {
-      title: "初期モデル・キャラクターデザイン 01",
+      title: "初期モデル / デザイン資料 01",
       image: "",
-      alt: "甘犬もか 初期モデルのキャラクターデザイン",
+      alt: "甘犬もかの初期モデル デザイン資料1"
     },
     {
-      title: "初期モデル・キャラクターデザイン 02",
+      title: "初期モデル / デザイン資料 02",
       image: "",
-      alt: "甘犬もか 初期モデルのキャラクターデザイン",
-    },
+      alt: "甘犬もかの初期モデル デザイン資料2"
+    }
   ],
 
+  // コンタクトページ専用。リンクページには掲載しません。
   litlinkUrl: "https://lit.link/amainumoka",
 
-  /*
-    問い合わせフォームを公開したらURLを設定してください。
-    設定すると、コンタクトのリットリンクボタンを
-    問い合わせフォームのボタンへ切り替えます。
-
-    リットリンク閉鎖時は litlinkUrl を空欄にしてください。
-  */
-  businessFormUrl: "",
+  // 問い合わせフォームを用意したら、そのURLを記入してください。
+  // 記入すると、コンタクトのリットリンクをフォームに切り替えます。
+  businessFormUrl: ""
 };
 
-/* ==================================================
-   クレジット
-
-   BGMの追加例：
-   {
-     title: "曲名",
-     creator: "作曲者名",
-     siteName: "サイト・チャンネル名",
-     musicUrl: "https://楽曲URL",
-     siteUrl: "https://サイト・チャンネルURL",
-     note: ""
-   }
-
-   効果音・画像・GIF・その他の追加例：
-   {
-     title: "素材名",
-     creator: "制作者名",
-     siteName: "サイト名",
-     materialUrl: "https://素材URL",
-     siteUrl: "https://サイトURL",
-     note: ""
-   }
-
-   各 [] 内に追加します。
-   複数項目はカンマで区切ってください。
-   空欄のリンクは表示しません。
-   ================================================== */
-
-const creditData = {
-  bgm: [],
-  sound: [],
-  visual: [],
-  other: [],
-};
+/* =========================
+   プロフィール / リンク / タグ
+========================= */
 
 const youtubeChannelURL =
   "https://www.youtube.com/channel/UCH4GQz6j6P_DfWzfAFF0vpA";
 
-const xAccountURL = "https://twitter.com/96moka_ocd";
+const xAccountURL =
+  "https://twitter.com/96moka_ocd";
 
 const creatorData = [
   {
     role: "キャラクターデザイン",
-    name: "りなる様",
+    name: "りなる",
     account: "@Orinaru_pipi",
-    url: "https://x.com/Orinaru_pipi",
+    url: "https://x.com/Orinaru_pipi"
   },
   {
     role: "イラスト担当 / ママ",
-    name: "とまつかぜ様",
+    name: "とまつかぜ",
     account: "@tomatsukaze",
-    url: "https://x.com/tomatsukaze",
+    url: "https://x.com/tomatsukaze"
   },
   {
     role: "モデリング担当 / パパ",
-    name: "INO様",
+    name: "INO",
     account: "@ino_artworks",
-    url: "https://x.com/ino_artworks",
-  },
+    url: "https://x.com/ino_artworks"
+  }
 ];
 
 const linkData = [
   {
-    title: "YouTube",
-    label: "配信・動画・ショート",
-    url: "https://youtube.com/@amainu_moka",
+    name: "YouTube",
+    description: "配信・動画・ショート",
+    url: "https://youtube.com/@amainu_moka"
   },
   {
-    title: "Twitch",
-    label: "ライブ配信",
-    url: "https://www.twitch.tv/amainu_moka",
+    name: "Twitch",
+    description: "ライブ配信",
+    url: "https://www.twitch.tv/amainu_moka"
   },
   {
-    title: "TikTok",
-    label: "ライブ配信・動画",
-    url: "https://www.tiktok.com/@amainu.moka",
+    name: "TikTok",
+    description: "ショート動画",
+    url: "https://www.tiktok.com/@amainu.moka"
   },
   {
-    title: "Instagram",
-    label: "写真・日々の投稿",
-    url: "https://www.instagram.com/moka_ocd/",
+    name: "Instagram",
+    description: "写真・お知らせ",
+    url: "https://www.instagram.com/moka_ocd/"
   },
   {
-    title: "X",
-    label: "活動のお知らせ・日々の投稿",
-    url: xAccountURL,
+    name: "X",
+    description: "活動のお知らせ・日常",
+    url: xAccountURL
   },
   {
-    title: "FANBOX",
-    label: "活動のご支援",
-    url: "https://amainu-moka.fanbox.cc",
+    name: "FANBOX",
+    description: "活動の応援・限定コンテンツ",
+    url: "https://amainu-moka.fanbox.cc"
   },
   {
-    title: "BOOTH",
-    label: "オリジナルグッズ",
-    url: "https://ama-moka.booth.pm",
+    name: "BOOTH",
+    description: "オリジナルグッズ",
+    url: "https://ama-moka.booth.pm"
   },
   {
-    title: "どねる",
-    label: "活動のご支援・ドネーション",
-    url: "https://doneru.jp/amainu_moka",
+    name: "ファンサーバー",
+    description: "Discordコミュニティ",
+    url: "https://discord.gg/sE7q4yhxyq"
   },
   {
-    title: "ファンサーバー",
-    label: "Discord / あまりすのコミュニティ",
-    url: "https://discord.gg/sE7q4yhxyq",
-  },
-  {
-    title: "Wishlist",
-    label: "ほしいものリスト",
-    url: "https://amazon.jp/hz/wishlist/ls/3KU6RL19LZI7U?ref_=wl_share",
-  },
+    name: "ほしいものリスト",
+    description: "活動への贈りもの",
+    url: "https://amazon.jp/hz/wishlist/ls/3KU6RL19LZI7U?ref_=wl_share"
+  }
 ];
 
 const tagData = [
-  ["総合", "#甘犬もか"],
-  ["ファンアート", "#甘犬いらすと"],
-  ["配信", "#甘犬LIVE"],
-  ["動画・ショート", "#甘犬VIDEO"],
-  ["感想・見てほしいもの", "#甘犬あのね"],
-  ["切り抜き", "#甘犬クリップ"],
+  {
+    label: "総合",
+    tag: "#甘犬もか"
+  },
+  {
+    label: "ファンアート",
+    tag: "#甘犬いらすと"
+  },
+  {
+    label: "配信",
+    tag: "#甘犬LIVE"
+  },
+  {
+    label: "動画・ショート",
+    tag: "#甘犬VIDEO"
+  },
+  {
+    label: "感想・見てほしいもの",
+    tag: "#甘犬あのね"
+  },
+  {
+    label: "切り抜き",
+    tag: "#甘犬クリップ"
+  }
 ];
 
-/* ==================================================
+const workCategories = [
+  "ALL",
+  "メディア",
+  "PR",
+  "グッズ",
+  "イベント",
+  "ビジョン・広告"
+];
+
+const creditCategories = [
+  {
+    id: "bgm",
+    label: "BGM",
+    english: "Music"
+  },
+  {
+    id: "sound",
+    label: "効果音",
+    english: "Sound Effects"
+  },
+  {
+    id: "visual",
+    label: "画像・GIF素材",
+    english: "Images & GIF"
+  },
+  {
+    id: "other",
+    label: "その他",
+    english: "Other Credits"
+  }
+];
+
+/* =========================
    共通処理
-   ================================================== */
+========================= */
 
-const $ = (selector, scope = document) =>
-  scope.querySelector(selector);
+const $ = selector => document.querySelector(selector);
 
-const escapeHTML = (value) =>
-  String(value ?? "").replace(/[&<>"']/g, (character) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;",
-  })[character]);
-
-const reducedMotion = matchMedia(
+const reducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 );
 
@@ -217,144 +219,234 @@ const scriptBase = new URL(
 );
 
 const dataState = {
-  news: { items: [], error: false, loaded: false },
-  schedule: { items: [], error: false, loaded: false },
-  works: { items: [], error: false, loaded: false },
+  news: {
+    items: [],
+    loaded: false,
+    error: false
+  },
+  schedule: {
+    items: [],
+    loaded: false,
+    error: false
+  },
+  works: {
+    items: [],
+    loaded: false,
+    error: false
+  },
+  credits: {
+    items: [],
+    loaded: false,
+    error: false
+  }
 };
 
+let selectedWorkCategory = "ALL";
+
+function escapeHTML(value = "") {
+  return String(value).replace(/[&<>"']/g, character => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    };
+
+    return entities[character];
+  });
+}
+
 function safeURL(value) {
-  if (!value) return "";
+  if (typeof value !== "string" || !value.trim()) {
+    return "";
+  }
 
   try {
-    const url = new URL(value);
-    return ["http:", "https:"].includes(url.protocol)
-      ? url.href
-      : "";
+    const url = new URL(value.trim());
+
+    if (!["https:", "http:"].includes(url.protocol)) {
+      return "";
+    }
+
+    return url.href;
   } catch {
     return "";
   }
 }
 
 function safeImageURL(value) {
-  if (!value) return "";
+  if (typeof value !== "string" || !value.trim()) {
+    return "";
+  }
 
   try {
-    const url = new URL(value, document.baseURI);
-    return ["http:", "https:", "file:"].includes(url.protocol)
-      ? url.href
-      : "";
+    const url = new URL(value.trim(), document.baseURI);
+
+    if (!["https:", "http:", "file:"].includes(url.protocol)) {
+      return "";
+    }
+
+    return url.href;
   } catch {
     return "";
   }
 }
 
-function paw() {
+function paw(className = "paw-icon") {
   return `
-    <svg class="paw" viewBox="0 0 32 32"
-         aria-hidden="true" focusable="false">
-      <use href="#icon-paw"/>
+    <svg
+      class="${escapeHTML(className)}"
+      viewBox="0 0 32 32"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <use href="#icon-paw"></use>
     </svg>
   `;
 }
 
-function externalLink(label, value, className = "text-link") {
-  const url = safeURL(value);
-  if (!url) return "";
+function externalLink(url, label, className = "text-link") {
+  const href = safeURL(url);
+
+  if (!href) {
+    return "";
+  }
 
   return `
-    <a class="${escapeHTML(className)}"
-       href="${escapeHTML(url)}"
-       target="_blank" rel="noopener noreferrer">
-      ${escapeHTML(label)}${paw()}
+    <a
+      class="${escapeHTML(className)}"
+      href="${escapeHTML(href)}"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>${escapeHTML(label)}</span>
+      ${paw()}
     </a>
   `;
 }
 
-function emptyPanel(message) {
+function emptyPanel(title, text = "") {
   return `
-    <p class="empty empty--panel">
-      ${escapeHTML(message)}
-    </p>
+    <div class="panel">
+      <h2>${escapeHTML(title)}</h2>
+      ${
+        text
+          ? `<p class="empty-message">${escapeHTML(text)}</p>`
+          : ""
+      }
+    </div>
   `;
 }
 
 function validDate(value) {
-  if (!value) return null;
+  if (!value) {
+    return null;
+  }
+
   const date = new Date(value);
+
   return Number.isNaN(date.getTime()) ? null : date;
 }
 
 function formatNewsDate(value) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || "");
-  return match
-    ? `${match[1]}.${match[2]}.${match[3]}`
-    : value || "";
+  const text = String(value || "");
+
+  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+    return text.replaceAll("-", ".");
+  }
+
+  return text;
 }
 
 function formatScheduleDate(value) {
   const date = validDate(value);
-  if (!date) return "";
 
-  return new Intl.DateTimeFormat("ja-JP", {
+  if (!date) {
+    return "日時調整中";
+  }
+
+  const dateText = new Intl.DateTimeFormat("ja-JP", {
     timeZone: "Asia/Tokyo",
     month: "numeric",
     day: "numeric",
-    weekday: "short",
+    weekday: "short"
+  }).format(date);
+
+  const timeText = new Intl.DateTimeFormat("ja-JP", {
+    timeZone: "Asia/Tokyo",
     hour: "2-digit",
     minute: "2-digit",
-    hourCycle: "h23",
+    hour12: false
   }).format(date);
+
+  return `${dateText} ${timeText}`;
 }
 
-function mountImage(container, value, alt, label) {
-  const url = safeImageURL(value);
+function createPlaceholder(title, label = "画像準備中") {
+  return `
+    <div class="image-placeholder">
+      ${paw()}
+      <p class="placeholder-title">${escapeHTML(title)}</p>
+      <p class="placeholder-label">${escapeHTML(label)}</p>
+    </div>
+  `;
+}
 
-  function placeholder() {
-    container.innerHTML = `
-      <div class="visual-placeholder">
-        ${paw()}
-        <strong>AMAINU MOKA</strong>
-        <span>${escapeHTML(label)}</span>
-      </div>
-    `;
-  }
+function insertImage(container, src, alt, fallbackHTML, eager = false) {
+  const imageURL = safeImageURL(src);
 
-  if (!url) {
-    placeholder();
+  if (!container) {
     return;
   }
 
-  const image = new Image();
+  container.replaceChildren();
+
+  if (!imageURL) {
+    container.innerHTML = fallbackHTML;
+    return;
+  }
+
+  const image = document.createElement("img");
+
   image.alt = alt;
   image.decoding = "async";
-  image.loading = container.id === "heroImage" ? "eager" : "lazy";
+  image.loading = eager ? "eager" : "lazy";
 
-  image.addEventListener("error", placeholder, { once: true });
-  image.src = url;
-  container.replaceChildren(image);
+  image.addEventListener(
+    "error",
+    () => {
+      container.innerHTML = fallbackHTML;
+    },
+    { once: true }
+  );
+
+  image.src = imageURL;
+  container.append(image);
 }
 
-/* ==================================================
-   更新用ファイル読み込み
-   ================================================== */
+/* =========================
+   専用データファイルの読込
+========================= */
 
 function loadDataScript(filename, globalName) {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
+
     script.src = new URL(filename, scriptBase).href;
     script.async = true;
 
     script.onload = () => {
-      const data = window[globalName];
+      const source = window[globalName];
 
-      if (!data || !Array.isArray(data.items)) {
-        reject(new Error(`${filename} の items を確認してください。`));
+      if (!source || !Array.isArray(source.items)) {
+        reject(new Error(`${filename} の items が見つかりません。`));
         return;
       }
 
       resolve(
-        data.items.filter((item) =>
-          item && typeof item === "object" && !Array.isArray(item)
+        source.items.filter(
+          item => item && typeof item === "object"
         )
       );
     };
@@ -363,944 +455,1235 @@ function loadDataScript(filename, globalName) {
       reject(new Error(`${filename} を読み込めませんでした。`));
     };
 
-    document.head.appendChild(script);
+    document.head.append(script);
   });
 }
 
 async function loadPageData() {
   const definitions = [
-    ["news", "news.js", "MOKA_NEWS", renderNews],
-    ["schedule", "schedule.js", "MOKA_SCHEDULE", renderSchedule],
-    ["works", "works.js", "MOKA_WORKS", renderWorks],
+    {
+      key: "news",
+      filename: "news.js",
+      globalName: "MOKA_NEWS",
+      render: renderNews
+    },
+    {
+      key: "schedule",
+      filename: "schedule.js",
+      globalName: "MOKA_SCHEDULE",
+      render: renderSchedule
+    },
+    {
+      key: "works",
+      filename: "works.js",
+      globalName: "MOKA_WORKS",
+      render: renderWorks
+    },
+    {
+      key: "credits",
+      filename: "credits.js",
+      globalName: "MOKA_CREDITS",
+      render: renderCredits
+    }
   ];
 
   await Promise.allSettled(
-    definitions.map(async ([key, filename, globalName, render]) => {
+    definitions.map(async definition => {
+      const state = dataState[definition.key];
+
       try {
-        dataState[key].items = await loadDataScript(filename, globalName);
+        state.items = await loadDataScript(
+          definition.filename,
+          definition.globalName
+        );
       } catch (error) {
-        dataState[key].error = true;
+        state.error = true;
         console.error(error);
       }
 
-      dataState[key].loaded = true;
-      render();
+      state.loaded = true;
+      definition.render();
     })
   );
 }
 
-/* ==================================================
-   プロフィール・猫画像
-   ================================================== */
+/* =========================
+   PROFILE
+========================= */
 
 function renderProfile() {
-  mountImage(
+  insertImage(
     $("#heroImage"),
     siteConfig.images.main,
-    "甘犬もか メインビジュアル",
-    "メインビジュアル"
+    "甘犬もか",
+    createPlaceholder("Amainu Moka"),
+    true
   );
 
-  mountImage(
+  insertImage(
     $("#profileImage"),
     siteConfig.images.profile || siteConfig.images.main,
-    "甘犬もか プロフィールビジュアル",
-    "プロフィールビジュアル"
+    "甘犬もかのプロフィール画像",
+    createPlaceholder("Amainu Moka")
   );
 
-  $("#creatorGrid").innerHTML = creatorData.map((item, index) => `
-    <a class="creator-card"
-       href="${escapeHTML(safeURL(item.url))}"
-       target="_blank" rel="noopener noreferrer">
-      <div class="card-top">
-        <span class="card-number">
-          ${String(index + 1).padStart(2, "0")}
+  const partnerList = $("#partnerList");
+
+  partnerList.replaceChildren();
+
+  siteConfig.partners.forEach(partner => {
+    const card = document.createElement("article");
+
+    card.className = "cat-card";
+
+    card.innerHTML = `
+      <p class="cat-relation">${escapeHTML(partner.relation)}</p>
+
+      <div class="partner-image-slot"></div>
+
+      <div class="cat-name">
+        <span class="cat-name-en">
+          ${escapeHTML(partner.english)}
         </span>
-        ${paw()}
+
+        <h3>${escapeHTML(partner.name)}</h3>
       </div>
-      <p class="eyebrow">${escapeHTML(item.role)}</p>
-      <h3>${escapeHTML(item.name)}</h3>
-      <p>${escapeHTML(item.account)}</p>
-    </a>
-  `).join("");
+    `;
 
-  const gallery = $("#galleryGrid");
-  gallery.replaceChildren();
+    insertImage(
+      card.querySelector(".partner-image-slot"),
+      partner.image,
+      partner.alt || partner.name,
+      `
+        <div class="partner-placeholder">
+          <span>${escapeHTML(partner.name)}の画像</span>
+        </div>
+      `
+    );
 
-  siteConfig.gallery.forEach((item) => {
+    partnerList.append(card);
+  });
+
+  $("#creatorGrid").innerHTML = creatorData
+    .map(creator => `
+      <article class="panel creator-card">
+        <p class="eyebrow">${escapeHTML(creator.role)}</p>
+        <h3>${escapeHTML(creator.name)} 様</h3>
+
+        <p class="creator-account">
+          ${escapeHTML(creator.account)}
+        </p>
+
+        ${externalLink(creator.url, "Xアカウント")}
+      </article>
+    `)
+    .join("");
+
+  const galleryGrid = $("#galleryGrid");
+
+  galleryGrid.replaceChildren();
+
+  siteConfig.gallery.forEach(item => {
     const figure = document.createElement("figure");
-    figure.className = "gallery-card";
 
-    const imageContainer = document.createElement("div");
-    imageContainer.className = "gallery-image";
+    figure.className = "gallery-item";
+
+    const frame = document.createElement("div");
+    frame.className = "gallery-frame";
 
     const caption = document.createElement("figcaption");
     caption.textContent = item.title;
 
-    figure.append(imageContainer, caption);
-    gallery.appendChild(figure);
+    figure.append(frame, caption);
 
-    mountImage(imageContainer, item.image, item.alt, item.title);
-  });
+    insertImage(
+      frame,
+      item.image,
+      item.alt || item.title,
+      createPlaceholder("Character Gallery", "画像準備中")
+    );
 
-  const list = $("#partnerList");
-  list.replaceChildren();
-
-  siteConfig.partners.forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "cat-card";
-
-    const relation = document.createElement("span");
-    relation.className = "cat-relation";
-    relation.textContent = item.relation;
-
-    const slot = document.createElement("div");
-    slot.className = "partner-image-slot";
-
-    const name = document.createElement("div");
-    name.className = "cat-name";
-
-    const english = document.createElement("small");
-    english.textContent = item.english;
-
-    const japanese = document.createElement("strong");
-    japanese.textContent = item.name;
-
-    name.append(english, japanese);
-    card.append(relation, slot, name);
-    list.appendChild(card);
-
-    function placeholder(message) {
-      const element = document.createElement("span");
-      element.className = "partner-image-placeholder";
-      element.textContent = message;
-      slot.replaceChildren(element);
-    }
-
-    const url = safeImageURL(item.image);
-
-    if (!url) {
-      placeholder(`${item.name}の画像`);
-      return;
-    }
-
-    const image = new Image();
-    image.alt = item.alt || item.name;
-    image.loading = "lazy";
-    image.decoding = "async";
-
-    image.addEventListener("error", () => {
-      placeholder("画像を読み込めませんでした");
-    }, { once: true });
-
-    image.src = url;
-    slot.replaceChildren(image);
+    galleryGrid.append(figure);
   });
 }
 
-/* ==================================================
-   リンク・お問い合わせ
-   ================================================== */
+/* =========================
+   LINKS / TAGS / CONTACT
+========================= */
 
 function renderLinks() {
-  const items = [...linkData];
+  $("#linkGrid").innerHTML = linkData
+    .map(item => {
+      const href = safeURL(item.url);
 
-  if (safeURL(siteConfig.litlinkUrl)) {
-    items.push({
-      title: "Lit.Link",
-      label: "各種リンク・お問い合わせ先",
-      url: siteConfig.litlinkUrl,
-    });
-  }
+      if (!href) {
+        return "";
+      }
 
-  $("#linkGrid").innerHTML = items.map((item, index) => `
-    <a class="link-card"
-       href="${escapeHTML(safeURL(item.url))}"
-       target="_blank" rel="noopener noreferrer">
-      <div class="card-top">
-        <span class="card-number">
-          ${String(index + 1).padStart(2, "0")}
-        </span>
-        ${paw()}
-      </div>
-      <h2>${escapeHTML(item.title)}</h2>
-      <p>${escapeHTML(item.label)}</p>
-    </a>
-  `).join("");
+      return `
+        <a
+          class="link-card"
+          href="${escapeHTML(href)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2>${escapeHTML(item.name)}</h2>
 
-  $("#tagGrid").innerHTML = tagData.map(([label, tag]) => `
-    <div class="tag-card">
-      <span>${escapeHTML(label)}</span>
-      <strong>${escapeHTML(tag)}</strong>
-    </div>
-  `).join("");
+          <p class="link-description">
+            ${escapeHTML(item.description)}
+          </p>
+
+          <div class="link-card-footer">
+            <span>Visit</span>
+            ${paw()}
+          </div>
+        </a>
+      `;
+    })
+    .join("");
+
+  $("#tagGrid").innerHTML = tagData
+    .map(item => `
+      <article class="panel tag-card">
+        <p class="eyebrow">${escapeHTML(item.label)}</p>
+        <h3>${escapeHTML(item.tag)}</h3>
+      </article>
+    `)
+    .join("");
 
   const formURL = safeURL(siteConfig.businessFormUrl);
   const litlinkURL = safeURL(siteConfig.litlinkUrl);
 
   $("#contactDescription").textContent = formURL
-    ? "企業向けお問い合わせフォーム、またはXのDMからご連絡ください。"
-    : litlinkURL
-      ? "リットリンクに記載のメール、またはXのDMからご連絡ください。"
-      : "お仕事・コラボのご連絡は、XのDMからお願いします。";
+    ? "お仕事・コラボのご連絡は、下記の問い合わせフォーム、またはXのDMからお願いいたします。"
+    : "お仕事・コラボのご連絡は、リットリンクに記載しているメールアドレス、またはXのDMからお願いいたします。";
 
-  $("#contactButtons").innerHTML = `
-    ${externalLink("Xで連絡する", xAccountURL, "button")}
-    ${
-      formURL
-        ? externalLink("お問い合わせフォーム", formURL, "button")
-        : externalLink("リットリンク", litlinkURL, "button")
+  const contactLinks = [
+    externalLink(xAccountURL, "Xで連絡する", "button")
+  ];
+
+  if (formURL) {
+    contactLinks.push(
+      externalLink(formURL, "お問い合わせフォーム", "button")
+    );
+  } else if (litlinkURL) {
+    contactLinks.push(
+      externalLink(litlinkURL, "リットリンク", "button")
+    );
+  }
+
+  $("#contactButtons").innerHTML = contactLinks.join("");
+}
+
+/* =========================
+   コピーできるURL
+========================= */
+
+function renderCopyResources() {
+  const resources = [
+    {
+      id: "clipYoutubeURL",
+      label: "YouTubeチャンネルURL",
+      url: youtubeChannelURL
+    },
+    {
+      id: "clipXURL",
+      label: "XアカウントURL",
+      url: xAccountURL
     }
-  `;
-}
+  ];
 
-/* ==================================================
-   URLコピー
-   ================================================== */
+  const container = $("#clipResources");
 
-function copyResource(label, url, id) {
-  return `
-    <section class="copy-resource">
-      <h3>${escapeHTML(label)}</h3>
-      <div class="copy-resource-controls">
-        <input class="copy-url" id="${escapeHTML(id)}"
-               type="text" readonly spellcheck="false"
-               aria-label="${escapeHTML(label)}のURL"
-               value="${escapeHTML(url)}">
-        <button class="copy-button" type="button"
-                data-copy-target="${escapeHTML(id)}">
-          コピー${paw()}
-        </button>
+  container.innerHTML = resources
+    .map(resource => `
+      <div class="copy-resource">
+        <label for="${escapeHTML(resource.id)}">
+          ${escapeHTML(resource.label)}
+        </label>
+
+        <div class="copy-controls">
+          <input
+            id="${escapeHTML(resource.id)}"
+            class="copy-url"
+            type="text"
+            readonly
+            spellcheck="false"
+            value="${escapeHTML(resource.url)}"
+          >
+
+          <button
+            class="copy-button"
+            type="button"
+            data-copy-target="${escapeHTML(resource.id)}"
+          >
+            URLをコピー
+          </button>
+        </div>
+
+        <p
+          class="copy-status"
+          role="status"
+          aria-live="polite"
+        ></p>
       </div>
-      <p class="copy-status" role="status"
-         aria-live="polite" aria-atomic="true"></p>
-      ${externalLink("リンクを開く", url)}
-    </section>
-  `;
-}
+    `)
+    .join("");
 
-function initializeCopyLinks() {
-  const resources = $("#clipResources");
+  container.addEventListener("click", async event => {
+    const button = event.target.closest("[data-copy-target]");
 
-  resources.innerHTML =
-    copyResource("YouTubeチャンネル", youtubeChannelURL, "clipYouTubeURL") +
-    copyResource("Xアカウント", xAccountURL, "clipXURL");
-
-  let copying = false;
-
-  resources.addEventListener("click", async (event) => {
-    const button = event.target.closest("button[data-copy-target]");
-    if (!button || copying) return;
+    if (!button || button.disabled) {
+      return;
+    }
 
     const input = document.getElementById(button.dataset.copyTarget);
-    const status = $(".copy-status", button.closest(".copy-resource"));
+    const status = button
+      .closest(".copy-resource")
+      .querySelector(".copy-status");
 
-    copying = true;
-    input.focus({ preventScroll: true });
-    input.select();
-    input.setSelectionRange(0, input.value.length);
-
-    let copied = false;
+    button.disabled = true;
+    status.textContent = "";
 
     try {
-      if (navigator.clipboard && window.isSecureContext) {
+      if (window.isSecureContext && navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(input.value);
-        copied = true;
-      }
-    } catch {
-      copied = false;
-    }
+      } else {
+        input.focus();
+        input.select();
+        input.setSelectionRange(0, input.value.length);
 
-    if (!copied) {
-      try {
-        copied = document.execCommand("copy");
-      } catch {
-        copied = false;
-      }
-    }
+        const copied = document.execCommand("copy");
 
-    if (copied) {
+        if (!copied) {
+          throw new Error("コピーできませんでした。");
+        }
+      }
+
       status.textContent = "URLをコピーしました。";
-      button.focus({ preventScroll: true });
-    } else {
-      input.focus({ preventScroll: true });
+    } catch {
+      input.focus();
       input.select();
       input.setSelectionRange(0, input.value.length);
-      status.textContent =
-        "URLを選択しました。端末のコピー操作をご利用ください。";
-    }
 
-    copying = false;
+      status.textContent =
+        "URLを選択しました。端末のコピー操作でコピーしてください。";
+    } finally {
+      button.disabled = false;
+    }
   });
 }
 
-/* ==================================================
-   お知らせ
-   ================================================== */
+/* =========================
+   NEWS
+========================= */
+
+function getSortedNews() {
+  return [...dataState.news.items].sort((a, b) => {
+    const first = validDate(a.date)?.getTime() || 0;
+    const second = validDate(b.date)?.getTime() || 0;
+
+    return second - first;
+  });
+}
 
 function renderNews() {
   const state = dataState.news;
+  const fullContainer = $("#newsList");
+  const homeContainer = $("#homeNews");
 
   if (!state.loaded) {
-    $("#newsList").innerHTML = emptyPanel("お知らせを読み込んでいます。");
-    $("#homeNews").innerHTML =
-      '<p class="empty">お知らせを読み込んでいます。</p>';
+    fullContainer.innerHTML = emptyPanel(
+      "Loading.",
+      "お知らせを読み込んでいます。"
+    );
+
+    homeContainer.innerHTML =
+      '<p class="empty-message">お知らせを読み込んでいます。</p>';
+
     return;
   }
 
   if (state.error) {
-    $("#newsList").innerHTML = emptyPanel("お知らせを読み込めませんでした。");
-    $("#homeNews").innerHTML =
-      '<p class="empty">お知らせを読み込めませんでした。</p>';
+    fullContainer.innerHTML = emptyPanel(
+      "お知らせを読み込めませんでした",
+      "news.js の配置と記入内容をご確認ください。"
+    );
+
+    homeContainer.innerHTML =
+      '<p class="empty-message">お知らせを読み込めませんでした。</p>';
+
     return;
   }
 
-  const items = [...state.items].sort((a, b) =>
-    String(b.date || "").localeCompare(String(a.date || ""))
-  );
+  const items = getSortedNews();
 
   if (!items.length) {
-    $("#newsList").innerHTML =
-      emptyPanel("現在、掲載中のお知らせはありません。");
-    $("#homeNews").innerHTML =
-      '<p class="empty">新しいお知らせは、こちらに掲載します。</p>';
+    fullContainer.innerHTML = emptyPanel(
+      "Coming Soon.",
+      "新しいお知らせは、こちらに掲載します。"
+    );
+
+    homeContainer.innerHTML =
+      '<p class="empty-message">新しいお知らせは準備中です。</p>';
+
     return;
   }
 
-  $("#newsList").innerHTML = items.map((item) => `
-    <article class="news-card">
-      <div class="news-meta">
-        <time>${escapeHTML(formatNewsDate(item.date))}</time>
-        <span class="badge">
-          ${escapeHTML(item.category || "お知らせ")}
-        </span>
-      </div>
-      <h2>${escapeHTML(item.title)}</h2>
-      <p>${escapeHTML(item.text)}</p>
-      ${externalLink(item.linkLabel || "詳細を見る", item.url)}
-    </article>
-  `).join("");
+  fullContainer.innerHTML = items
+    .map(item => `
+      <article class="panel news-card">
+        <div class="news-meta">
+          ${
+            item.date
+              ? `
+                <span>
+                  ${escapeHTML(formatNewsDate(item.date))}
+                </span>
+              `
+              : ""
+          }
 
-  $("#homeNews").innerHTML = items.slice(0, 3).map((item) => `
-    <article class="news-preview">
-      <div class="news-meta">
-        <time>${escapeHTML(formatNewsDate(item.date))}</time>
-        <span class="badge">
-          ${escapeHTML(item.category || "お知らせ")}
-        </span>
-      </div>
-      <h3>${escapeHTML(item.title)}</h3>
-    </article>
-  `).join("");
+          ${
+            item.category
+              ? `<span class="badge">${escapeHTML(item.category)}</span>`
+              : ""
+          }
+        </div>
+
+        <h2>${escapeHTML(item.title || "お知らせ")}</h2>
+
+        ${
+          item.text
+            ? `<p class="news-body">${escapeHTML(item.text)}</p>`
+            : ""
+        }
+
+        ${externalLink(item.url, item.linkLabel || "詳細を見る")}
+      </article>
+    `)
+    .join("");
+
+  homeContainer.innerHTML = items
+    .slice(0, 3)
+    .map(item => `
+      <article class="home-news-item">
+        <div class="news-meta">
+          ${
+            item.date
+              ? `<span>${escapeHTML(formatNewsDate(item.date))}</span>`
+              : ""
+          }
+
+          ${
+            item.category
+              ? `<span class="badge">${escapeHTML(item.category)}</span>`
+              : ""
+          }
+        </div>
+
+        <h3>${escapeHTML(item.title || "お知らせ")}</h3>
+
+        ${externalLink(item.url, item.linkLabel || "詳細を見る")}
+      </article>
+    `)
+    .join("");
 }
 
-/* ==================================================
-   配信スケジュール
-   ================================================== */
+/* =========================
+   SCHEDULE
+========================= */
+
+function getUpcomingSchedule() {
+  const now = Date.now();
+
+  return dataState.schedule.items
+    .filter(item => {
+      const start = validDate(item.start);
+
+      if (!start) {
+        return false;
+      }
+
+      const end = validDate(item.end);
+      const expiresAt = end
+        ? end.getTime()
+        : start.getTime() + 6 * 60 * 60 * 1000;
+
+      return expiresAt >= now;
+    })
+    .sort((a, b) => {
+      return validDate(a.start).getTime() -
+        validDate(b.start).getTime();
+    });
+}
 
 function renderSchedule() {
   const state = dataState.schedule;
+  const fullContainer = $("#scheduleList");
+  const homeContainer = $("#homeSchedule");
 
   if (!state.loaded) {
-    $("#scheduleList").innerHTML = emptyPanel("配信予定を読み込んでいます。");
-    $("#homeSchedule").innerHTML =
-      '<p class="empty">配信予定を読み込んでいます。</p>';
+    fullContainer.innerHTML =
+      '<p class="empty-message">スケジュールを読み込んでいます。</p>';
+
+    homeContainer.innerHTML =
+      '<p class="empty-message">スケジュールを読み込んでいます。</p>';
+
     return;
   }
 
   if (state.error) {
-    $("#scheduleList").innerHTML = emptyPanel(
-      "配信予定を読み込めませんでした。最新情報はXをご確認ください。"
-    );
-    $("#homeSchedule").innerHTML =
-      externalLink("最新情報を見る", xAccountURL);
+    fullContainer.innerHTML =
+      '<p class="empty-message">スケジュールを読み込めませんでした。schedule.js の配置と記入内容をご確認ください。</p>';
+
+    homeContainer.innerHTML =
+      '<p class="empty-message">スケジュールを読み込めませんでした。</p>';
+
     return;
   }
 
-  const now = Date.now();
-
-  const items = state.items.filter((item) => {
-    const start = validDate(item.start);
-    if (!start) return false;
-
-    const end = validDate(item.end);
-    const expiry = end
-      ? end.getTime()
-      : start.getTime() + 6 * 60 * 60 * 1000;
-
-    return expiry > now;
-  }).sort((a, b) => new Date(a.start) - new Date(b.start));
+  const items = getUpcomingSchedule();
 
   if (!items.length) {
-    $("#scheduleList").innerHTML = `
+    fullContainer.innerHTML = `
       <div class="schedule-empty">
         ${paw()}
-        <h2>Stay Tuned.</h2>
-        <p>
-          次回の配信予定は準備中です。<br>
-          最新情報はXでお知らせします。
-        </p>
-        ${externalLink("Xで確認する", xAccountURL, "button")}
+        <h3>Next Stream, Coming Soon.</h3>
+        <p>次回の配信は調整中です。</p>
+        <p>配信のお知らせはXでもご案内します。</p>
+        ${externalLink(xAccountURL, "Xでお知らせを見る", "button")}
       </div>
     `;
 
-    $("#homeSchedule").innerHTML = `
-      <p class="empty">次回の配信予定は準備中です。</p>
-      ${externalLink("最新情報を見る", xAccountURL)}
+    homeContainer.innerHTML = `
+      <div class="next-stream">
+        <h3>Coming Soon.</h3>
+        <p class="empty-message">次回の配信は調整中です。</p>
+        ${externalLink(xAccountURL, "Xでお知らせを見る")}
+      </div>
     `;
+
     return;
   }
 
-  $("#scheduleList").innerHTML = `
-    <div class="schedule-items">
-      ${items.map((item) => `
-        <article class="schedule-item">
-          <time datetime="${escapeHTML(item.start)}">
-            ${escapeHTML(formatScheduleDate(item.start))}
-          </time>
-          <div>
-            <h3>${escapeHTML(item.title)}</h3>
-            <p>${escapeHTML(item.platform || "")}</p>
-          </div>
-          ${externalLink("配信を見る", item.url)}
-        </article>
-      `).join("")}
-    </div>
-  `;
+  fullContainer.innerHTML = items
+    .map(item => `
+      <article class="schedule-item">
+        <p class="schedule-time">
+          ${escapeHTML(formatScheduleDate(item.start))}
+          <span>JST / 日本時間</span>
+        </p>
+
+        <div class="schedule-content">
+          ${
+            item.platform
+              ? `<span class="badge">${escapeHTML(item.platform)}</span>`
+              : ""
+          }
+
+          <h3>${escapeHTML(item.title || "配信予定")}</h3>
+
+          ${
+            item.note
+              ? `<p>${escapeHTML(item.note)}</p>`
+              : ""
+          }
+        </div>
+
+        ${externalLink(item.url, "配信ページ")}
+      </article>
+    `)
+    .join("");
 
   const next = items[0];
 
-  $("#homeSchedule").innerHTML = `
-    <div class="schedule-preview">
-      <h3>${escapeHTML(next.title)}</h3>
-      <p>${escapeHTML(formatScheduleDate(next.start))} / JST</p>
-      ${externalLink("配信を見る", next.url)}
+  homeContainer.innerHTML = `
+    <div class="next-stream">
+      <div class="news-meta">
+        <span>${escapeHTML(formatScheduleDate(next.start))}</span>
+
+        ${
+          next.platform
+            ? `<span class="badge">${escapeHTML(next.platform)}</span>`
+            : ""
+        }
+      </div>
+
+      <h3>${escapeHTML(next.title || "配信予定")}</h3>
+
+      ${
+        next.note
+          ? `<p>${escapeHTML(next.note)}</p>`
+          : ""
+      }
+
+      ${externalLink(next.url, "配信ページ")}
     </div>
   `;
 }
 
-/* ==================================================
-   クレジット
-   ================================================== */
+/* =========================
+   WORKS
+========================= */
 
-function renderCredits() {
-  const groups = [
-    ["bgm", "BGM", "Background Music"],
-    ["sound", "効果音", "Sound Effects"],
-    ["visual", "画像・GIF素材", "Images & GIFs"],
-    ["other", "その他クレジット", "Other Credits"],
-  ];
+function initializeWorksFilters() {
+  const container = $("#worksFilters");
 
-  $("#creditSections").innerHTML = groups.map(([key, title, english]) => {
-    const items = creditData[key];
+  container.innerHTML = workCategories
+    .map(category => `
+      <button
+        class="category-button"
+        type="button"
+        data-work-category="${escapeHTML(category)}"
+        aria-pressed="${category === selectedWorkCategory}"
+      >
+        ${escapeHTML(category)}
+      </button>
+    `)
+    .join("");
 
-    return `
-      <section class="credit-section"
-               aria-labelledby="credit-${key}-heading">
-        <div class="sub-heading">
-          <p class="eyebrow">${escapeHTML(english)}</p>
-          <h2 id="credit-${key}-heading">${escapeHTML(title)}</h2>
-        </div>
+  container.addEventListener("click", event => {
+    const button = event.target.closest("[data-work-category]");
 
-        <div class="credit-grid">
-          ${
-            items.length
-              ? items.map((item) => `
-                  <article class="credit-card">
-                    ${
-                      item.siteName
-                        ? `<p class="eyebrow">${escapeHTML(item.siteName)}</p>`
-                        : ""
-                    }
+    if (!button) {
+      return;
+    }
 
-                    <h3>${escapeHTML(
-                      item.title || item.siteName || title
-                    )}</h3>
+    selectedWorkCategory = button.dataset.workCategory;
 
-                    ${
-                      item.creator
-                        ? `<p class="credit-author">${escapeHTML(item.creator)}</p>`
-                        : ""
-                    }
+    container.querySelectorAll("[data-work-category]")
+      .forEach(item => {
+        item.setAttribute(
+          "aria-pressed",
+          String(item.dataset.workCategory === selectedWorkCategory)
+        );
+      });
 
-                    ${
-                      item.note
-                        ? `<p class="credit-note">${escapeHTML(item.note)}</p>`
-                        : ""
-                    }
+    renderWorks();
 
-                    <div class="credit-links">
-                      ${
-                        key === "bgm"
-                          ? externalLink("楽曲リンク", item.musicUrl)
-                          : externalLink("素材リンク", item.materialUrl)
-                      }
-                      ${externalLink(
-                        key === "bgm" ? "サイト・チャンネル" : "素材サイト",
-                        item.siteUrl
-                      )}
-                    </div>
-                  </article>
-                `).join("")
-              : emptyPanel(`${title}のクレジットは準備中です。`)
+    if (!reducedMotion.matches && $("#worksGrid").animate) {
+      $("#worksGrid").getAnimations().forEach(animation => {
+        animation.cancel();
+      });
+
+      $("#worksGrid").animate(
+        [
+          {
+            opacity: 0,
+            transform: "translateY(8px)"
+          },
+          {
+            opacity: 1,
+            transform: "translateY(0)"
           }
-        </div>
-      </section>
-    `;
-  }).join("");
-}
-
-/* ==================================================
-   実績カテゴリ
-   ================================================== */
-
-let selectedWorkCategory = "すべて";
-
-function initializeWorks() {
-  const categories = [
-    ["すべて", "ALL"],
-    ["メディア", "メディア"],
-    ["PR", "PR"],
-    ["グッズ", "グッズ"],
-    ["イベント", "イベント"],
-    ["ビジョン・広告", "ビジョン・広告"],
-  ];
-
-  $("#worksFilters").innerHTML = categories.map(([value, label]) => `
-    <button class="filter-button" type="button"
-            data-work-category="${escapeHTML(value)}"
-            aria-pressed="${value === selectedWorkCategory}"
-            aria-controls="worksGrid">
-      ${escapeHTML(label)}
-    </button>
-  `).join("");
-
-  $("#worksFilters").addEventListener("click", (event) => {
-    const button = event.target.closest("button[data-work-category]");
-    if (!button) return;
-
-    const next = button.dataset.workCategory;
-    if (next === selectedWorkCategory) return;
-
-    selectedWorkCategory = next;
-    renderWorks(true);
+        ],
+        {
+          duration: 380,
+          easing: "cubic-bezier(0.22, 1, 0.36, 1)"
+        }
+      );
+    }
   });
 }
 
-function renderWorks(animate = false) {
-  const grid = $("#worksGrid");
+function getItemCategories(item) {
+  if (Array.isArray(item.category)) {
+    return item.category.filter(value => typeof value === "string");
+  }
+
+  return item.category ? [String(item.category)] : [];
+}
+
+function renderWorks() {
   const state = dataState.works;
-
-  $("#worksFilters").querySelectorAll("button").forEach((button) => {
-    button.setAttribute(
-      "aria-pressed",
-      String(button.dataset.workCategory === selectedWorkCategory)
-    );
-  });
+  const container = $("#worksGrid");
+  const count = $("#worksCount");
 
   if (!state.loaded) {
-    $("#worksCount").textContent = "";
-    grid.innerHTML = emptyPanel("実績を読み込んでいます。");
+    count.textContent = "";
+
+    container.innerHTML = emptyPanel(
+      "Loading.",
+      "活動実績を読み込んでいます。"
+    );
+
     return;
   }
 
   if (state.error) {
-    $("#worksCount").textContent = "";
-    grid.innerHTML = emptyPanel("実績を読み込めませんでした。");
+    count.textContent = "";
+
+    container.innerHTML = emptyPanel(
+      "活動実績を読み込めませんでした",
+      "works.js の配置と記入内容をご確認ください。"
+    );
+
     return;
   }
 
-  const items = state.items.filter((item) =>
-    selectedWorkCategory === "すべて" ||
-    item.category === selectedWorkCategory
-  );
+  const items = state.items.filter(item => {
+    return selectedWorkCategory === "ALL" ||
+      getItemCategories(item).includes(selectedWorkCategory);
+  });
 
-  $("#worksCount").textContent =
-    `${items.length}件 / 全${state.items.length}件`;
+  count.textContent = `${selectedWorkCategory} / ${items.length}件`;
 
-  grid.innerHTML = items.length
-    ? items.map((item) => `
-        <article class="work-card">
+  if (!items.length) {
+    container.innerHTML = emptyPanel(
+      "Coming Soon.",
+      "このカテゴリーの実績は、掲載準備中です。"
+    );
+
+    return;
+  }
+
+  container.innerHTML = items
+    .map(item => {
+      const links = Array.isArray(item.links)
+        ? item.links
+        : [];
+
+      return `
+        <article class="panel work-card">
           <div class="work-meta">
-            <span class="badge">${escapeHTML(item.category)}</span>
-            ${item.date ? `<span>${escapeHTML(item.date)}</span>` : ""}
+            ${getItemCategories(item)
+              .map(category => `
+                <span class="badge">${escapeHTML(category)}</span>
+              `)
+              .join("")}
+
+            ${
+              item.date
+                ? `<span>${escapeHTML(item.date)}</span>`
+                : ""
+            }
           </div>
-          <h2>${escapeHTML(item.title)}</h2>
-          <p class="eyebrow">${escapeHTML(item.client)}</p>
-          <p>${escapeHTML(item.text)}</p>
 
           ${
-            Array.isArray(item.links) && item.links.length
+            item.client
+              ? `
+                <p class="work-client">
+                  ${escapeHTML(item.client)}
+                </p>
+              `
+              : ""
+          }
+
+          <h2>${escapeHTML(item.title || "活動実績")}</h2>
+
+          ${
+            item.text
+              ? `<p class="work-body">${escapeHTML(item.text)}</p>`
+              : ""
+          }
+
+          ${
+            links.length
               ? `
                 <div class="work-links">
-                  ${item.links.map((link) =>
-                    externalLink(link.label, link.url)
-                  ).join("")}
+                  ${links
+                    .filter(link => link && typeof link === "object")
+                    .map(link => {
+                      return externalLink(
+                        link.url,
+                        link.label || "関連リンク"
+                      );
+                    })
+                    .join("")}
                 </div>
               `
               : ""
           }
         </article>
-      `).join("")
-    : emptyPanel("このカテゴリの実績はありません。");
-
-  if (animate && !reducedMotion.matches && grid.animate) {
-    grid.animate(
-      [
-        { opacity: 0, transform: "translateY(8px)" },
-        { opacity: 1, transform: "translateY(0)" },
-      ],
-      { duration: 380, easing: "cubic-bezier(.22,1,.36,1)" }
-    );
-  }
+      `;
+    })
+    .join("");
 }
 
-/* ==================================================
-   ページ切り替え・文字送り
-   ================================================== */
+/* =========================
+   CREDITS
+========================= */
+
+function createCreditCard(item, category) {
+  const title =
+    String(item.title || "").trim() ||
+    String(item.siteName || "").trim() ||
+    "クレジット";
+
+  const creator = String(item.creator || "").trim();
+  const siteName = String(item.siteName || "").trim();
+  const note = String(item.note || "").trim();
+
+  const materialLink = category.id === "bgm"
+    ? externalLink(item.musicUrl, "楽曲を聴く")
+    : externalLink(item.materialUrl, "素材ページ");
+
+  const siteLink = externalLink(
+    item.siteUrl,
+    siteName || "サイト・チャンネル"
+  );
+
+  return `
+    <article class="panel credit-card">
+      <p class="eyebrow">${escapeHTML(category.label)}</p>
+      <h3>${escapeHTML(title)}</h3>
+
+      ${
+        creator
+          ? `
+            <p class="credit-author">
+              制作者：${escapeHTML(creator)}
+            </p>
+          `
+          : ""
+      }
+
+      ${
+        siteName
+          ? `
+            <p class="credit-author">
+              サイト・チャンネル：${escapeHTML(siteName)}
+            </p>
+          `
+          : ""
+      }
+
+      ${
+        note
+          ? `<p class="credit-note">${escapeHTML(note)}</p>`
+          : ""
+      }
+
+      ${
+        materialLink || siteLink
+          ? `
+            <div class="credit-links">
+              ${materialLink}
+              ${siteLink}
+            </div>
+          `
+          : ""
+      }
+    </article>
+  `;
+}
+
+function renderCredits() {
+  const state = dataState.credits;
+  const container = $("#creditSections");
+
+  if (!state.loaded) {
+    container.innerHTML = emptyPanel(
+      "Loading.",
+      "クレジットを読み込んでいます。"
+    );
+
+    return;
+  }
+
+  if (state.error) {
+    container.innerHTML = emptyPanel(
+      "クレジットを読み込めませんでした",
+      "credits.js の配置と記入内容をご確認ください。"
+    );
+
+    return;
+  }
+
+  container.innerHTML = creditCategories
+    .map(category => {
+      const items = state.items.filter(item => {
+        return item.category === category.id;
+      });
+
+      return `
+        <section
+          class="credit-section"
+          aria-labelledby="credit-heading-${category.id}"
+        >
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">${escapeHTML(category.english)}</p>
+
+              <h2 id="credit-heading-${category.id}">
+                ${escapeHTML(category.label)}
+              </h2>
+            </div>
+          </div>
+
+          <div class="works-grid">
+            ${
+              items.length
+                ? items
+                    .map(item => createCreditCard(item, category))
+                    .join("")
+                : emptyPanel(
+                    "Coming Soon.",
+                    `${category.label}のクレジットは、掲載準備中です。`
+                  )
+            }
+          </div>
+        </section>
+      `;
+    })
+    .join("");
+}
+
+/* =========================
+   ページ切替 / 見出し演出
+========================= */
 
 function initializeNavigation() {
-  const pages = Array.from(document.querySelectorAll(".page"));
+  const pages = [...document.querySelectorAll("[data-page]")];
   const nav = $("#siteNav");
-  const menu = $("#menuButton");
-  const desktop = matchMedia("(min-width: 1201px)");
-  const originals = new WeakMap();
-
-  let currentPage = null;
+  const menuButton = $("#menuButton");
+  const headings = new WeakMap();
 
   function closeMenu() {
     nav.classList.remove("is-open");
-    menu.setAttribute("aria-expanded", "false");
-    menu.setAttribute("aria-label", "メニューを開く");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "メニューを開く");
   }
 
-  function restoreHeading(heading) {
-    if (!heading || !originals.has(heading)) return;
-
-    heading.replaceChildren(
-      ...originals.get(heading).map((node) => node.cloneNode(true))
-    );
-  }
-
-  function typeHeading(heading) {
-    if (!heading) return;
-
-    if (!originals.has(heading)) {
-      originals.set(
-        heading,
-        Array.from(heading.childNodes).map((node) =>
-          node.cloneNode(true)
-        )
-      );
+  function animateHeading(heading) {
+    if (!heading) {
+      return;
     }
 
-    restoreHeading(heading);
-    if (reducedMotion.matches) return;
+    if (!headings.has(heading)) {
+      headings.set(heading, heading.textContent);
+    }
 
-    const walker = document.createTreeWalker(
-      heading,
-      NodeFilter.SHOW_TEXT
-    );
+    const text = headings.get(heading);
 
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
+    heading.replaceChildren();
 
-    const length = Math.max(
-      1,
-      Array.from(heading.textContent.trim()).length
-    );
+    if (reducedMotion.matches) {
+      heading.textContent = text;
+      heading.removeAttribute("aria-label");
+      return;
+    }
 
-    const interval = Math.min(42, 600 / length);
-    let index = 0;
+    heading.setAttribute("aria-label", text.trim());
 
-    nodes.forEach((node) => {
-      const fragment = document.createDocumentFragment();
+    const fragment = document.createDocumentFragment();
 
-      Array.from(node.nodeValue).forEach((character) => {
-        if (/\s/.test(character)) {
-          fragment.appendChild(document.createTextNode(character));
-          return;
-        }
+    Array.from(text).forEach((character, index) => {
+      const span = document.createElement("span");
 
-        const span = document.createElement("span");
-        span.className = "heading-character";
-        span.textContent = character;
-        span.style.setProperty(
-          "--character-delay",
-          `${index++ * interval}ms`
-        );
+      span.className = "heading-char";
+      span.setAttribute("aria-hidden", "true");
+      span.style.setProperty(
+        "--char-delay",
+        `${Math.min(index * 42, 600)}ms`
+      );
 
-        fragment.appendChild(span);
-      });
-
-      node.replaceWith(fragment);
+      span.textContent = character === " " ? "\u00a0" : character;
+      fragment.append(span);
     });
+
+    heading.append(fragment);
   }
 
-  function route(initial = false) {
-    const requested = location.hash.slice(1) || "home";
+  function showPage(initial = false) {
+    const requested = window.location.hash.slice(1) || "home";
 
     if (requested === "main") {
       $("#main").focus({ preventScroll: true });
       return;
     }
 
-    const next =
-      pages.find((page) => page.dataset.page === requested) ||
-      pages.find((page) => page.dataset.page === "home");
+    const target = pages.find(page => {
+      return page.dataset.page === requested;
+    }) || pages.find(page => page.dataset.page === "home");
 
-    if (next === currentPage) {
-      closeMenu();
-      return;
-    }
-
-    pages.forEach((page) => {
-      page.hidden = page !== next;
+    pages.forEach(page => {
+      page.hidden = page !== target;
       page.classList.remove("is-entering");
     });
 
-    currentPage = next;
+    nav.querySelectorAll("a").forEach(link => {
+      const active = link.hash === `#${target.dataset.page}`;
 
-    nav.querySelectorAll("a").forEach((link) => {
-      if (link.hash === `#${next.dataset.page}`) {
+      if (active) {
         link.setAttribute("aria-current", "page");
       } else {
         link.removeAttribute("aria-current");
       }
     });
 
-    closeMenu();
-
-    const heading = $(".page-heading h1", next);
-    const name = next.dataset.page;
-
-    document.title = name === "home"
-      ? "甘犬もか | AMAINU MOKA"
-      : `${name.charAt(0).toUpperCase() + name.slice(1)} | 甘犬もか`;
-
-    if (!initial) {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      heading?.focus({ preventScroll: true });
-    }
-
-    typeHeading(heading);
+    const heading = target.querySelector(".page-title");
+    animateHeading(heading);
 
     if (!reducedMotion.matches) {
-      void next.offsetWidth;
-      next.classList.add("is-entering");
+      void target.offsetWidth;
+      target.classList.add("is-entering");
+    }
+
+    const pageName = target.dataset.page;
+    const title = pageName === "home"
+      ? "Official Website"
+      : `${pageName.charAt(0).toUpperCase()}${pageName.slice(1)}`;
+
+    document.title = `甘犬もか | ${title}`;
+
+    closeMenu();
+
+    if (!initial) {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "instant"
+      });
+
+      if (heading) {
+        heading.focus({ preventScroll: true });
+      } else {
+        $("#main").focus({ preventScroll: true });
+      }
     }
   }
 
-  menu.addEventListener("click", () => {
-    const open = menu.getAttribute("aria-expanded") !== "true";
+  menuButton.addEventListener("click", () => {
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
 
-    nav.classList.toggle("is-open", open);
-    menu.setAttribute("aria-expanded", String(open));
-    menu.setAttribute(
+    nav.classList.toggle("is-open", !isOpen);
+    menuButton.setAttribute("aria-expanded", String(!isOpen));
+
+    menuButton.setAttribute(
       "aria-label",
-      open ? "メニューを閉じる" : "メニューを開く"
+      isOpen ? "メニューを開く" : "メニューを閉じる"
     );
   });
 
-  nav.addEventListener("click", (event) => {
-    if (event.target.closest("a")) closeMenu();
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest(".site-header")) closeMenu();
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && nav.classList.contains("is-open")) {
+  document.addEventListener("keydown", event => {
+    if (
+      event.key === "Escape" &&
+      menuButton.getAttribute("aria-expanded") === "true"
+    ) {
       closeMenu();
-      menu.focus();
+      menuButton.focus();
     }
   });
 
-  desktop.addEventListener("change", () => {
-    if (desktop.matches) closeMenu();
+  document.addEventListener("click", event => {
+    if (
+      nav.classList.contains("is-open") &&
+      !event.target.closest(".site-header")
+    ) {
+      closeMenu();
+    }
   });
 
-  reducedMotion.addEventListener("change", () => {
-    if (!reducedMotion.matches) return;
+  const desktopMenu = window.matchMedia("(min-width: 1201px)");
 
-    pages.forEach((page) => {
-      page.classList.remove("is-entering");
-      restoreHeading($(".page-heading h1", page));
-    });
+  desktopMenu.addEventListener("change", event => {
+    if (event.matches) {
+      closeMenu();
+    }
   });
 
-  pages.forEach((page) => {
-    page.addEventListener("animationend", (event) => {
-      if (event.target === page && event.animationName === "page-enter") {
+  pages.forEach(page => {
+    page.addEventListener("animationend", event => {
+      if (
+        event.target === page &&
+        event.animationName === "page-enter"
+      ) {
         page.classList.remove("is-entering");
       }
     });
   });
 
-  window.addEventListener("hashchange", () => route(false));
-  route(true);
+  window.addEventListener("hashchange", () => showPage(false));
+
+  showPage(true);
 }
 
-/* ==================================================
-   肉球カーソル
-   ================================================== */
+/* =========================
+   マウスに追従する薄い肉球
+========================= */
 
-function initializeCursor() {
-  const finePointer = matchMedia(
+function initializeCursorPaws() {
+  const layer = $("#cursorLayer");
+  const finePointer = window.matchMedia(
     "(hover: hover) and (pointer: fine)"
   );
 
+  const particles = [];
   const namespace = "http://www.w3.org/2000/svg";
-  const layer = document.createElement("div");
 
-  layer.className = "cursor-layer";
-  layer.setAttribute("aria-hidden", "true");
-  document.body.appendChild(layer);
-
-  const paws = Array.from({ length: 7 }, (_, index) => {
-    const svg = document.createElementNS(namespace, "svg");
-    const use = document.createElementNS(namespace, "use");
-
-    svg.setAttribute("viewBox", "0 0 32 32");
-    svg.setAttribute("focusable", "false");
-    svg.classList.add("cursor-paw");
-    use.setAttribute("href", "#icon-paw");
-
-    svg.appendChild(use);
-    layer.appendChild(svg);
-
-    return {
-      element: svg,
-      x: 0,
-      y: 0,
-      life: 0,
-      rotation: index % 2 ? 18 : -18,
-    };
-  });
-
-  let index = 0;
-  let frame = 0;
-  let lastFrame = 0;
-  let lastSpawn = 0;
+  let nextIndex = 0;
+  let frameID = 0;
+  let lastTime = 0;
   let lastX = null;
   let lastY = null;
 
-  function enabled() {
+  const lifetime = 850;
+
+  for (let index = 0; index < 7; index += 1) {
+    const svg = document.createElementNS(namespace, "svg");
+    const use = document.createElementNS(namespace, "use");
+
+    svg.classList.add("cursor-paw");
+    svg.setAttribute("viewBox", "0 0 32 32");
+    svg.setAttribute("aria-hidden", "true");
+
+    use.setAttribute("href", "#icon-paw");
+
+    svg.append(use);
+    layer.append(svg);
+
+    particles.push({
+      element: svg,
+      active: false,
+      born: 0,
+      x: 0,
+      y: 0,
+      rotation: 0
+    });
+  }
+
+  function allowed() {
     return finePointer.matches &&
       !reducedMotion.matches &&
       !document.hidden;
   }
 
-  function clear() {
-    if (frame) cancelAnimationFrame(frame);
+  function clearParticles() {
+    cancelAnimationFrame(frameID);
+    frameID = 0;
 
-    frame = 0;
-    lastFrame = 0;
-    lastSpawn = 0;
+    particles.forEach(particle => {
+      particle.active = false;
+      particle.element.style.opacity = "0";
+    });
+
     lastX = null;
     lastY = null;
-
-    paws.forEach((item) => {
-      item.life = 0;
-      item.element.style.opacity = "0";
-    });
+    lastTime = 0;
   }
 
-  function draw(time) {
-    const delta = lastFrame ? Math.min(time - lastFrame, 50) : 16;
-    lastFrame = time;
+  function animate(now) {
+    frameID = 0;
+    let activeCount = 0;
 
-    let active = false;
+    particles.forEach(particle => {
+      if (!particle.active) {
+        return;
+      }
 
-    paws.forEach((item) => {
-      if (item.life <= 0) return;
+      const progress = Math.min(
+        (now - particle.born) / lifetime,
+        1
+      );
 
-      item.life = Math.max(0, item.life - delta / 850);
-      const progress = 1 - item.life;
+      if (progress >= 1) {
+        particle.active = false;
+        particle.element.style.opacity = "0";
+        return;
+      }
 
-      item.element.style.opacity = String(item.life * .17);
-      item.element.style.transform =
-        `translate3d(${item.x - 15}px,${item.y - 15 - progress * 14}px,0) ` +
-        `rotate(${item.rotation}deg) scale(${.8 + progress * .25})`;
+      activeCount += 1;
 
-      if (item.life > 0) active = true;
+      const opacity = 0.17 * (1 - progress);
+      const scale = 0.8 + progress * 0.25;
+      const y = particle.y - progress * 14;
+
+      particle.element.style.opacity = String(opacity);
+      particle.element.style.transform = `
+        translate3d(${particle.x}px, ${y}px, 0)
+        rotate(${particle.rotation}deg)
+        scale(${scale})
+      `;
     });
 
-    if (active && enabled()) {
-      frame = requestAnimationFrame(draw);
-    } else {
-      frame = 0;
-      lastFrame = 0;
+    if (activeCount) {
+      frameID = requestAnimationFrame(animate);
     }
   }
 
-  document.addEventListener("pointermove", (event) => {
-    if (!enabled() || event.pointerType !== "mouse") return;
+  document.addEventListener(
+    "pointermove",
+    event => {
+      if (!allowed() || event.pointerType !== "mouse") {
+        return;
+      }
 
-    const now = performance.now();
-    if (now - lastSpawn < 95) return;
+      const now = performance.now();
 
-    if (
-      lastX !== null &&
-      Math.hypot(event.clientX - lastX, event.clientY - lastY) < 24
-    ) return;
+      if (now - lastTime < 95) {
+        return;
+      }
 
-    lastSpawn = now;
-    lastX = event.clientX;
-    lastY = event.clientY;
+      if (
+        lastX !== null &&
+        Math.hypot(
+          event.clientX - lastX,
+          event.clientY - lastY
+        ) < 24
+      ) {
+        return;
+      }
 
-    const item = paws[index];
-    item.x = event.clientX + 18;
-    item.y = event.clientY + 22;
-    item.life = 1;
+      lastTime = now;
+      lastX = event.clientX;
+      lastY = event.clientY;
 
-    index = (index + 1) % paws.length;
+      const particle = particles[nextIndex];
+      nextIndex = (nextIndex + 1) % particles.length;
 
-    if (!frame) frame = requestAnimationFrame(draw);
-  }, { passive: true });
+      particle.active = true;
+      particle.born = now;
+      particle.x = event.clientX + 18;
+      particle.y = event.clientY + 22;
+      particle.rotation = -20 + Math.random() * 40;
 
-  document.documentElement.addEventListener("pointerleave", clear);
-  window.addEventListener("blur", clear);
-  finePointer.addEventListener("change", clear);
-  reducedMotion.addEventListener("change", clear);
+      if (!frameID) {
+        frameID = requestAnimationFrame(animate);
+      }
+    },
+    { passive: true }
+  );
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) clear();
-  });
+  document.documentElement.addEventListener(
+    "pointerleave",
+    clearParticles
+  );
+
+  window.addEventListener("blur", clearParticles);
+  document.addEventListener("visibilitychange", clearParticles);
+  finePointer.addEventListener("change", clearParticles);
+  reducedMotion.addEventListener("change", clearParticles);
 }
 
-/* ==================================================
+/* =========================
    初期化
-   ================================================== */
+========================= */
 
-function initialize() {
-  renderProfile();
-  renderLinks();
-  initializeCopyLinks();
-  renderCredits();
-  initializeWorks();
+renderProfile();
+renderLinks();
+renderCopyResources();
+initializeWorksFilters();
 
-  renderNews();
-  renderSchedule();
-  renderWorks();
+renderNews();
+renderSchedule();
+renderWorks();
+renderCredits();
 
-  initializeNavigation();
-  initializeCursor();
+initializeNavigation();
+initializeCursorPaws();
 
-  $("#copyrightYear").textContent = new Date().getFullYear();
+$("#copyrightYear").textContent = new Date().getFullYear();
 
-  loadPageData();
+loadPageData();
 
-  window.setInterval(() => {
-    if (!document.hidden && dataState.schedule.loaded) {
-      renderSchedule();
-    }
-  }, 60 * 1000);
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initialize, { once: true });
-} else {
-  initialize();
-}
+window.setInterval(() => {
+  if (
+    dataState.schedule.loaded &&
+    !dataState.schedule.error &&
+    !document.hidden
+  ) {
+    renderSchedule();
+  }
+}, 60000);
