@@ -11,34 +11,46 @@
    空欄の場合は画像枠を表示します。
    ================================================== */
 
+
 const siteConfig = {
+  /* 画像設定 */
   images: {
-    logo: "logo.png",
-    main: "",
-    profile: "",
+    logo: "dist/logo.png",
+    main: "dist/moka-main.png",
+    profile: "dist/moka-profile.png",
   },
 
+  /* 画像の表示位置・拡大率 */
   imageStyles: {
+    // TOP：寝転びイラスト
     main: {
       fit: "cover",
       position: "center 32%",
       scale: 1.22,
     },
+
+    // プロフィール
     profile: {
       fit: "contain",
       position: "center",
       scale: 1,
     },
+
+    // やまと
     yamato: {
       fit: "contain",
       position: "center",
       scale: 1,
     },
+
+    // はる
     haru: {
       fit: "contain",
       position: "center",
       scale: 1,
     },
+
+    // キャラクター資料
     gallery: {
       fit: "contain",
       position: "center",
@@ -46,12 +58,13 @@ const siteConfig = {
     },
   },
 
+  /* 一緒に暮らしている猫 */
   partners: [
     {
       relation: "兄",
       name: "やまと",
       english: "YAMATO",
-      image: "",
+      image: "dist/yamato.png",
       alt: "やまと",
       styleKey: "yamato",
     },
@@ -59,43 +72,43 @@ const siteConfig = {
       relation: "妹",
       name: "はる",
       english: "HARU",
-      image: "",
+      image: "dist/haru.png",
       alt: "はる",
       styleKey: "haru",
     },
   ],
 
+  /* キャラクターギャラリー */
   gallery: [
     {
       title: "キャラクター紹介",
-      image: "",
+      image: "dist/moka-character.png",
       alt: "甘犬もか キャラクター紹介",
     },
     {
       title: "キャラクター設定資料",
-      image: "",
+      image: "dist/moka-design.png",
       alt: "甘犬もか キャラクター設定資料",
     },
     {
       title: "初期モデル・キャラクターデザイン 01",
-      image: "",
+      image: "dist/moka-original-01.png",
       alt: "甘犬もか 初期モデルのキャラクターデザイン",
     },
     {
       title: "初期モデル・キャラクターデザイン 02",
-      image: "",
+      image: "dist/moka-original-02.png",
       alt: "甘犬もか 初期モデルのキャラクターデザイン",
     },
   ],
 
-  /*
-   * Linksには表示しません。
-   * Contactページのお問い合わせ先として使用します。
-   */
+  /* 企業様向けお問い合わせ */
   litlinkUrl: "https://lit.link/amainumoka",
 
+  /* お問い合わせフォーム */
   businessFormUrl: "",
 };
+
 
 /* ==================================================
    クレジットデータ
