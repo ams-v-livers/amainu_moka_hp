@@ -5,28 +5,45 @@
    画像・リンク設定
 
    画像例：
-   main: "dist/moka-top-lying.png"
+   main: "dist/moka-main.png"
    image: "dist/yamato.png"
 
    空欄の場合は画像枠を表示します。
    ================================================== */
 
 const siteConfig = {
-  /* 画像の場所：dist にある場合は "dist/名前.png" と記入 */
   images: {
-    logo: "logo.png",      // 左上・起動時・ブラウザタブで共用
-    main: "",      // 例: "dist/moka-top-lying.png"
-    profile: "",   // 空欄なら main と同じ
+    logo: "logo.png",
+    main: "",
+    profile: "",
   },
 
-  /* 各画像の調整。位置=CSS object-position、倍率=1が標準 */
   imageStyles: {
-    /* TOPは寝転び画像用。腰あたりから見えるように cover で調整 */
-    main: { fit: "cover", position: "center 32%", scale: 1.22 },
-    profile: { fit: "contain", position: "center", scale: 1 },
-    yamato: { fit: "contain", position: "center", scale: 1 },
-    haru: { fit: "contain", position: "center", scale: 1 },
-    gallery: { fit: "contain", position: "center", scale: 1 },
+    main: {
+      fit: "cover",
+      position: "center 32%",
+      scale: 1.22,
+    },
+    profile: {
+      fit: "contain",
+      position: "center",
+      scale: 1,
+    },
+    yamato: {
+      fit: "contain",
+      position: "center",
+      scale: 1,
+    },
+    haru: {
+      fit: "contain",
+      position: "center",
+      scale: 1,
+    },
+    gallery: {
+      fit: "contain",
+      position: "center",
+      scale: 1,
+    },
   },
 
   partners: [
@@ -71,44 +88,17 @@ const siteConfig = {
     },
   ],
 
+  /*
+   * Linksには表示しません。
+   * Contactページのお問い合わせ先として使用します。
+   */
   litlinkUrl: "https://lit.link/amainumoka",
 
-  /*
-    問い合わせフォームを公開したらURLを設定してください。
-    設定すると、コンタクトのリットリンクボタンを
-    問い合わせフォームのボタンへ切り替えます。
-
-    リットリンク閉鎖時は litlinkUrl を空欄にしてください。
-  */
   businessFormUrl: "",
 };
 
 /* ==================================================
-   クレジット
-
-   BGMの追加例：
-   {
-     title: "曲名",
-     creator: "作曲者名",
-     siteName: "サイト・チャンネル名",
-     musicUrl: "https://楽曲URL",
-     siteUrl: "https://サイト・チャンネルURL",
-     note: ""
-   }
-
-   効果音・画像・GIF・その他の追加例：
-   {
-     title: "素材名",
-     creator: "制作者名",
-     siteName: "サイト名",
-     materialUrl: "https://素材URL",
-     siteUrl: "https://サイトURL",
-     note: ""
-   }
-
-   各 [] 内に追加します。
-   複数項目はカンマで区切ってください。
-   空欄のリンクは表示しません。
+   クレジットデータ
    ================================================== */
 
 const creditData = {
@@ -124,29 +114,47 @@ function populateCreditData() {
   });
 
   const source = window.MOKA_CREDITS;
-  if (!source || !Array.isArray(source.items)) return;
+
+  if (!source || !Array.isArray(source.items)) {
+    return;
+  }
 
   source.items.forEach((item) => {
-    if (!item || typeof item !== "object") return;
+    if (!item || typeof item !== "object") {
+      return;
+    }
 
     const key = String(item.category || "").trim();
-    if (!Object.prototype.hasOwnProperty.call(creditData, key)) return;
+
+    if (!Object.prototype.hasOwnProperty.call(creditData, key)) {
+      return;
+    }
 
     creditData[key].push(item);
   });
 }
 
+/* ==================================================
+   共通URL
+   ================================================== */
+
 const youtubeChannelURL =
   "https://www.youtube.com/channel/UCH4GQz6j6P_DfWzfAFF0vpA";
 
-const xAccountURL = "https://twitter.com/96moka_ocd";
+const xAccountURL =
+  "https://twitter.com/96moka_ocd";
+
+/* ==================================================
+   制作者情報
+   正式なXアカウントに修正
+   ================================================== */
 
 const creatorData = [
   {
     role: "キャラクターデザイン",
     name: "りなる様",
-    account: "@Orinaru_pipi",
-    url: "https://x.com/Orinaru_pipi",
+    account: "@Orinaru_pippi",
+    url: "https://x.com/Orinaru_pippi",
   },
   {
     role: "イラスト担当 / ママ",
@@ -161,6 +169,17 @@ const creatorData = [
     url: "https://x.com/ino_artworks",
   },
 ];
+
+/* ==================================================
+   Linksページ
+
+   削除：
+   ・Lit.Link
+   ・どねる
+
+   Lit.Link自体のURL設定は残しているため、
+   Contactページでは引き続き使用できます。
+   ================================================== */
 
 const linkData = [
   {
@@ -199,11 +218,6 @@ const linkData = [
     url: "https://ama-moka.booth.pm",
   },
   {
-    title: "どねる",
-    label: "活動のご支援・ドネーション",
-    url: "https://doneru.jp/amainu_moka",
-  },
-  {
     title: "ファンサーバー",
     label: "Discord / あまりすのコミュニティ",
     url: "https://discord.gg/sE7q4yhxyq",
@@ -214,6 +228,10 @@ const linkData = [
     url: "https://amazon.jp/hz/wishlist/ls/3KU6RL19LZI7U?ref_=wl_share",
   },
 ];
+
+/* ==================================================
+   ハッシュタグ
+   ================================================== */
 
 const tagData = [
   ["総合", "#甘犬もか"],
@@ -250,16 +268,33 @@ const scriptBase = new URL(
 );
 
 const dataState = {
-  news: { items: [], error: false, loaded: false },
-  schedule: { items: [], error: false, loaded: false },
-  works: { items: [], error: false, loaded: false },
+  news: {
+    items: [],
+    error: false,
+    loaded: false,
+  },
+  schedule: {
+    items: [],
+    error: false,
+    loaded: false,
+  },
+  works: {
+    items: [],
+    error: false,
+    loaded: false,
+  },
 };
+
+/* ==================================================
+   URL検証
+   ================================================== */
 
 function safeURL(value) {
   if (!value) return "";
 
   try {
     const url = new URL(value);
+
     return ["http:", "https:"].includes(url.protocol)
       ? url.href
       : "";
@@ -273,6 +308,7 @@ function safeImageURL(value) {
 
   try {
     const url = new URL(value, document.baseURI);
+
     return ["http:", "https:", "file:"].includes(url.protocol)
       ? url.href
       : "";
@@ -280,6 +316,10 @@ function safeImageURL(value) {
     return "";
   }
 }
+
+/* ==================================================
+   共通HTML
+   ================================================== */
 
 function paw() {
   return `
@@ -290,15 +330,22 @@ function paw() {
   `;
 }
 
-function externalLink(label, value, className = "text-link") {
+function externalLink(
+  label,
+  value,
+  className = "text-link"
+) {
   const url = safeURL(value);
+
   if (!url) return "";
 
   return `
     <a class="${escapeHTML(className)}"
        href="${escapeHTML(url)}"
-       target="_blank" rel="noopener noreferrer">
-      ${escapeHTML(label)}${paw()}
+       target="_blank"
+       rel="noopener noreferrer">
+      ${escapeHTML(label)}
+      ${paw()}
     </a>
   `;
 }
@@ -311,14 +358,25 @@ function emptyPanel(message) {
   `;
 }
 
+/* ==================================================
+   日付処理
+   ================================================== */
+
 function validDate(value) {
   if (!value) return null;
+
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? null : date;
+
+  return Number.isNaN(date.getTime())
+    ? null
+    : date;
 }
 
 function formatNewsDate(value) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || "");
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(
+    value || ""
+  );
+
   return match
     ? `${match[1]}.${match[2]}.${match[3]}`
     : value || "";
@@ -326,6 +384,7 @@ function formatNewsDate(value) {
 
 function formatScheduleDate(value) {
   const date = validDate(value);
+
   if (!date) return "";
 
   return new Intl.DateTimeFormat("ja-JP", {
@@ -339,48 +398,104 @@ function formatScheduleDate(value) {
   }).format(date);
 }
 
+/* ==================================================
+   画像表示設定
+   ================================================== */
+
 function applyImageStyle(container, styleKey) {
   const style = siteConfig.imageStyles[styleKey] || {};
-  container.style.setProperty("--image-object-fit", style.fit || "contain");
-  container.style.setProperty("--image-object-position", style.position || "center");
-  container.style.setProperty("--image-scale", String(Number(style.scale) > 0 ? style.scale : 1));
+
+  container.style.setProperty(
+    "--image-object-fit",
+    style.fit || "contain"
+  );
+
+  container.style.setProperty(
+    "--image-object-position",
+    style.position || "center"
+  );
+
+  container.style.setProperty(
+    "--image-scale",
+    String(Number(style.scale) > 0 ? style.scale : 1)
+  );
 }
 
+/* ==================================================
+   ロゴ表示
+
+   左上・起動画面・ブラウザタブで
+   同じ logo.png を使用します。
+   ================================================== */
+
 function initializeLogo() {
-  // 元のロゴ画像をそのまま共用。画像の加工・置換は行いません。
   const url = safeImageURL(siteConfig.images.logo);
+
   if (!url) {
-    console.warn("ロゴのパスが未設定です。siteConfig.images.logo に既存ロゴのパスを設定してください。");
+    console.warn(
+      "ロゴのパスが未設定です。siteConfig.images.logo に既存ロゴのパスを設定してください。"
+    );
     return;
   }
 
   const favicon = $("#siteFavicon");
+
   if (favicon) {
     favicon.href = url;
-    if (/\.svg(?:[?#]|$)/i.test(url)) favicon.type = "image/svg+xml";
-    else if (/\.png(?:[?#]|$)/i.test(url)) favicon.type = "image/png";
-    else favicon.removeAttribute("type");
+
+    if (/\.svg(?:[?#]|$)/i.test(url)) {
+      favicon.type = "image/svg+xml";
+    } else if (/\.png(?:[?#]|$)/i.test(url)) {
+      favicon.type = "image/png";
+    } else {
+      favicon.removeAttribute("type");
+    }
   }
 
-  [$("#brandMark"), $("#openingLogo")].forEach((element) => {
+  [
+    $("#brandMark"),
+    $("#openingLogo"),
+  ].forEach((element) => {
     if (!element) return;
+
     const img = new Image();
+
     img.alt = "";
     img.decoding = "async";
+
     img.addEventListener("error", () => {
-      console.error("ロゴ画像を読み込めません:", url);
+      console.error(
+        "ロゴ画像を読み込めません:",
+        url
+      );
     }, { once: true });
+
     img.src = url;
     element.replaceChildren(img);
   });
 }
 
+/* ==================================================
+   起動アニメーション
+   ================================================== */
+
 function initializeOpening() {
   const overlay = $("#openingOverlay");
+
   if (!overlay) return;
-  const duration = reducedMotion.matches ? 50 : 2500;
-  window.setTimeout(() => { overlay.classList.add("is-finished"); }, duration);
+
+  const duration = reducedMotion.matches
+    ? 50
+    : 2500;
+
+  window.setTimeout(() => {
+    overlay.classList.add("is-finished");
+  }, duration);
 }
+
+/* ==================================================
+   画像の読み込み
+   ================================================== */
 
 function mountImage(container, value, alt, label) {
   const url = safeImageURL(value);
@@ -401,42 +516,66 @@ function mountImage(container, value, alt, label) {
   }
 
   const image = new Image();
+
   image.alt = alt;
   image.decoding = "async";
-  image.loading = container.id === "heroImage" ? "eager" : "lazy";
 
-  image.addEventListener("error", placeholder, { once: true });
+  image.loading = container.id === "heroImage"
+    ? "eager"
+    : "lazy";
+
+  image.addEventListener(
+    "error",
+    placeholder,
+    { once: true }
+  );
+
   image.src = url;
   container.replaceChildren(image);
 }
 
 /* ==================================================
-   更新用ファイル読み込み
+   更新用ファイルの読み込み
    ================================================== */
 
 function loadDataScript(filename, globalName) {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
-    script.src = new URL(filename, scriptBase).href;
+
+    script.src = new URL(
+      filename,
+      scriptBase
+    ).href;
+
     script.async = true;
 
     script.onload = () => {
       const data = window[globalName];
 
       if (!data || !Array.isArray(data.items)) {
-        reject(new Error(`${filename} の items を確認してください。`));
+        reject(
+          new Error(
+            `${filename} の items を確認してください。`
+          )
+        );
         return;
       }
 
       resolve(
         data.items.filter((item) =>
-          item && typeof item === "object" && !Array.isArray(item)
+          item &&
+          typeof item === "object" &&
+          !Array.isArray(item)
         )
       );
     };
 
     script.onerror = () => {
-      reject(new Error(`${filename} を読み込めませんでした。`));
+      reject(
+        new Error(
+          `${filename} を読み込めませんでした。`
+        )
+      );
     };
 
     document.head.appendChild(script);
@@ -446,27 +585,37 @@ function loadDataScript(filename, globalName) {
 async function loadPageData() {
   const definitions = [
     ["news", "news.js", "MOKA_NEWS", renderNews],
-    ["schedule", "schedule.js", "MOKA_SCHEDULE", renderSchedule],
+    [
+      "schedule",
+      "schedule.js",
+      "MOKA_SCHEDULE",
+      renderSchedule,
+    ],
     ["works", "works.js", "MOKA_WORKS", renderWorks],
   ];
 
   await Promise.allSettled(
-    definitions.map(async ([key, filename, globalName, render]) => {
-      try {
-        dataState[key].items = await loadDataScript(filename, globalName);
-      } catch (error) {
-        dataState[key].error = true;
-        console.error(error);
-      }
+    definitions.map(
+      async ([key, filename, globalName, render]) => {
+        try {
+          dataState[key].items = await loadDataScript(
+            filename,
+            globalName
+          );
+        } catch (error) {
+          dataState[key].error = true;
+          console.error(error);
+        }
 
-      dataState[key].loaded = true;
-      render();
-    })
+        dataState[key].loaded = true;
+        render();
+      }
+    )
   );
 }
 
 /* ==================================================
-   プロフィール・猫画像
+   プロフィール・猫画像・ギャラリー
    ================================================== */
 
 function renderProfile() {
@@ -482,26 +631,40 @@ function renderProfile() {
 
   mountImage(
     $("#profileImage"),
-    siteConfig.images.profile || siteConfig.images.main,
+    siteConfig.images.profile ||
+      siteConfig.images.main,
     "甘犬もか プロフィールビジュアル",
     "プロフィールビジュアル"
   );
 
-  $("#creatorGrid").innerHTML = creatorData.map((item, index) => `
-    <a class="creator-card"
-       href="${escapeHTML(safeURL(item.url))}"
-       target="_blank" rel="noopener noreferrer">
-      <div class="card-top">
-        <span class="card-number">
-          ${String(index + 1).padStart(2, "0")}
-        </span>
-        ${paw()}
-      </div>
-      <p class="eyebrow">${escapeHTML(item.role)}</p>
-      <h3>${escapeHTML(item.name)}</h3>
-      <p>${escapeHTML(item.account)}</p>
-    </a>
-  `).join("");
+  /* 制作に携わった方々 */
+
+  $("#creatorGrid").innerHTML = creatorData.map(
+    (item, index) => `
+      <a
+        class="creator-card"
+        href="${escapeHTML(safeURL(item.url))}"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        <div class="card-top">
+          <span class="card-number">
+            ${String(index + 1).padStart(2, "0")}
+          </span>
+          ${paw()}
+        </div>
+
+        <p class="eyebrow">
+          ${escapeHTML(item.role)}
+        </p>
+
+        <h3>${escapeHTML(item.name)}</h3>
+        <p>${escapeHTML(item.account)}</p>
+      </a>
+    `
+  ).join("");
+
+  /* キャラクターギャラリー */
 
   const gallery = $("#galleryGrid");
   gallery.replaceChildren();
@@ -512,16 +675,31 @@ function renderProfile() {
 
     const imageContainer = document.createElement("div");
     imageContainer.className = "gallery-image";
-    applyImageStyle(imageContainer, "gallery");
+
+    applyImageStyle(
+      imageContainer,
+      "gallery"
+    );
 
     const caption = document.createElement("figcaption");
     caption.textContent = item.title;
 
-    figure.append(imageContainer, caption);
+    figure.append(
+      imageContainer,
+      caption
+    );
+
     gallery.appendChild(figure);
 
-    mountImage(imageContainer, item.image, item.alt, item.title);
+    mountImage(
+      imageContainer,
+      item.image,
+      item.alt,
+      item.title
+    );
   });
+
+  /* やまと・はる */
 
   const list = $("#partnerList");
   list.replaceChildren();
@@ -536,7 +714,11 @@ function renderProfile() {
 
     const slot = document.createElement("div");
     slot.className = "partner-image-slot";
-    applyImageStyle(slot, item.styleKey || "yamato");
+
+    applyImageStyle(
+      slot,
+      item.styleKey || "yamato"
+    );
 
     const name = document.createElement("div");
     name.className = "cat-name";
@@ -547,14 +729,25 @@ function renderProfile() {
     const japanese = document.createElement("strong");
     japanese.textContent = item.name;
 
-    name.append(english, japanese);
-    card.append(relation, slot, name);
+    name.append(
+      english,
+      japanese
+    );
+
+    card.append(
+      relation,
+      slot,
+      name
+    );
+
     list.appendChild(card);
 
     function placeholder(message) {
       const element = document.createElement("span");
+
       element.className = "partner-image-placeholder";
       element.textContent = message;
+
       slot.replaceChildren(element);
     }
 
@@ -566,12 +759,15 @@ function renderProfile() {
     }
 
     const image = new Image();
+
     image.alt = item.alt || item.name;
     image.loading = "lazy";
     image.decoding = "async";
 
     image.addEventListener("error", () => {
-      placeholder("画像を読み込めませんでした");
+      placeholder(
+        "画像を読み込めませんでした"
+      );
     }, { once: true });
 
     image.src = url;
@@ -580,44 +776,57 @@ function renderProfile() {
 }
 
 /* ==================================================
-   リンク・お問い合わせ
+   Links・Contact
    ================================================== */
 
 function renderLinks() {
+  /*
+   * リットリンク・どねるはLinksから削除済み。
+   * Contactではリットリンクを継続使用します。
+   */
   const items = [...linkData];
 
-  if (safeURL(siteConfig.litlinkUrl)) {
-    items.push({
-      title: "Lit.Link",
-      label: "各種リンク・お問い合わせ先",
-      url: siteConfig.litlinkUrl,
-    });
-  }
+  $("#linkGrid").innerHTML = items.map(
+    (item, index) => `
+      <a
+        class="link-card"
+        href="${escapeHTML(safeURL(item.url))}"
+        target="_blank"
+        rel="noopener noreferrer">
 
-  $("#linkGrid").innerHTML = items.map((item, index) => `
-    <a class="link-card"
-       href="${escapeHTML(safeURL(item.url))}"
-       target="_blank" rel="noopener noreferrer">
-      <div class="card-top">
-        <span class="card-number">
-          ${String(index + 1).padStart(2, "0")}
-        </span>
-        ${paw()}
+        <div class="card-top">
+          <span class="card-number">
+            ${String(index + 1).padStart(2, "0")}
+          </span>
+          ${paw()}
+        </div>
+
+        <h2>${escapeHTML(item.title)}</h2>
+        <p>${escapeHTML(item.label)}</p>
+      </a>
+    `
+  ).join("");
+
+  /* ガイドライン用タグ */
+
+  $("#tagGrid").innerHTML = tagData.map(
+    ([label, tag]) => `
+      <div class="tag-card">
+        <span>${escapeHTML(label)}</span>
+        <strong>${escapeHTML(tag)}</strong>
       </div>
-      <h2>${escapeHTML(item.title)}</h2>
-      <p>${escapeHTML(item.label)}</p>
-    </a>
-  `).join("");
+    `
+  ).join("");
 
-  $("#tagGrid").innerHTML = tagData.map(([label, tag]) => `
-    <div class="tag-card">
-      <span>${escapeHTML(label)}</span>
-      <strong>${escapeHTML(tag)}</strong>
-    </div>
-  `).join("");
+  /* 企業様向けお問い合わせ */
 
-  const formURL = safeURL(siteConfig.businessFormUrl);
-  const litlinkURL = safeURL(siteConfig.litlinkUrl);
+  const formURL = safeURL(
+    siteConfig.businessFormUrl
+  );
+
+  const litlinkURL = safeURL(
+    siteConfig.litlinkUrl
+  );
 
   $("#contactDescription").textContent = formURL
     ? "企業向けお問い合わせフォーム、またはXのDMからご連絡ください。"
@@ -626,35 +835,61 @@ function renderLinks() {
       : "お仕事・コラボのご連絡は、XのDMからお願いします。";
 
   $("#contactButtons").innerHTML = `
-    ${externalLink("Xで連絡する", xAccountURL, "button")}
+    ${externalLink(
+      "Xで連絡する",
+      xAccountURL,
+      "button"
+    )}
+
     ${
       formURL
-        ? externalLink("お問い合わせフォーム", formURL, "button")
-        : externalLink("リットリンク", litlinkURL, "button")
+        ? externalLink(
+            "お問い合わせフォーム",
+            formURL,
+            "button"
+          )
+        : externalLink(
+            "リットリンク",
+            litlinkURL,
+            "button"
+          )
     }
   `;
 }
 
 /* ==================================================
-   URLコピー
+   URLコピー機能
    ================================================== */
 
 function copyResource(label, url, id) {
   return `
     <section class="copy-resource">
       <h3>${escapeHTML(label)}</h3>
+
       <div class="copy-resource-controls">
-        <input class="copy-url" id="${escapeHTML(id)}"
-               type="text" readonly spellcheck="false"
-               aria-label="${escapeHTML(label)}のURL"
-               value="${escapeHTML(url)}">
-        <button class="copy-button" type="button"
-                data-copy-target="${escapeHTML(id)}">
+        <input
+          class="copy-url"
+          id="${escapeHTML(id)}"
+          type="text"
+          readonly
+          spellcheck="false"
+          aria-label="${escapeHTML(label)}のURL"
+          value="${escapeHTML(url)}">
+
+        <button
+          class="copy-button"
+          type="button"
+          data-copy-target="${escapeHTML(id)}">
           コピー${paw()}
         </button>
       </div>
-      <p class="copy-status" role="status"
-         aria-live="polite" aria-atomic="true"></p>
+
+      <p
+        class="copy-status"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"></p>
+
       ${externalLink("リンクを開く", url)}
     </section>
   `;
@@ -664,56 +899,100 @@ function initializeCopyLinks() {
   const resources = $("#clipResources");
 
   resources.innerHTML =
-    copyResource("YouTubeチャンネル", youtubeChannelURL, "clipYouTubeURL") +
-    copyResource("Xアカウント", xAccountURL, "clipXURL");
+    copyResource(
+      "YouTubeチャンネル",
+      youtubeChannelURL,
+      "clipYouTubeURL"
+    ) +
+    copyResource(
+      "Xアカウント",
+      xAccountURL,
+      "clipXURL"
+    );
 
   let copying = false;
 
-  resources.addEventListener("click", async (event) => {
-    const button = event.target.closest("button[data-copy-target]");
-    if (!button || copying) return;
+  resources.addEventListener(
+    "click",
+    async (event) => {
+      const button = event.target.closest(
+        "button[data-copy-target]"
+      );
 
-    const input = document.getElementById(button.dataset.copyTarget);
-    const status = $(".copy-status", button.closest(".copy-resource"));
+      if (!button || copying) return;
 
-    copying = true;
-    input.focus({ preventScroll: true });
-    input.select();
-    input.setSelectionRange(0, input.value.length);
+      const input = document.getElementById(
+        button.dataset.copyTarget
+      );
 
-    let copied = false;
+      const status = $(
+        ".copy-status",
+        button.closest(".copy-resource")
+      );
 
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(input.value);
-        copied = true;
-      }
-    } catch {
-      copied = false;
-    }
+      copying = true;
 
-    if (!copied) {
+      input.focus({ preventScroll: true });
+      input.select();
+      input.setSelectionRange(
+        0,
+        input.value.length
+      );
+
+      let copied = false;
+
       try {
-        copied = document.execCommand("copy");
+        if (
+          navigator.clipboard &&
+          window.isSecureContext
+        ) {
+          await navigator.clipboard.writeText(
+            input.value
+          );
+          copied = true;
+        }
       } catch {
         copied = false;
       }
-    }
 
-    if (copied) {
-      status.textContent = "URLをコピーしました。";
-      button.focus({ preventScroll: true });
-    } else {
-      input.focus({ preventScroll: true });
-      input.select();
-      input.setSelectionRange(0, input.value.length);
-      status.textContent =
-        "URLを選択しました。端末のコピー操作をご利用ください。";
-    }
+      if (!copied) {
+        try {
+          copied = document.execCommand("copy");
+        } catch {
+          copied = false;
+        }
+      }
 
-    copying = false;
-  });
+      if (copied) {
+        status.textContent =
+          "URLをコピーしました。";
+
+        button.focus({
+          preventScroll: true
+        });
+      } else {
+        input.focus({
+          preventScroll: true
+        });
+
+        input.select();
+        input.setSelectionRange(
+          0,
+          input.value.length
+        );
+
+        status.textContent =
+          "URLを選択しました。端末のコピー操作をご利用ください。";
+      }
+
+      copying = false;
+    }
+  );
 }
+
+/* ==================================================
+   お知らせ
+   ================================================== */
 
 /* ==================================================
    お知らせ
@@ -723,53 +1002,79 @@ function renderNews() {
   const state = dataState.news;
 
   if (!state.loaded) {
-    $("#newsList").innerHTML = emptyPanel("お知らせを読み込んでいます。");
+    $("#newsList").innerHTML = emptyPanel(
+      "お知らせを読み込んでいます。"
+    );
+
     $("#homeNews").innerHTML =
       '<p class="empty">お知らせを読み込んでいます。</p>';
+
     return;
   }
 
   if (state.error) {
-    $("#newsList").innerHTML = emptyPanel("お知らせを読み込めませんでした。");
+    $("#newsList").innerHTML = emptyPanel(
+      "お知らせを読み込めませんでした。"
+    );
+
     $("#homeNews").innerHTML =
       '<p class="empty">お知らせを読み込めませんでした。</p>';
+
     return;
   }
 
   const items = [...state.items].sort((a, b) =>
-    String(b.date || "").localeCompare(String(a.date || ""))
+    String(b.date || "").localeCompare(
+      String(a.date || "")
+    )
   );
 
   if (!items.length) {
-    $("#newsList").innerHTML =
-      emptyPanel("現在、掲載中のお知らせはありません。");
+    $("#newsList").innerHTML = emptyPanel(
+      "現在、掲載中のお知らせはありません。"
+    );
+
     $("#homeNews").innerHTML =
       '<p class="empty">新しいお知らせは、こちらに掲載します。</p>';
+
     return;
   }
 
   $("#newsList").innerHTML = items.map((item) => `
     <article class="news-card">
       <div class="news-meta">
-        <time>${escapeHTML(formatNewsDate(item.date))}</time>
+        <time>
+          ${escapeHTML(formatNewsDate(item.date))}
+        </time>
+
         <span class="badge">
           ${escapeHTML(item.category || "お知らせ")}
         </span>
       </div>
+
       <h2>${escapeHTML(item.title)}</h2>
+
       <p>${escapeHTML(item.text)}</p>
-      ${externalLink(item.linkLabel || "詳細を見る", item.url)}
+
+      ${externalLink(
+        item.linkLabel || "詳細を見る",
+        item.url
+      )}
     </article>
   `).join("");
 
   $("#homeNews").innerHTML = items.slice(0, 3).map((item) => `
     <article class="news-preview">
       <div class="news-meta">
-        <time>${escapeHTML(formatNewsDate(item.date))}</time>
+        <time>
+          ${escapeHTML(formatNewsDate(item.date))}
+        </time>
+
         <span class="badge">
           ${escapeHTML(item.category || "お知らせ")}
         </span>
       </div>
+
       <h3>${escapeHTML(item.title)}</h3>
     </article>
   `).join("");
@@ -783,9 +1088,13 @@ function renderSchedule() {
   const state = dataState.schedule;
 
   if (!state.loaded) {
-    $("#scheduleList").innerHTML = emptyPanel("配信予定を読み込んでいます。");
+    $("#scheduleList").innerHTML = emptyPanel(
+      "配信予定を読み込んでいます。"
+    );
+
     $("#homeSchedule").innerHTML =
       '<p class="empty">配信予定を読み込んでいます。</p>';
+
     return;
   }
 
@@ -793,8 +1102,12 @@ function renderSchedule() {
     $("#scheduleList").innerHTML = emptyPanel(
       "配信予定を読み込めませんでした。最新情報はXをご確認ください。"
     );
-    $("#homeSchedule").innerHTML =
-      externalLink("最新情報を見る", xAccountURL);
+
+    $("#homeSchedule").innerHTML = externalLink(
+      "最新情報を見る",
+      xAccountURL
+    );
+
     return;
   }
 
@@ -802,33 +1115,51 @@ function renderSchedule() {
 
   const items = state.items.filter((item) => {
     const start = validDate(item.start);
+
     if (!start) return false;
 
     const end = validDate(item.end);
+
     const expiry = end
       ? end.getTime()
       : start.getTime() + 6 * 60 * 60 * 1000;
 
     return expiry > now;
-  }).sort((a, b) => new Date(a.start) - new Date(b.start));
+  }).sort(
+    (a, b) => new Date(a.start) - new Date(b.start)
+  );
 
   if (!items.length) {
     $("#scheduleList").innerHTML = `
       <div class="schedule-empty">
         ${paw()}
+
         <h2>Stay Tuned.</h2>
+
         <p>
           次回の配信予定は準備中です。<br>
           最新情報はXでお知らせします。
         </p>
-        ${externalLink("Xで確認する", xAccountURL, "button")}
+
+        ${externalLink(
+          "Xで確認する",
+          xAccountURL,
+          "button"
+        )}
       </div>
     `;
 
     $("#homeSchedule").innerHTML = `
-      <p class="empty">次回の配信予定は準備中です。</p>
-      ${externalLink("最新情報を見る", xAccountURL)}
+      <p class="empty">
+        次回の配信予定は準備中です。
+      </p>
+
+      ${externalLink(
+        "最新情報を見る",
+        xAccountURL
+      )}
     `;
+
     return;
   }
 
@@ -837,13 +1168,20 @@ function renderSchedule() {
       ${items.map((item) => `
         <article class="schedule-item">
           <time datetime="${escapeHTML(item.start)}">
-            ${escapeHTML(formatScheduleDate(item.start))}
+            ${escapeHTML(
+              formatScheduleDate(item.start)
+            )}
           </time>
+
           <div>
             <h3>${escapeHTML(item.title)}</h3>
             <p>${escapeHTML(item.platform || "")}</p>
           </div>
-          ${externalLink("配信を見る", item.url)}
+
+          ${externalLink(
+            "配信を見る",
+            item.url
+          )}
         </article>
       `).join("")}
     </div>
@@ -854,18 +1192,132 @@ function renderSchedule() {
   $("#homeSchedule").innerHTML = `
     <div class="schedule-preview">
       <h3>${escapeHTML(next.title)}</h3>
-      <p>${escapeHTML(formatScheduleDate(next.start))} / JST</p>
-      ${externalLink("配信を見る", next.url)}
+
+      <p>
+        ${escapeHTML(
+          formatScheduleDate(next.start)
+        )} / JST
+      </p>
+
+      ${externalLink(
+        "配信を見る",
+        next.url
+      )}
     </div>
   `;
 }
 
 /* ==================================================
-   クレジット
-   Worksと同じカードデザイン
+   Credits / カテゴリフィルター
+
+   Worksと同じクラスを使用するため、
+   ボタンの色・サイズ・デザインを統一します。
+
+   ALL / BGM / 効果音 / 画像・GIF素材 / その他
+   ================================================== */
+
+let selectedCreditCategory = "all";
+
+const creditCategories = [
+  ["all", "ALL"],
+  ["bgm", "BGM"],
+  ["sound", "効果音"],
+  ["visual", "画像・GIF素材"],
+  ["other", "その他"],
+];
+
+function initializeCredits() {
+  const sections = $("#creditSections");
+
+  if (!sections) return;
+
+  let filters = $("#creditsFilters");
+
+  if (!filters) {
+    filters = document.createElement("div");
+    filters.id = "creditsFilters";
+    filters.className = "works-category-buttons";
+
+    filters.setAttribute(
+      "role",
+      "group"
+    );
+
+    filters.setAttribute(
+      "aria-label",
+      "クレジットのカテゴリ"
+    );
+
+    sections.before(filters);
+  }
+
+  filters.innerHTML = creditCategories.map(
+    ([value, label]) => `
+      <button
+        class="filter-button"
+        type="button"
+        data-credit-category="${escapeHTML(value)}"
+        aria-pressed="${
+          value === selectedCreditCategory
+        }"
+        aria-controls="creditSections">
+        ${escapeHTML(label)}
+      </button>
+    `
+  ).join("");
+
+  filters.addEventListener("click", (event) => {
+    const button = event.target.closest(
+      "button[data-credit-category]"
+    );
+
+    if (!button) return;
+
+    const nextCategory = button.dataset.creditCategory;
+
+    if (
+      nextCategory === selectedCreditCategory
+    ) {
+      return;
+    }
+
+    selectedCreditCategory = nextCategory;
+
+    renderCredits();
+  });
+}
+
+/* ==================================================
+   Credits / 表示処理
+
+   ALL：すべてのカテゴリを表示
+   その他：選択したカテゴリのみ表示
+
+   登録内容は credits.js から取得します。
    ================================================== */
 
 function renderCredits() {
+  const sections = $("#creditSections");
+  const filters = $("#creditsFilters");
+
+  if (!sections) return;
+
+  /* 選択状態を更新 */
+
+  if (filters) {
+    filters.querySelectorAll(
+      "button[data-credit-category]"
+    ).forEach((button) => {
+      button.setAttribute(
+        "aria-pressed",
+        String(
+          button.dataset.creditCategory ===
+          selectedCreditCategory
+        )
+      );
+    });
+  }
+
   const groups = [
     ["bgm", "BGM", "Background Music"],
     ["sound", "効果音", "Sound Effects"],
@@ -873,70 +1325,126 @@ function renderCredits() {
     ["other", "その他クレジット", "Other Credits"],
   ];
 
-  $("#creditSections").innerHTML = groups.map(([key, title, english]) => {
-    const items = creditData[key];
+  /* ALL以外の場合は指定カテゴリのみ */
 
-    return `
-      <section class="credit-section"
-               aria-labelledby="credit-${key}-heading">
-        <div class="sub-heading">
-          <p class="eyebrow">${escapeHTML(english)}</p>
-          <h2 id="credit-${key}-heading">${escapeHTML(title)}</h2>
-        </div>
+  const visibleGroups = groups.filter(([key]) =>
+    selectedCreditCategory === "all" ||
+    selectedCreditCategory === key
+  );
 
-        <div class="credit-grid">
-          ${
-            items.length
-              ? items.map((item) => `
-                  <article class="work-card credit-card">
-                    <div class="work-meta">
-                      <span class="badge">${escapeHTML(title)}</span>
-                      ${item.siteName ? `<span>${escapeHTML(item.siteName)}</span>` : ""}
-                    </div>
+  sections.innerHTML = visibleGroups.map(
+    ([key, title, english]) => {
+      const items = creditData[key] || [];
 
-                    <h2>${escapeHTML(item.title || item.siteName || title)}</h2>
+      return `
+        <section
+          class="credit-section"
+          aria-labelledby="credit-${key}-heading">
 
-                    ${
-                      item.creator
-                        ? `<p class="eyebrow credit-source">${escapeHTML(item.creator)}</p>`
-                        : ""
-                    }
+          <div class="sub-heading">
+            <p class="eyebrow">
+              ${escapeHTML(english)}
+            </p>
 
-                    ${
-                      item.note
-                        ? `<p class="credit-note">${escapeHTML(item.note)}</p>`
-                        : ""
-                    }
+            <h2 id="credit-${key}-heading">
+              ${escapeHTML(title)}
+            </h2>
+          </div>
 
-                    ${
-                      item.siteName
-                        ? `<p class="credit-site">${escapeHTML(item.siteName)}</p>`
-                        : ""
-                    }
+          <div class="credit-grid">
+            ${
+              items.length
+                ? items.map((item) => `
+                    <article class="work-card credit-card">
+                      <div class="work-meta">
+                        <span class="badge">
+                          ${escapeHTML(title)}
+                        </span>
 
-                    <div class="credit-links">
+                        ${
+                          item.siteName
+                            ? `<span>${escapeHTML(item.siteName)}</span>`
+                            : ""
+                        }
+                      </div>
+
+                      <h2>
+                        ${escapeHTML(
+                          item.title ||
+                          item.siteName ||
+                          title
+                        )}
+                      </h2>
+
                       ${
-                        key === "bgm"
-                          ? externalLink("楽曲リンク", item.musicUrl)
-                          : externalLink("素材リンク", item.materialUrl)
+                        item.creator
+                          ? `
+                            <p class="eyebrow credit-source">
+                              ${escapeHTML(item.creator)}
+                            </p>
+                          `
+                          : ""
                       }
-                      ${externalLink(
-                        key === "bgm" ? "サイト・チャンネル" : "素材サイト",
-                        item.siteUrl
-                      )}
-                    </div>
-                  </article>
-                `).join("")
-              : emptyPanel(`${title}のクレジットは準備中です。`)
-          }
-        </div>
-      </section>
-    `;
-  }).join("");
+
+                      ${
+                        item.note
+                          ? `
+                            <p class="credit-note">
+                              ${escapeHTML(item.note)}
+                            </p>
+                          `
+                          : ""
+                      }
+
+                      ${
+                        item.siteName
+                          ? `
+                            <p class="credit-site">
+                              ${escapeHTML(item.siteName)}
+                            </p>
+                          `
+                          : ""
+                      }
+
+                      <div class="credit-links">
+                        ${
+                          key === "bgm"
+                            ? externalLink(
+                                "楽曲リンク",
+                                item.musicUrl
+                              )
+                            : externalLink(
+                                "素材リンク",
+                                item.materialUrl
+                              )
+                        }
+
+                        ${externalLink(
+                          key === "bgm"
+                            ? "サイト・チャンネル"
+                            : "素材サイト",
+                          item.siteUrl
+                        )}
+                      </div>
+                    </article>
+                  `).join("")
+                : emptyPanel(
+                    `${title}のクレジットは準備中です。`
+                  )
+            }
+          </div>
+        </section>
+      `;
+    }
+  ).join("");
 }
 
 /* ==================================================
-   実績カテゴリ
+   Works / 実績カテゴリ
+   ================================================== */
+
+/* ==================================================
+   Works / カテゴリフィルター
    ================================================== */
 
 let selectedWorkCategory = "すべて";
@@ -951,47 +1459,79 @@ function initializeWorks() {
     ["ビジョン・広告", "ビジョン・広告"],
   ];
 
-  $("#worksFilters").innerHTML = categories.map(([value, label]) => `
-    <button class="filter-button" type="button"
-            data-work-category="${escapeHTML(value)}"
-            aria-pressed="${value === selectedWorkCategory}"
-            aria-controls="worksGrid">
-      ${escapeHTML(label)}
-    </button>
-  `).join("");
+  $("#worksFilters").innerHTML = categories.map(
+    ([value, label]) => `
+      <button
+        class="filter-button"
+        type="button"
+        data-work-category="${escapeHTML(value)}"
+        aria-pressed="${
+          value === selectedWorkCategory
+        }"
+        aria-controls="worksGrid">
+        ${escapeHTML(label)}
+      </button>
+    `
+  ).join("");
 
-  $("#worksFilters").addEventListener("click", (event) => {
-    const button = event.target.closest("button[data-work-category]");
-    if (!button) return;
+  $("#worksFilters").addEventListener(
+    "click",
+    (event) => {
+      const button = event.target.closest(
+        "button[data-work-category]"
+      );
 
-    const next = button.dataset.workCategory;
-    if (next === selectedWorkCategory) return;
+      if (!button) return;
 
-    selectedWorkCategory = next;
-    renderWorks(true);
-  });
+      const next = button.dataset.workCategory;
+
+      if (next === selectedWorkCategory) {
+        return;
+      }
+
+      selectedWorkCategory = next;
+      renderWorks(true);
+    }
+  );
 }
+
+/* ==================================================
+   Works / 実績一覧の表示
+   ================================================== */
 
 function renderWorks(animate = false) {
   const grid = $("#worksGrid");
   const state = dataState.works;
 
-  $("#worksFilters").querySelectorAll("button").forEach((button) => {
-    button.setAttribute(
-      "aria-pressed",
-      String(button.dataset.workCategory === selectedWorkCategory)
-    );
-  });
+  $("#worksFilters")
+    .querySelectorAll("button")
+    .forEach((button) => {
+      button.setAttribute(
+        "aria-pressed",
+        String(
+          button.dataset.workCategory ===
+          selectedWorkCategory
+        )
+      );
+    });
 
   if (!state.loaded) {
     $("#worksCount").textContent = "";
-    grid.innerHTML = emptyPanel("実績を読み込んでいます。");
+
+    grid.innerHTML = emptyPanel(
+      "実績を読み込んでいます。"
+    );
+
     return;
   }
 
   if (state.error) {
     $("#worksCount").textContent = "";
-    grid.innerHTML = emptyPanel("実績を読み込めませんでした。");
+
+    grid.innerHTML = emptyPanel(
+      "実績を読み込めませんでした。"
+    );
+
     return;
   }
 
@@ -1007,11 +1547,23 @@ function renderWorks(animate = false) {
     ? items.map((item) => `
         <article class="work-card">
           <div class="work-meta">
-            <span class="badge">${escapeHTML(item.category)}</span>
-            ${item.date ? `<span>${escapeHTML(item.date)}</span>` : ""}
+            <span class="badge">
+              ${escapeHTML(item.category)}
+            </span>
+
+            ${
+              item.date
+                ? `<span>${escapeHTML(item.date)}</span>`
+                : ""
+            }
           </div>
+
           <h2>${escapeHTML(item.title)}</h2>
-          <p class="eyebrow">${escapeHTML(item.client)}</p>
+
+          <p class="eyebrow">
+            ${escapeHTML(item.client)}
+          </p>
+
           <p>${escapeHTML(item.text)}</p>
 
           ${
@@ -1019,7 +1571,10 @@ function renderWorks(animate = false) {
               ? `
                 <div class="work-links">
                   ${item.links.map((link) =>
-                    externalLink(link.label, link.url)
+                    externalLink(
+                      link.label,
+                      link.url
+                    )
                   ).join("")}
                 </div>
               `
@@ -1027,45 +1582,89 @@ function renderWorks(animate = false) {
           }
         </article>
       `).join("")
-    : emptyPanel("このカテゴリの実績はありません。");
+    : emptyPanel(
+        "このカテゴリの実績はありません。"
+      );
 
-  if (animate && !reducedMotion.matches && grid.animate) {
+  if (
+    animate &&
+    !reducedMotion.matches &&
+    grid.animate
+  ) {
     grid.animate(
       [
-        { opacity: 0, transform: "translateY(8px)" },
-        { opacity: 1, transform: "translateY(0)" },
+        {
+          opacity: 0,
+          transform: "translateY(8px)",
+        },
+        {
+          opacity: 1,
+          transform: "translateY(0)",
+        },
       ],
-      { duration: 380, easing: "cubic-bezier(.22,1,.36,1)" }
+      {
+        duration: 380,
+        easing: "cubic-bezier(.22,1,.36,1)",
+      }
     );
   }
 }
 
 /* ==================================================
-   ページ切り替え・文字送り
+   ページ切り替え
+   文字送り・肉球クロスフェード
    ================================================== */
 
 function initializeNavigation() {
-  const pages = Array.from(document.querySelectorAll(".page"));
+  const pages = Array.from(
+    document.querySelectorAll(".page")
+  );
+
   const nav = $("#siteNav");
   const menu = $("#menuButton");
-  const desktop = matchMedia("(min-width: 1201px)");
+
+  const desktop = matchMedia(
+    "(min-width: 1201px)"
+  );
+
   const originals = new WeakMap();
 
   let currentPage = null;
 
+  /* メニューを閉じる */
+
   function closeMenu() {
     nav.classList.remove("is-open");
-    menu.setAttribute("aria-expanded", "false");
-    menu.setAttribute("aria-label", "メニューを開く");
-  }
 
-  function restoreHeading(heading) {
-    if (!heading || !originals.has(heading)) return;
+    menu.setAttribute(
+      "aria-expanded",
+      "false"
+    );
 
-    heading.replaceChildren(
-      ...originals.get(heading).map((node) => node.cloneNode(true))
+    menu.setAttribute(
+      "aria-label",
+      "メニューを開く"
     );
   }
+
+  /* 見出しの文字を元に戻す */
+
+  function restoreHeading(heading) {
+    if (
+      !heading ||
+      !originals.has(heading)
+    ) {
+      return;
+    }
+
+    heading.replaceChildren(
+      ...originals.get(heading).map(
+        (node) => node.cloneNode(true)
+      )
+    );
+  }
+
+  /* 見出しの文字送りアニメーション */
 
   function typeHeading(heading) {
     if (!heading) return;
@@ -1073,14 +1672,19 @@ function initializeNavigation() {
     if (!originals.has(heading)) {
       originals.set(
         heading,
-        Array.from(heading.childNodes).map((node) =>
+        Array.from(
+          heading.childNodes
+        ).map((node) =>
           node.cloneNode(true)
         )
       );
     }
 
     restoreHeading(heading);
-    if (reducedMotion.matches) return;
+
+    if (reducedMotion.matches) {
+      return;
+    }
 
     const walker = document.createTreeWalker(
       heading,
@@ -1088,154 +1692,332 @@ function initializeNavigation() {
     );
 
     const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    while (walker.nextNode()) {
+      nodes.push(walker.currentNode);
+    }
 
     const length = Math.max(
       1,
-      Array.from(heading.textContent.trim()).length
+      Array.from(
+        heading.textContent.trim()
+      ).length
     );
 
-    const interval = Math.min(42, 600 / length);
+    const interval = Math.min(
+      42,
+      600 / length
+    );
+
     let index = 0;
 
     nodes.forEach((node) => {
-      const fragment = document.createDocumentFragment();
+      const fragment =
+        document.createDocumentFragment();
 
-      Array.from(node.nodeValue).forEach((character) => {
-        if (/\s/.test(character)) {
-          fragment.appendChild(document.createTextNode(character));
-          return;
+      Array.from(node.nodeValue).forEach(
+        (character) => {
+          if (/\s/.test(character)) {
+            fragment.appendChild(
+              document.createTextNode(
+                character
+              )
+            );
+            return;
+          }
+
+          const span =
+            document.createElement("span");
+
+          span.className =
+            "heading-character";
+
+          span.textContent =
+            character;
+
+          span.style.setProperty(
+            "--character-delay",
+            `${index++ * interval}ms`
+          );
+
+          fragment.appendChild(span);
         }
-
-        const span = document.createElement("span");
-        span.className = "heading-character";
-        span.textContent = character;
-        span.style.setProperty(
-          "--character-delay",
-          `${index++ * interval}ms`
-        );
-
-        fragment.appendChild(span);
-      });
+      );
 
       node.replaceWith(fragment);
     });
   }
 
+  /* ページ表示処理 */
+
   function route(initial = false) {
-    const requested = location.hash.slice(1) || "home";
+    const requested =
+      location.hash.slice(1) || "home";
 
     if (requested === "main") {
-      $("#main").focus({ preventScroll: true });
+      $("#main").focus({
+        preventScroll: true
+      });
       return;
     }
 
     const next =
-      pages.find((page) => page.dataset.page === requested) ||
-      pages.find((page) => page.dataset.page === "home");
+      pages.find(
+        (page) =>
+          page.dataset.page === requested
+      ) ||
+      pages.find(
+        (page) =>
+          page.dataset.page === "home"
+      );
 
     if (next === currentPage) {
       closeMenu();
       return;
     }
 
+    /* 表示ページの切り替え */
+
     pages.forEach((page) => {
       page.hidden = page !== next;
-      page.classList.remove("is-entering");
+      page.classList.remove(
+        "is-entering"
+      );
     });
 
     currentPage = next;
 
-    nav.querySelectorAll("a").forEach((link) => {
-      if (link.hash === `#${next.dataset.page}`) {
-        link.setAttribute("aria-current", "page");
-      } else {
-        link.removeAttribute("aria-current");
+    /* ナビゲーションの選択状態 */
+
+    nav.querySelectorAll("a").forEach(
+      (link) => {
+        if (
+          link.hash ===
+          `#${next.dataset.page}`
+        ) {
+          link.setAttribute(
+            "aria-current",
+            "page"
+          );
+        } else {
+          link.removeAttribute(
+            "aria-current"
+          );
+        }
       }
-    });
+    );
 
     closeMenu();
 
-    const heading = $(".page-heading h1", next);
-    const name = next.dataset.page;
+    const heading = $(
+      ".page-heading h1",
+      next
+    );
 
-    document.title = name === "home"
-      ? "甘犬もか | AMAINU MOKA"
-      : `${name.charAt(0).toUpperCase() + name.slice(1)} | 甘犬もか`;
+    const name =
+      next.dataset.page;
 
-    if (!initial && !reducedMotion.matches) {
-      const transition = $("#pagePawTransition");
+    document.title =
+      name === "home"
+        ? "甘犬もか | AMAINU MOKA"
+        : `${
+            name.charAt(0).toUpperCase() +
+            name.slice(1)
+          } | 甘犬もか`;
+
+    /* ページ移動時の肉球アニメーション */
+
+    if (
+      !initial &&
+      !reducedMotion.matches
+    ) {
+      const transition = $(
+        "#pagePawTransition"
+      );
+
       if (transition) {
-        transition.classList.remove("is-active");
+        transition.classList.remove(
+          "is-active"
+        );
+
         void transition.offsetWidth;
-        transition.classList.add("is-active");
-        window.setTimeout(() => transition.classList.remove("is-active"), 650);
+
+        transition.classList.add(
+          "is-active"
+        );
+
+        window.setTimeout(
+          () => {
+            transition.classList.remove(
+              "is-active"
+            );
+          },
+          650
+        );
       }
     }
 
+    /* スクロール位置とフォーカス */
+
     if (!initial) {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      heading?.focus({ preventScroll: true });
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "instant",
+      });
+
+      heading?.focus({
+        preventScroll: true
+      });
     }
 
     typeHeading(heading);
 
+    /* ページ登場アニメーション */
+
     if (!reducedMotion.matches) {
       void next.offsetWidth;
-      next.classList.add("is-entering");
+
+      next.classList.add(
+        "is-entering"
+      );
     }
   }
 
-  menu.addEventListener("click", () => {
-    const open = menu.getAttribute("aria-expanded") !== "true";
+  /* スマートフォン用メニュー */
 
-    nav.classList.toggle("is-open", open);
-    menu.setAttribute("aria-expanded", String(open));
-    menu.setAttribute(
-      "aria-label",
-      open ? "メニューを閉じる" : "メニューを開く"
+  menu.addEventListener(
+    "click",
+    () => {
+      const open =
+        menu.getAttribute(
+          "aria-expanded"
+        ) !== "true";
+
+      nav.classList.toggle(
+        "is-open",
+        open
+      );
+
+      menu.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+
+      menu.setAttribute(
+        "aria-label",
+        open
+          ? "メニューを閉じる"
+          : "メニューを開く"
+      );
+    }
+  );
+
+  nav.addEventListener(
+    "click",
+    (event) => {
+      if (
+        event.target.closest("a")
+      ) {
+        closeMenu();
+      }
+    }
+  );
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      if (
+        !event.target.closest(
+          ".site-header"
+        )
+      ) {
+        closeMenu();
+      }
+    }
+  );
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        event.key === "Escape" &&
+        nav.classList.contains(
+          "is-open"
+        )
+      ) {
+        closeMenu();
+        menu.focus();
+      }
+    }
+  );
+
+  /* 画面幅が変わったらメニューを閉じる */
+
+  desktop.addEventListener(
+    "change",
+    () => {
+      if (desktop.matches) {
+        closeMenu();
+      }
+    }
+  );
+
+  /* アニメーション軽減設定 */
+
+  reducedMotion.addEventListener(
+    "change",
+    () => {
+      if (
+        !reducedMotion.matches
+      ) {
+        return;
+      }
+
+      pages.forEach((page) => {
+        page.classList.remove(
+          "is-entering"
+        );
+
+        restoreHeading(
+          $(".page-heading h1", page)
+        );
+      });
+    }
+  );
+
+  /* アニメーション終了時の後処理 */
+
+  pages.forEach((page) => {
+    page.addEventListener(
+      "animationend",
+      (event) => {
+        if (
+          event.target === page &&
+          event.animationName ===
+            "page-enter"
+        ) {
+          page.classList.remove(
+            "is-entering"
+          );
+        }
+      }
     );
   });
 
-  nav.addEventListener("click", (event) => {
-    if (event.target.closest("a")) closeMenu();
-  });
+  /* URL変更時のページ更新 */
 
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest(".site-header")) closeMenu();
-  });
+  window.addEventListener(
+    "hashchange",
+    () => route(false)
+  );
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && nav.classList.contains("is-open")) {
-      closeMenu();
-      menu.focus();
-    }
-  });
-
-  desktop.addEventListener("change", () => {
-    if (desktop.matches) closeMenu();
-  });
-
-  reducedMotion.addEventListener("change", () => {
-    if (!reducedMotion.matches) return;
-
-    pages.forEach((page) => {
-      page.classList.remove("is-entering");
-      restoreHeading($(".page-heading h1", page));
-    });
-  });
-
-  pages.forEach((page) => {
-    page.addEventListener("animationend", (event) => {
-      if (event.target === page && event.animationName === "page-enter") {
-        page.classList.remove("is-entering");
-      }
-    });
-  });
-
-  window.addEventListener("hashchange", () => route(false));
   route(true);
 }
+
+/* ==================================================
+   肉球カーソル
+   ================================================== */
 
 /* ==================================================
    肉球カーソル
@@ -1251,6 +2033,7 @@ function initializeCursor() {
 
   layer.className = "cursor-layer";
   layer.setAttribute("aria-hidden", "true");
+
   document.body.appendChild(layer);
 
   const paws = Array.from({ length: 7 }, (_, index) => {
@@ -1260,6 +2043,7 @@ function initializeCursor() {
     svg.setAttribute("viewBox", "0 0 32 32");
     svg.setAttribute("focusable", "false");
     svg.classList.add("cursor-paw");
+
     use.setAttribute("href", "#icon-paw");
 
     svg.appendChild(use);
@@ -1282,13 +2066,17 @@ function initializeCursor() {
   let lastY = null;
 
   function enabled() {
-    return finePointer.matches &&
+    return (
+      finePointer.matches &&
       !reducedMotion.matches &&
-      !document.hidden;
+      !document.hidden
+    );
   }
 
   function clear() {
-    if (frame) cancelAnimationFrame(frame);
+    if (frame) {
+      cancelAnimationFrame(frame);
+    }
 
     frame = 0;
     lastFrame = 0;
@@ -1303,23 +2091,41 @@ function initializeCursor() {
   }
 
   function draw(time) {
-    const delta = lastFrame ? Math.min(time - lastFrame, 50) : 16;
+    const delta = lastFrame
+      ? Math.min(time - lastFrame, 50)
+      : 16;
+
     lastFrame = time;
 
     let active = false;
 
     paws.forEach((item) => {
-      if (item.life <= 0) return;
+      if (item.life <= 0) {
+        return;
+      }
 
-      item.life = Math.max(0, item.life - delta / 850);
+      item.life = Math.max(
+        0,
+        item.life - delta / 850
+      );
+
       const progress = 1 - item.life;
 
-      item.element.style.opacity = String(item.life * .17);
-      item.element.style.transform =
-        `translate3d(${item.x - 15}px,${item.y - 15 - progress * 14}px,0) ` +
-        `rotate(${item.rotation}deg) scale(${.8 + progress * .25})`;
+      item.element.style.opacity = String(
+        item.life * .17
+      );
 
-      if (item.life > 0) active = true;
+      item.element.style.transform =
+        `translate3d(` +
+        `${item.x - 15}px,` +
+        `${item.y - 15 - progress * 14}px,` +
+        `0) ` +
+        `rotate(${item.rotation}deg) ` +
+        `scale(${.8 + progress * .25})`;
+
+      if (item.life > 0) {
+        active = true;
+      }
     });
 
     if (active && enabled()) {
@@ -1330,75 +2136,151 @@ function initializeCursor() {
     }
   }
 
-  document.addEventListener("pointermove", (event) => {
-    if (!enabled() || event.pointerType !== "mouse") return;
+  document.addEventListener(
+    "pointermove",
+    (event) => {
+      if (
+        !enabled() ||
+        event.pointerType !== "mouse"
+      ) {
+        return;
+      }
 
-    const now = performance.now();
-    if (now - lastSpawn < 95) return;
+      const now = performance.now();
 
-    if (
-      lastX !== null &&
-      Math.hypot(event.clientX - lastX, event.clientY - lastY) < 24
-    ) return;
+      if (now - lastSpawn < 95) {
+        return;
+      }
 
-    lastSpawn = now;
-    lastX = event.clientX;
-    lastY = event.clientY;
+      if (
+        lastX !== null &&
+        Math.hypot(
+          event.clientX - lastX,
+          event.clientY - lastY
+        ) < 24
+      ) {
+        return;
+      }
 
-    const item = paws[index];
-    item.x = event.clientX + 18;
-    item.y = event.clientY + 22;
-    item.life = 1;
+      lastSpawn = now;
+      lastX = event.clientX;
+      lastY = event.clientY;
 
-    index = (index + 1) % paws.length;
+      const item = paws[index];
 
-    if (!frame) frame = requestAnimationFrame(draw);
-  }, { passive: true });
+      item.x = event.clientX + 18;
+      item.y = event.clientY + 22;
+      item.life = 1;
 
-  document.documentElement.addEventListener("pointerleave", clear);
-  window.addEventListener("blur", clear);
-  finePointer.addEventListener("change", clear);
-  reducedMotion.addEventListener("change", clear);
+      index = (index + 1) % paws.length;
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) clear();
-  });
+      if (!frame) {
+        frame = requestAnimationFrame(draw);
+      }
+    },
+    { passive: true }
+  );
+
+  document.documentElement.addEventListener(
+    "pointerleave",
+    clear
+  );
+
+  window.addEventListener(
+    "blur",
+    clear
+  );
+
+  finePointer.addEventListener(
+    "change",
+    clear
+  );
+
+  reducedMotion.addEventListener(
+    "change",
+    clear
+  );
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+      if (document.hidden) {
+        clear();
+      }
+    }
+  );
 }
 
 /* ==================================================
-   初期化
+   サイト全体の初期化
+
+   Creditsのカテゴリボタンを追加したため、
+   initializeCredits() を実行します。
+
+   それ以外の初期化処理は維持します。
    ================================================== */
 
 function initialize() {
+  /* クレジットデータ */
   populateCreditData();
+
+  /* ロゴ・起動アニメーション */
   initializeLogo();
   initializeOpening();
+
+  /* プロフィール・各種リンク */
   renderProfile();
   renderLinks();
+
+  /* ガイドラインのコピー機能 */
   initializeCopyLinks();
+
+  /* Creditsのカテゴリボタン */
+  initializeCredits();
+
+  /* Creditsの表示 */
   renderCredits();
+
+  /* Worksのカテゴリボタン */
   initializeWorks();
 
+  /* データ読み込み前の初期表示 */
   renderNews();
   renderSchedule();
   renderWorks();
 
+  /* ページ移動・肉球カーソル */
   initializeNavigation();
   initializeCursor();
 
-  $("#copyrightYear").textContent = new Date().getFullYear();
+  /* フッターの年を自動更新 */
+  $("#copyrightYear").textContent =
+    new Date().getFullYear();
 
+  /* お知らせ・予定・実績データ */
   loadPageData();
 
+  /* 配信予定を1分ごとに更新 */
   window.setInterval(() => {
-    if (!document.hidden && dataState.schedule.loaded) {
+    if (
+      !document.hidden &&
+      dataState.schedule.loaded
+    ) {
       renderSchedule();
     }
   }, 60 * 1000);
 }
 
+/* ==================================================
+   DOM読み込み完了後に起動
+   ================================================== */
+
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initialize, { once: true });
+  document.addEventListener(
+    "DOMContentLoaded",
+    initialize,
+    { once: true }
+  );
 } else {
   initialize();
 }
