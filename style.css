@@ -2465,3 +2465,43 @@ a:hover .paw {
     transition: none !important;
   }
 }
+
+/* ==================================================
+   Contactページ
+   下部余白・フッターレイアウト修正
+   ================================================== */
+
+/* Contactページ表示時のみ適用 */
+body:has(.page[data-page="contact"]:not([hidden])) {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ヘッダーの高さを維持 */
+body:has(.page[data-page="contact"]:not([hidden]))
+.site-header {
+  flex-shrink: 0;
+}
+
+/* 本文とフッターの間に不要な隙間を作らない */
+body:has(.page[data-page="contact"]:not([hidden]))
+.main {
+  min-height: 0;
+  flex: 1 0 auto;
+}
+
+/* フッターをページ最下部に配置 */
+body:has(.page[data-page="contact"]:not([hidden]))
+.site-footer {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* 1枚目に近いフッターの高さ */
+body:has(.page[data-page="contact"]:not([hidden]))
+.footer-inner {
+  min-height: 88px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
