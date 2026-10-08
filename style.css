@@ -1,37 +1,30 @@
 /* =========================
-   DESIGN TOKENS
+   色・フォント・共通サイズ
 ========================= */
 
 :root {
   color-scheme: dark;
-
   --background: #100a0f;
   --surface: #1b1219;
   --surface-light: #291923;
-
   --pink: #d98cab;
   --heading: #efb6cf;
   --text: #f0e2e9;
   --muted: #c5aab8;
-
   --line: rgba(217, 140, 171, 0.22);
   --line-strong: rgba(217, 140, 171, 0.48);
-
   --font-body: "Shippori Mincho", serif;
   --font-display: "Cormorant Garamond", "Shippori Mincho", serif;
-
   --body-size: 16px;
   --small-size: 14px;
   --card-title-size: 22px;
-
   --radius: 16px;
   --container: 1520px;
-
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* =========================
-   RESET / BASE
+   基本設定
 ========================= */
 
 *,
@@ -58,6 +51,10 @@ body {
   font-weight: 400;
   line-height: 1.9;
   -webkit-font-smoothing: antialiased;
+}
+
+body.startup-active {
+  overflow: hidden;
 }
 
 [hidden] {
@@ -167,7 +164,148 @@ button:disabled {
 }
 
 /* =========================
-   BACKGROUND
+   起動アニメーション・ロゴ
+========================= */
+
+.startup-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(217, 140, 171, 0.09),
+      transparent 58%
+    ),
+    var(--background);
+}
+
+.startup-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 380px);
+}
+
+.startup-logo {
+  display: grid;
+  width: clamp(96px, 15vw, 132px);
+  aspect-ratio: 1;
+  place-items: center;
+  opacity: 0;
+}
+
+.startup-logo img,
+.brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo-fallback {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--pink);
+}
+
+.logo-fallback .paw-icon {
+  width: 52%;
+  height: 52%;
+}
+
+.startup-name {
+  margin-top: 20px;
+  color: var(--heading);
+  font-family: var(--font-display);
+  font-size: 19px;
+  letter-spacing: 0.15em;
+  text-align: center;
+  opacity: 0;
+}
+
+.startup-trail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: min(100%, 320px);
+  min-height: 42px;
+  margin-top: 28px;
+}
+
+.startup-paw {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 25px;
+  fill: var(--pink);
+  opacity: 0;
+  --step-y: -4px;
+}
+
+.startup-paw:nth-child(even) {
+  --step-y: 5px;
+}
+
+.startup-screen.is-playing .startup-logo {
+  animation: startup-logo-in 0.55s var(--ease) 0.18s both;
+}
+
+.startup-screen.is-playing .startup-name {
+  animation: startup-name-in 0.45s ease 0.55s both;
+}
+
+.startup-screen.is-playing .startup-paw {
+  animation: startup-step 0.65s ease both;
+}
+
+.startup-screen.is-playing .startup-paw:nth-child(1) {
+  animation-delay: 0.18s;
+}
+
+.startup-screen.is-playing .startup-paw:nth-child(2) {
+  animation-delay: 0.285s;
+}
+
+.startup-screen.is-playing .startup-paw:nth-child(3) {
+  animation-delay: 0.39s;
+}
+
+.startup-screen.is-playing .startup-paw:nth-child(4) {
+  animation-delay: 0.495s;
+}
+
+.startup-screen.is-playing .startup-paw:nth-child(5) {
+  animation-delay: 0.6s;
+}
+
+.startup-screen.is-playing .startup-paw:nth-child(6) {
+  animation-delay: 0.705s;
+}
+
+.startup-screen.is-playing .startup-paw:nth-child(7) {
+  animation-delay: 0.81s;
+}
+
+.startup-screen.is-playing .startup-paw:nth-child(8) {
+  animation-delay: 0.915s;
+}
+
+.startup-screen.is-leaving {
+  animation: startup-out 0.6s ease both;
+  pointer-events: none;
+}
+
+/* =========================
+   背景
 ========================= */
 
 .site-background {
@@ -308,7 +446,7 @@ button:disabled {
 }
 
 /* =========================
-   LAYOUT
+   共通レイアウト
 ========================= */
 
 .container {
@@ -393,7 +531,7 @@ main {
 }
 
 /* =========================
-   HEADER / MENU
+   ヘッダー
 ========================= */
 
 .site-header {
@@ -422,23 +560,12 @@ main {
   flex-shrink: 0;
 }
 
-.brand-monogram {
+.brand-logo {
   display: grid;
   width: 52px;
   height: 52px;
+  flex: 0 0 52px;
   place-items: center;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  color: var(--heading);
-  font-family: var(--font-display);
-  font-size: 42px;
-  line-height: 1;
-  letter-spacing: -0.06em;
-  background: radial-gradient(
-    circle at 30% 20%,
-    rgba(217, 140, 171, 0.1),
-    transparent 70%
-  );
 }
 
 .brand-name {
@@ -519,7 +646,7 @@ main {
 }
 
 /* =========================
-   BUTTONS / LINKS
+   ボタン・リンク
 ========================= */
 
 .button-group {
@@ -602,7 +729,7 @@ main {
 }
 
 /* =========================
-   HOME
+   トップ
 ========================= */
 
 .hero-grid {
@@ -612,7 +739,9 @@ main {
   gap: clamp(32px, 5vw, 80px);
 }
 
-.hero-copy {
+.hero-copy,
+.hero-visual,
+.profile-visual {
   min-width: 0;
 }
 
@@ -657,11 +786,6 @@ main {
   display: inline-block;
   margin-left: 8px;
   color: var(--text);
-}
-
-.hero-visual,
-.profile-visual {
-  min-width: 0;
 }
 
 .visual-frame {
@@ -770,17 +894,12 @@ main {
   font-size: 17px;
 }
 
-.home-news-item > p {
-  margin-top: 8px;
-  font-size: var(--small-size);
-}
-
 .empty-message {
   color: var(--muted);
 }
 
 /* =========================
-   PROFILE
+   プロフィール・猫
 ========================= */
 
 .profile-layout {
@@ -984,7 +1103,7 @@ main {
 }
 
 /* =========================
-   LINKS / FAN COMMUNITY
+   リンク・ファンマーク
 ========================= */
 
 .link-card {
@@ -1035,7 +1154,7 @@ main {
   font-size: var(--card-title-size);
 }
 
-.fan-mark-line {
+.fan-panel .fan-mark-line {
   margin-top: 8px;
   color: var(--text);
   font-size: var(--body-size);
@@ -1056,7 +1175,7 @@ main {
 }
 
 /* =========================
-   NEWS
+   お知らせ
 ========================= */
 
 .news-list {
@@ -1104,7 +1223,7 @@ main {
 }
 
 /* =========================
-   SCHEDULE
+   スケジュール
 ========================= */
 
 .schedule-board {
@@ -1227,7 +1346,7 @@ main {
 }
 
 /* =========================
-   GUIDELINE
+   ガイドライン
 ========================= */
 
 .tag-card {
@@ -1358,7 +1477,7 @@ main {
 }
 
 /* =========================
-   CREDITS
+   クレジット・実績
 ========================= */
 
 .credit-sections {
@@ -1388,10 +1507,6 @@ main {
   gap: 6px 22px;
   margin-top: 18px;
 }
-
-/* =========================
-   WORKS
-========================= */
 
 .works-category-buttons {
   display: flex;
@@ -1449,12 +1564,8 @@ main {
   font-size: var(--card-title-size);
 }
 
-.work-card .work-client + h2 {
-  margin-top: 8px;
-}
-
 /* =========================
-   CONTACT / FOOTER
+   コンタクト・フッター
 ========================= */
 
 .contact-panel {
@@ -1497,18 +1608,30 @@ main {
 }
 
 /* =========================
-   ANIMATION
+   ページ切替・カーソル
 ========================= */
-
-.page.is-entering {
-  animation: page-enter 0.75s var(--ease) both;
-}
 
 .heading-char {
   display: inline-block;
   opacity: 0;
   animation: heading-character 0.4s var(--ease) both;
   animation-delay: var(--char-delay, 0ms);
+}
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.transition-paw {
+  position: absolute;
+  width: clamp(24px, 3vw, 34px);
+  height: clamp(24px, 3vw, 34px);
+  fill: var(--pink);
+  opacity: 0;
 }
 
 .cursor-layer {
@@ -1530,16 +1653,50 @@ main {
   will-change: transform, opacity;
 }
 
-@keyframes page-enter {
+/* =========================
+   アニメーション定義
+========================= */
+
+@keyframes startup-logo-in {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(-7px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes startup-name-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes startup-step {
+  0% {
+    opacity: 0;
+    transform: translate(-6px, var(--step-y)) rotate(80deg);
+  }
+  35% {
+    opacity: 0.55;
+    transform: translate(0, var(--step-y)) rotate(80deg);
+  }
+  100% {
+    opacity: 0.18;
+    transform: translate(0, var(--step-y)) rotate(80deg);
+  }
+}
+
+@keyframes startup-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 @keyframes heading-character {
@@ -1547,7 +1704,6 @@ main {
     opacity: 0;
     transform: translateY(6px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1558,27 +1714,20 @@ main {
   from {
     transform: translate3d(-1%, -1%, 0) scale(1);
   }
-
   to {
     transform: translate3d(2%, 1%, 0) scale(1.06);
   }
 }
 
 @keyframes background-sheen {
-  from {
-    background-position: 0% 30%;
-  }
-
-  to {
-    background-position: 100% 70%;
-  }
+  from { background-position: 0% 30%; }
+  to { background-position: 100% 70%; }
 }
 
 @keyframes ambient-drift {
   from {
     transform: translate3d(0, 0, 0) scale(1);
   }
-
   to {
     transform: translate3d(6%, -4%, 0) scale(1.1);
   }
@@ -1588,7 +1737,6 @@ main {
   from {
     transform: translate3d(0, 0, 0) rotate(-14deg);
   }
-
   to {
     transform: translate3d(-24px, 22px, 0) rotate(-11deg);
   }
@@ -1598,20 +1746,14 @@ main {
   from {
     transform: translate3d(0, 0, 0) rotate(18deg);
   }
-
   to {
     transform: translate3d(28px, -20px, 0) rotate(15deg);
   }
 }
 
 @keyframes paw-float {
-  from {
-    translate: 0 0;
-  }
-
-  to {
-    translate: 10px -22px;
-  }
+  from { translate: 0 0; }
+  to { translate: 10px -22px; }
 }
 
 @keyframes placeholder-float {
@@ -1619,14 +1761,13 @@ main {
   100% {
     transform: translateY(0) rotate(-5deg);
   }
-
   50% {
     transform: translateY(-8px) rotate(5deg);
   }
 }
 
 /* =========================
-   RESPONSIVE
+   レスポンシブ
 ========================= */
 
 @media (max-width: 1200px) {
@@ -1702,8 +1843,6 @@ main {
 
 @media (max-width: 600px) {
   :root {
-    --body-size: 16px;
-    --small-size: 14px;
     --card-title-size: 21px;
   }
 
@@ -1724,10 +1863,10 @@ main {
     gap: 9px;
   }
 
-  .brand-monogram {
+  .brand-logo {
     width: 44px;
     height: 44px;
-    font-size: 36px;
+    flex-basis: 44px;
   }
 
   .brand-name {
@@ -1830,7 +1969,6 @@ main {
   .cat-card {
     grid-template-columns: 56px 104px minmax(0, 1fr);
     grid-template-rows: auto;
-    align-items: center;
     gap: 12px;
     min-height: 190px;
     padding: 22px 18px;
@@ -1951,6 +2089,20 @@ main {
   .background-paw-two {
     right: -30px;
   }
+
+  .startup-name {
+    font-size: 17px;
+  }
+
+  .startup-trail {
+    width: min(100%, 280px);
+  }
+
+  .startup-paw {
+    width: 23px;
+    height: 23px;
+    flex-basis: 23px;
+  }
 }
 
 @media (max-width: 380px) {
@@ -2005,7 +2157,9 @@ main {
     opacity: 1;
   }
 
-  .cursor-layer {
+  .startup-screen,
+  .cursor-layer,
+  .page-transition {
     display: none;
   }
 }
