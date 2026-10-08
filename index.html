@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,6 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+
+  <!-- 左上・起動時と同じロゴ -->
+  <link id="siteFavicon" rel="icon" type="image/png" href="logo.png">
 
   <link rel="stylesheet" href="style.css">
   <script src="credits.js" defer></script>
@@ -43,7 +47,7 @@
           C20.7 18.5 20.2 15 16.5 15Z"/>
       </symbol>
 
-      <!-- 面で描いた不規則なヒョウ柄 -->
+      <!-- ヒョウ柄 -->
       <g id="leopard-rosette-a" fill="currentColor">
         <path d="M-18-5L-20-12L-15-18L-10-17L-7-21
           L0-20L3-15L-1-11L-7-12L-10-7L-10-1
@@ -173,7 +177,7 @@
     </svg>
   </div>
 
-  <!-- 起動時のロゴと足跡。JavaScriptで自動終了 -->
+  <!-- 起動時のロゴ・足跡アニメーション -->
   <div class="opening-overlay" id="openingOverlay" aria-hidden="true">
     <div class="opening-inner">
       <div class="opening-logo" id="openingLogo">M.</div>
@@ -186,6 +190,7 @@
       </div>
     </div>
   </div>
+
   <!-- ページ移動の足跡クロスフェード -->
   <div class="page-paw-transition" id="pagePawTransition" aria-hidden="true">
     <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
