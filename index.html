@@ -4,186 +4,216 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#100a0f">
-
-  <title>甘犬もか | Official Website</title>
-
-  <meta
-    name="description"
-    content="保護猫兄妹2匹と暮らす元人間犬系（？）VTuber、甘犬もかの公式サイト。プロフィール、配信情報、活動実績、ガイドラインなどをご紹介します。"
-  >
-
-  <link rel="icon" type="image/png" href="./dist/logo.png">
-  <link rel="apple-touch-icon" href="./dist/logo.png">
+  <meta name="description"
+        content="保護猫兄妹2匹と暮らす元人間犬系（？）VTuber 甘犬もかの個人サイト。プロフィール、配信予定、リンク、活動実績をご紹介。">
+  <title>甘犬もか | AMAINU MOKA</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="./style.css">
-  <script src="./script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="credits.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
 
-  <svg class="svg-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- 共通SVG -->
+  <svg class="svg-library"
+       xmlns="http://www.w3.org/2000/svg"
+       aria-hidden="true" focusable="false">
     <defs>
       <symbol id="icon-paw" viewBox="0 0 32 32">
-        <ellipse cx="7" cy="12" rx="3.2" ry="4.3" transform="rotate(-25 7 12)"></ellipse>
-        <ellipse cx="12.5" cy="6.8" rx="3.1" ry="4.2" transform="rotate(-9 12.5 6.8)"></ellipse>
-        <ellipse cx="20" cy="6.8" rx="3.1" ry="4.2" transform="rotate(9 20 6.8)"></ellipse>
-        <ellipse cx="25" cy="12" rx="3.2" ry="4.3" transform="rotate(25 25 12)"></ellipse>
-
-        <path d="M16 14.4c-3.1 0-4.5 3.1-6.4 5.1-1.7 1.8-3 3.7-2.4 6 .5 2.1 2.2 3.3 4.3 3.2 1.8-.1 2.8-1 4.5-1s2.7.9 4.5 1c2.1.1 3.8-1.1 4.3-3.2.6-2.3-.7-4.2-2.4-6-1.9-2-3.3-5.1-6.4-5.1Z"></path>
+        <ellipse cx="7" cy="11" rx="3.2" ry="4.4"
+                 transform="rotate(-25 7 11)"/>
+        <ellipse cx="13" cy="6.5" rx="3.1" ry="4.4"
+                 transform="rotate(-8 13 6.5)"/>
+        <ellipse cx="20" cy="6.5" rx="3.1" ry="4.4"
+                 transform="rotate(8 20 6.5)"/>
+        <ellipse cx="26" cy="11" rx="3.2" ry="4.4"
+                 transform="rotate(25 26 11)"/>
+        <path d="M16.5 15C12.8 15 12.3 18.5 9.1 21.1
+          C6.2 23.5 7.2 28.4 10.8 28.4
+          C13.1 28.4 14.6 27.3 16.5 27.3
+          C18.4 27.3 19.9 28.4 22.2 28.4
+          C25.8 28.4 26.8 23.5 23.9 21.1
+          C20.7 18.5 20.2 15 16.5 15Z"/>
       </symbol>
 
-      <g id="rosette-a" fill="currentColor">
-        <path d="M-20-9-15-19-5-22 2-18-2-11-10-10-12-2-19 0Z"></path>
-        <path d="M7-20 18-14 22-5 18 2 11-1 11-9 4-12Z"></path>
-        <path d="M20 8 17 19 6 24-2 20 1 12 10 12 13 5Z"></path>
-        <path d="M-8 11-5 21-16 18-23 9-20 3-13 3Z"></path>
+      <!-- 面で描いた不規則なヒョウ柄 -->
+      <g id="leopard-rosette-a" fill="currentColor">
+        <path d="M-18-5L-20-12L-15-18L-10-17L-7-21
+          L0-20L3-15L-1-11L-7-12L-10-7L-10-1
+          L-15 3L-19 1L-17-3Z"/>
+        <path d="M7-17L13-18L17-13L16-8L21-4
+          L19 3L14 5L10 1L12-5L8-8L5-11Z"/>
+        <path d="M17 10L15 16L9 17L5 21L-2 19
+          L-5 21L-12 17L-13 12L-8 8L-3 11
+          L2 10L5 13L10 9L12 6Z"/>
       </g>
 
-      <g id="rosette-b" fill="currentColor">
-        <path d="M-18-13-8-21 4-20 8-14 2-9-7-11-12-4-19-5Z"></path>
-        <path d="M14-13 22-4 20 8 14 11 9 5 12-2 8-8Z"></path>
-        <path d="M10 16 3 24-9 21-14 15-9 10-2 14 5 11Z"></path>
-        <path d="M-19 3-11 2-9 9-14 16-22 11-24 5Z"></path>
+      <g id="leopard-rosette-b" fill="currentColor">
+        <path d="M-17-12L-12-18L-6-16L-2-20L6-18
+          L9-13L5-9L0-10L-5-7L-10-9L-11-3
+          L-16 0L-20-5L-17-8Z"/>
+        <path d="M13-10L19-8L18-3L22 2L19 8
+          L14 11L11 8L10 2L7-1L10-5Z"/>
+        <path d="M9 14L7 20L0 22L-5 18L-12 18
+          L-18 13L-16 7L-12 6L-7 11L-3 10
+          L1 14L5 11Z"/>
       </g>
 
-      <g id="rosette-c" fill="currentColor">
-        <path d="M-21-7-16-18-4-23 3-17-2-10-11-10-14-2Z"></path>
-        <path d="M9-18 20-11 23 1 17 7 11 1 12-7 5-11Z"></path>
-        <path d="M15 13 10 23-2 24-9 18-5 11 3 14 9 8Z"></path>
-        <path d="M-15 7-9 12-13 20-23 12-24 4-19 1Z"></path>
+      <g id="leopard-rosette-c" fill="currentColor">
+        <path d="M-15-16L-8-20L-4-17L2-19L10-16
+          L12-11L8-7L3-9L-1-7L-5-11L-9-9
+          L-13-4L-18-6L-19-12Z"/>
+        <path d="M17-7L21-1L18 4L19 10L13 16
+          L8 14L6 8L10 4L9-1L13-5Z"/>
+        <path d="M3 15L0 21L-7 20L-11 16L-17 15
+          L-21 8L-18 3L-13 3L-10 8L-5 9L-3 13Z"/>
       </g>
 
-      <g id="leopard-spot" fill="currentColor">
-        <path d="M-7-4-2-8 5-6 8 0 4 7-3 6-8 1Z"></path>
+      <g id="leopard-solid-a" fill="currentColor">
+        <path d="M-7-8L-1-10L3-7L8-6L9-1L6 3
+          L7 6L2 9L-3 7L-7 8L-9 3L-7-1L-10-4Z"/>
       </g>
 
-      <pattern id="leopard-pattern" width="320" height="300" patternUnits="userSpaceOnUse">
-        <use href="#rosette-a" transform="translate(30 28) rotate(-18) scale(.8)"></use>
-        <use href="#rosette-b" transform="translate(104 26) rotate(24) scale(.7)"></use>
-        <use href="#rosette-c" transform="translate(176 30) rotate(-32) scale(.85)"></use>
-        <use href="#rosette-a" transform="translate(259 24) rotate(37) scale(.72)"></use>
+      <g id="leopard-solid-b" fill="currentColor">
+        <path d="M-5-9L0-11L5-7L4-3L8 1L6 6
+          L1 8L-2 5L-6 6L-8 1L-5-3L-7-6Z"/>
+      </g>
 
-        <use href="#rosette-c" transform="translate(65 88) rotate(16) scale(.9)"></use>
-        <use href="#rosette-a" transform="translate(145 91) rotate(-42) scale(.72)"></use>
-        <use href="#rosette-b" transform="translate(226 85) rotate(48) scale(.88)"></use>
-        <use href="#rosette-c" transform="translate(307 89) rotate(-20) scale(.73)"></use>
+      <pattern id="leopard-pattern"
+               width="320" height="300"
+               patternUnits="userSpaceOnUse">
+        <use href="#leopard-rosette-a" transform="translate(29 28) rotate(-18) scale(.9 .8)"/>
+        <use href="#leopard-rosette-c" transform="translate(101 22) rotate(32) scale(.72 .8)"/>
+        <use href="#leopard-rosette-b" transform="translate(170 33) rotate(-32) scale(.95 .75)"/>
+        <use href="#leopard-rosette-a" transform="translate(254 26) rotate(48) scale(.8 1)"/>
 
-        <use href="#rosette-b" transform="translate(24 153) rotate(32) scale(.83)"></use>
-        <use href="#rosette-c" transform="translate(103 150) rotate(-17) scale(.7)"></use>
-        <use href="#rosette-a" transform="translate(181 155) rotate(18) scale(.91)"></use>
-        <use href="#rosette-b" transform="translate(262 153) rotate(-36) scale(.75)"></use>
+        <use href="#leopard-rosette-b" transform="translate(64 86) rotate(19) scale(.9 1.05)"/>
+        <use href="#leopard-rosette-a" transform="translate(139 92) rotate(71) scale(.85)"/>
+        <use href="#leopard-rosette-c" transform="translate(215 83) rotate(-15) scale(1 .8)"/>
+        <use href="#leopard-rosette-b" transform="translate(291 92) rotate(39) scale(.88 .96)"/>
 
-        <use href="#rosette-a" transform="translate(65 218) rotate(47) scale(.82)"></use>
-        <use href="#rosette-b" transform="translate(143 215) rotate(-27) scale(.88)"></use>
-        <use href="#rosette-c" transform="translate(223 220) rotate(34) scale(.72)"></use>
-        <use href="#rosette-a" transform="translate(307 218) rotate(-14) scale(.83)"></use>
+        <use href="#leopard-rosette-c" transform="translate(26 152) rotate(-42) scale(.88 .8)"/>
+        <use href="#leopard-rosette-b" transform="translate(103 155) rotate(12) scale(.95 .9)"/>
+        <use href="#leopard-rosette-a" transform="translate(178 155) rotate(-67) scale(.8 1)"/>
+        <use href="#leopard-rosette-c" transform="translate(256 154) rotate(58) scale(.95 .85)"/>
 
-        <use href="#rosette-c" transform="translate(25 279) rotate(-26) scale(.7)"></use>
-        <use href="#rosette-a" transform="translate(105 279) rotate(13) scale(.78)"></use>
-        <use href="#rosette-b" transform="translate(180 278) rotate(41) scale(.72)"></use>
-        <use href="#rosette-c" transform="translate(260 280) rotate(-37) scale(.87)"></use>
+        <use href="#leopard-rosette-a" transform="translate(62 219) rotate(22) scale(.9 .8)"/>
+        <use href="#leopard-rosette-c" transform="translate(143 220) rotate(-29) scale(.86 1)"/>
+        <use href="#leopard-rosette-b" transform="translate(219 218) rotate(72) scale(.92 .85)"/>
+        <use href="#leopard-rosette-a" transform="translate(295 222) rotate(-12) scale(.82 .95)"/>
 
-        <use href="#leopard-spot" transform="translate(68 31) rotate(15) scale(.55)"></use>
-        <use href="#leopard-spot" transform="translate(139 43) rotate(-32) scale(.6)"></use>
-        <use href="#leopard-spot" transform="translate(217 31) rotate(45) scale(.5)"></use>
-        <use href="#leopard-spot" transform="translate(297 35) rotate(-12) scale(.65)"></use>
+        <use href="#leopard-rosette-b" transform="translate(27 279) rotate(45) scale(.85 .7)"/>
+        <use href="#leopard-rosette-a" transform="translate(104 278) rotate(-24) scale(.82 .7)"/>
+        <use href="#leopard-rosette-c" transform="translate(183 280) rotate(37) scale(.85 .68)"/>
+        <use href="#leopard-rosette-b" transform="translate(259 279) rotate(-57) scale(.88 .7)"/>
 
-        <use href="#leopard-spot" transform="translate(20 79) rotate(28) scale(.5)"></use>
-        <use href="#leopard-spot" transform="translate(105 94) rotate(-20) scale(.55)"></use>
-        <use href="#leopard-spot" transform="translate(185 83) rotate(37) scale(.6)"></use>
-        <use href="#leopard-spot" transform="translate(268 105) rotate(-43) scale(.48)"></use>
+        <use href="#leopard-solid-a" transform="translate(65 26) rotate(29) scale(.8)"/>
+        <use href="#leopard-solid-b" transform="translate(132 37) rotate(-15) scale(.68)"/>
+        <use href="#leopard-solid-a" transform="translate(216 30) rotate(42) scale(.75)"/>
+        <use href="#leopard-solid-b" transform="translate(296 26) rotate(-39) scale(.85)"/>
 
-        <use href="#leopard-spot" transform="translate(64 151) rotate(-17) scale(.6)"></use>
-        <use href="#leopard-spot" transform="translate(139 144) rotate(21) scale(.5)"></use>
-        <use href="#leopard-spot" transform="translate(220 164) rotate(-35) scale(.62)"></use>
-        <use href="#leopard-spot" transform="translate(303 155) rotate(52) scale(.55)"></use>
+        <use href="#leopard-solid-b" transform="translate(23 81) rotate(21) scale(.8)"/>
+        <use href="#leopard-solid-a" transform="translate(105 72) rotate(-36) scale(.7)"/>
+        <use href="#leopard-solid-b" transform="translate(177 92) rotate(62) scale(.88)"/>
+        <use href="#leopard-solid-a" transform="translate(252 99) rotate(-12) scale(.7)"/>
 
-        <use href="#leopard-spot" transform="translate(24 213) rotate(32) scale(.6)"></use>
-        <use href="#leopard-spot" transform="translate(105 220) rotate(-24) scale(.5)"></use>
-        <use href="#leopard-spot" transform="translate(183 210) rotate(17) scale(.58)"></use>
-        <use href="#leopard-spot" transform="translate(266 217) rotate(-41) scale(.5)"></use>
+        <use href="#leopard-solid-a" transform="translate(62 146) rotate(18) scale(.75)"/>
+        <use href="#leopard-solid-b" transform="translate(140 150) rotate(-48) scale(.65)"/>
+        <use href="#leopard-solid-a" transform="translate(218 151) rotate(65) scale(.72)"/>
+        <use href="#leopard-solid-b" transform="translate(297 152) rotate(-24) scale(.75)"/>
 
-        <use href="#leopard-spot" transform="translate(66 277) rotate(27) scale(.6)"></use>
-        <use href="#leopard-spot" transform="translate(141 270) rotate(-36) scale(.5)"></use>
-        <use href="#leopard-spot" transform="translate(220 282) rotate(18) scale(.6)"></use>
-        <use href="#leopard-spot" transform="translate(301 277) rotate(-18) scale(.5)"></use>
+        <use href="#leopard-solid-b" transform="translate(23 210) rotate(-20) scale(.75)"/>
+        <use href="#leopard-solid-a" transform="translate(100 220) rotate(33) scale(.7)"/>
+        <use href="#leopard-solid-b" transform="translate(181 222) rotate(-45) scale(.78)"/>
+        <use href="#leopard-solid-a" transform="translate(258 213) rotate(17) scale(.72)"/>
+
+        <use href="#leopard-solid-a" transform="translate(63 276) rotate(-28) scale(.75)"/>
+        <use href="#leopard-solid-b" transform="translate(145 276) rotate(41) scale(.7)"/>
+        <use href="#leopard-solid-a" transform="translate(221 281) rotate(-55) scale(.72)"/>
+        <use href="#leopard-solid-b" transform="translate(300 277) rotate(28) scale(.7)"/>
+
+        <use href="#leopard-solid-b" transform="translate(40 57) rotate(37) scale(.45)"/>
+        <use href="#leopard-solid-a" transform="translate(193 57) rotate(-12) scale(.42)"/>
+        <use href="#leopard-solid-b" transform="translate(119 120) rotate(54) scale(.45)"/>
+        <use href="#leopard-solid-a" transform="translate(276 122) rotate(-39) scale(.42)"/>
+        <use href="#leopard-solid-b" transform="translate(44 182) rotate(22) scale(.44)"/>
+        <use href="#leopard-solid-a" transform="translate(197 187) rotate(-42) scale(.45)"/>
+        <use href="#leopard-solid-b" transform="translate(119 248) rotate(14) scale(.44)"/>
+        <use href="#leopard-solid-a" transform="translate(278 249) rotate(48) scale(.42)"/>
       </pattern>
     </defs>
   </svg>
 
-  <!-- 起動アニメーション -->
-  <div id="startupScreen" class="startup-screen" aria-hidden="true" hidden>
-    <div class="startup-center">
-      <div id="startupLogo" class="startup-logo"></div>
-      <p class="startup-name">AMAINU MOKA</p>
+  <div class="site-background" aria-hidden="true">
+    <div class="ambient ambient--one"></div>
+    <div class="ambient ambient--two"></div>
 
-      <div class="startup-trail">
-        <svg class="startup-paw" viewBox="0 0 32 32"><use href="#icon-paw"></use></svg>
-        <svg class="startup-paw" viewBox="0 0 32 32"><use href="#icon-paw"></use></svg>
-        <svg class="startup-paw" viewBox="0 0 32 32"><use href="#icon-paw"></use></svg>
-        <svg class="startup-paw" viewBox="0 0 32 32"><use href="#icon-paw"></use></svg>
-        <svg class="startup-paw" viewBox="0 0 32 32"><use href="#icon-paw"></use></svg>
-        <svg class="startup-paw" viewBox="0 0 32 32"><use href="#icon-paw"></use></svg>
-        <svg class="startup-paw" viewBox="0 0 32 32"><use href="#icon-paw"></use></svg>
-        <svg class="startup-paw" viewBox="0 0 32 32"><use href="#icon-paw"></use></svg>
+    <svg class="leopard leopard--top" viewBox="0 0 720 660">
+      <rect width="720" height="660" fill="url(#leopard-pattern)"/>
+    </svg>
+    <svg class="leopard leopard--bottom" viewBox="0 0 720 660">
+      <rect width="720" height="660" fill="url(#leopard-pattern)"/>
+    </svg>
+
+    <svg class="background-paw background-paw--one" viewBox="0 0 32 32">
+      <use href="#icon-paw"/>
+    </svg>
+    <svg class="background-paw background-paw--two" viewBox="0 0 32 32">
+      <use href="#icon-paw"/>
+    </svg>
+    <svg class="background-paw background-paw--three" viewBox="0 0 32 32">
+      <use href="#icon-paw"/>
+    </svg>
+  </div>
+
+  <!-- 起動時のロゴと足跡。JavaScriptで自動終了 -->
+  <div class="opening-overlay" id="openingOverlay" aria-hidden="true">
+    <div class="opening-inner">
+      <div class="opening-logo" id="openingLogo">M.</div>
+      <div class="opening-trail" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
+        <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
+        <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
+        <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
+        <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
       </div>
     </div>
   </div>
-
-  <!-- 背景 -->
-  <div class="site-background" aria-hidden="true">
-    <div class="ambient ambient-one"></div>
-    <div class="ambient ambient-two"></div>
-
-    <svg class="leopard leopard-one" viewBox="0 0 720 660">
-      <rect width="720" height="660" fill="url(#leopard-pattern)"></rect>
-    </svg>
-
-    <svg class="leopard leopard-two" viewBox="0 0 720 660">
-      <rect width="720" height="660" fill="url(#leopard-pattern)"></rect>
-    </svg>
-
-    <svg class="background-paw background-paw-one" viewBox="0 0 32 32">
-      <use href="#icon-paw"></use>
-    </svg>
-    <svg class="background-paw background-paw-two" viewBox="0 0 32 32">
-      <use href="#icon-paw"></use>
-    </svg>
-    <svg class="background-paw background-paw-three" viewBox="0 0 32 32">
-      <use href="#icon-paw"></use>
-    </svg>
+  <!-- ページ移動の足跡クロスフェード -->
+  <div class="page-paw-transition" id="pagePawTransition" aria-hidden="true">
+    <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
+    <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
+    <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
+    <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
+    <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
+    <svg viewBox="0 0 32 32"><use href="#icon-paw"/></svg>
   </div>
 
   <header class="site-header">
-    <div class="header-inner container">
-      <a class="brand" href="#home" aria-label="甘犬もか トップページ">
-        <span id="headerLogo" class="brand-logo" aria-hidden="true"></span>
-        <span class="brand-name">AMAINU MOKA</span>
+    <div class="header-inner">
+      <a class="brand" href="#home" aria-label="甘犬もか ホーム">
+        <span class="brand-mark" id="brandMark" aria-hidden="true">M.</span>
+        <span class="brand-text">
+          <strong>甘犬もか</strong>
+          <small>AMAINU MOKA</small>
+        </span>
       </a>
 
-      <button
-        id="menuButton"
-        class="menu-button"
-        type="button"
-        aria-label="メニューを開く"
-        aria-expanded="false"
-        aria-controls="siteNav"
-      >
-        <span></span>
-        <span></span>
+      <button class="menu-button" id="menuButton"
+              type="button" aria-controls="siteNav"
+              aria-expanded="false" aria-label="メニューを開く">
+        <span></span><span></span>
       </button>
 
-      <nav id="siteNav" class="site-nav" aria-label="メインメニュー">
-        <a href="#home">Home</a>
+      <nav class="site-nav" id="siteNav" aria-label="メインメニュー">
+        <a href="#home" aria-current="page">Home</a>
         <a href="#profile">Profile</a>
         <a href="#links">Links</a>
         <a href="#news">News</a>
@@ -196,83 +226,75 @@
     </div>
   </header>
 
-  <main id="main" tabindex="-1">
+  <main id="main" class="main" tabindex="-1">
     <!-- HOME -->
-    <section class="page" data-page="home">
+    <section class="page" data-page="home" aria-label="ホーム">
       <div class="container">
-        <div class="hero-grid">
+        <div class="hero">
           <div class="hero-copy">
-            <p class="eyebrow">Individual VTuber / Official Website</p>
-
+            <p class="eyebrow">Personal VTuber</p>
             <h1 class="hero-name">
               甘犬もか
-              <span class="hero-name-en">Amainu Moka</span>
+              <span class="hero-name-en">AMAINU MOKA</span>
             </h1>
-
             <p class="hero-lead">
               保護猫兄妹2匹と暮らす<br>
               元人間犬系（？）VTuber
             </p>
 
             <div class="button-group">
-              <a class="button" href="https://youtube.com/@amainu_moka" target="_blank" rel="noopener noreferrer">
-                <span>YouTube</span>
-                <svg class="paw-icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"></use></svg>
+              <a class="button" href="https://youtube.com/@amainu_moka"
+                 target="_blank" rel="noopener noreferrer">
+                YouTube
+                <svg class="paw" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"/></svg>
               </a>
-
-              <a class="button" href="https://www.twitch.tv/amainu_moka" target="_blank" rel="noopener noreferrer">
-                <span>Twitch</span>
-                <svg class="paw-icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"></use></svg>
+              <a class="button" href="https://www.twitch.tv/amainu_moka"
+                 target="_blank" rel="noopener noreferrer">
+                Twitch
+                <svg class="paw" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"/></svg>
               </a>
-
-              <a class="button" href="https://twitter.com/96moka_ocd" target="_blank" rel="noopener noreferrer">
-                <span>X</span>
-                <svg class="paw-icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"></use></svg>
+              <a class="button" href="https://twitter.com/96moka_ocd"
+                 target="_blank" rel="noopener noreferrer">
+                X
+                <svg class="paw" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"/></svg>
               </a>
             </div>
 
             <div class="hero-dates">
-              <p>活動開始 <span>2018.06.20</span></p>
-              <p>VTuber活動開始 <span>2022.05.25</span></p>
+              <p><span>活動開始</span><strong>2018.06.20</strong></p>
+              <p><span>VTuber活動開始</span><strong>2022.05.25</strong></p>
             </div>
           </div>
 
           <figure class="hero-visual">
-            <div id="heroImage" class="visual-frame"></div>
-            <figcaption>AMAINU MOKA / OFFICIAL</figcaption>
+            <div class="visual-frame visual-frame--hero" id="heroImage"></div>
+            <figcaption>
+              <span>AMAINU MOKA</span>
+              <span>Personal VTuber</span>
+            </figcaption>
           </figure>
         </div>
 
         <div class="home-panels">
           <section class="panel">
             <div class="panel-heading">
-              <div>
-                <p class="eyebrow">Information</p>
-                <h2>News.</h2>
-              </div>
-
+              <div><p class="eyebrow">News</p><h2>お知らせ</h2></div>
               <a class="text-link" href="#news">
-                <span>お知らせ一覧</span>
-                <svg class="paw-icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"></use></svg>
+                一覧を見る
+                <svg class="paw" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"/></svg>
               </a>
             </div>
-
             <div id="homeNews"></div>
           </section>
 
           <section class="panel">
             <div class="panel-heading">
-              <div>
-                <p class="eyebrow">JST / 日本時間</p>
-                <h2>Next Stream.</h2>
-              </div>
-
+              <div><p class="eyebrow">On Air</p><h2>配信スケジュール</h2></div>
               <a class="text-link" href="#schedule">
-                <span>スケジュール</span>
-                <svg class="paw-icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"></use></svg>
+                詳しく見る
+                <svg class="paw" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"/></svg>
               </a>
             </div>
-
             <div id="homeSchedule"></div>
           </section>
         </div>
@@ -283,70 +305,60 @@
     <section class="page" data-page="profile" hidden>
       <div class="container">
         <header class="page-heading">
-          <p class="eyebrow">About Amainu Moka</p>
-          <h1 class="page-title" tabindex="-1">Profile.</h1>
-          <p class="page-description">甘犬もかについて</p>
+          <p class="eyebrow">About Me</p>
+          <h1 tabindex="-1">Profile.</h1>
+          <p>甘犬もかについて</p>
         </header>
 
         <div class="profile-layout">
           <figure class="profile-visual">
-            <div id="profileImage" class="visual-frame"></div>
+            <div class="visual-frame" id="profileImage"></div>
+            <figcaption>AMAINU MOKA / Character Visual</figcaption>
           </figure>
 
-          <div class="profile-copy">
-            <p class="profile-catch">
+          <div>
+            <h2 class="profile-catch">
               保護猫兄妹2匹と暮らす<br>
               元人間犬系（？）VTuber
-            </p>
+            </h2>
 
             <dl class="profile-facts">
               <div>
                 <dt>名前</dt>
-                <dd>甘犬もか<span class="fact-sub">Amainu Moka</span></dd>
+                <dd><strong>甘犬もか</strong><span>amainu moka</span></dd>
               </div>
               <div>
                 <dt>誕生日</dt>
-                <dd>9月21日 / おとめ座</dd>
+                <dd><strong>9月21日</strong><span>おとめ座</span></dd>
               </div>
-              <div>
-                <dt>活動開始</dt>
-                <dd>2018年6月20日</dd>
-              </div>
-              <div>
-                <dt>VTuber活動開始</dt>
-                <dd>2022年5月25日</dd>
-              </div>
+              <div><dt>活動開始</dt><dd>2018年6月20日</dd></div>
+              <div><dt>VTuber活動開始</dt><dd>2022年5月25日</dd></div>
             </dl>
 
-            <div class="section-heading partner-heading">
-              <div>
-                <p class="eyebrow">My Partners</p>
-                <h2>一緒に暮らす相棒たち</h2>
+            <section class="partners">
+              <div class="sub-heading">
+                <p class="eyebrow">Partners</p>
+                <h2>一緒に暮らしている相棒たち</h2>
               </div>
-            </div>
-
-            <div id="partnerList" class="cat-list"></div>
+              <div class="cat-list" id="partnerList"></div>
+            </section>
           </div>
         </div>
 
         <section class="content-section">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Creators</p>
-              <h2>クリエイター</h2>
-            </div>
+          <div class="sub-heading">
+            <p class="eyebrow">Creators</p>
+            <h2>制作に携わってくださった方々</h2>
           </div>
-          <div id="creatorGrid" class="card-grid"></div>
+          <div class="creator-grid" id="creatorGrid"></div>
         </section>
 
         <section class="content-section">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Character Gallery</p>
-              <h2>キャラクター紹介</h2>
-            </div>
+          <div class="sub-heading">
+            <p class="eyebrow">Character Gallery</p>
+            <h2>キャラクター紹介・設定資料</h2>
           </div>
-          <div id="galleryGrid" class="gallery-grid"></div>
+          <div class="gallery-grid" id="galleryGrid"></div>
         </section>
       </div>
     </section>
@@ -355,53 +367,61 @@
     <section class="page" data-page="links" hidden>
       <div class="container">
         <header class="page-heading">
-          <p class="eyebrow">Find Me Here</p>
-          <h1 class="page-title" tabindex="-1">Links.</h1>
-          <p class="page-description">配信・SNS・活動の応援はこちらから</p>
+          <p class="eyebrow">Stay Connected</p>
+          <h1 tabindex="-1">Links.</h1>
+          <p>配信・SNS・グッズ・ファンコミュニティ</p>
         </header>
 
-        <div id="linkGrid" class="card-grid"></div>
+        <div class="link-grid" id="linkGrid"></div>
 
-        <section class="panel fan-panel">
-          <p class="eyebrow">Fan Community</p>
-          <h2>リスナー名：あまりす</h2>
+        <div class="panel fan-panel">
+          <div class="fan-panel-heading">
+            <p class="eyebrow">Fan Community</p>
+            <h2>ファンコミュニティ</h2>
+          </div>
 
-          <p class="fan-mark-line">
-            ファンマーク：
-            <span class="fan-emoji" role="img" aria-label="犬と肉球">🐶🐾</span>
-          </p>
-        </section>
+          <div class="fan-info-grid" aria-label="ファンコミュニティ情報">
+            <div class="fan-info-item">
+              <span class="fan-info-label">リスナー名</span>
+              <span class="fan-info-value">あまりす</span>
+            </div>
+
+            <div class="fan-info-item">
+              <span class="fan-info-label">ファンマーク</span>
+              <span class="fan-info-value fan-info-value--emoji" role="img" aria-label="ファンマーク">🐶🐾</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- NEWS -->
     <section class="page" data-page="news" hidden>
-      <div class="container reading-container">
+      <div class="container container--reading">
         <header class="page-heading">
-          <p class="eyebrow">Latest Information</p>
-          <h1 class="page-title" tabindex="-1">News.</h1>
-          <p class="page-description">活動のお知らせ</p>
+          <p class="eyebrow">Information</p>
+          <h1 tabindex="-1">News.</h1>
+          <p>活動に関するお知らせ</p>
         </header>
-        <div id="newsList" class="news-list"></div>
+        <div class="news-list" id="newsList"></div>
       </div>
     </section>
 
     <!-- SCHEDULE -->
     <section class="page" data-page="schedule" hidden>
-      <div class="container reading-container">
+      <div class="container container--reading">
         <header class="page-heading">
-          <p class="eyebrow">Live Streaming</p>
-          <h1 class="page-title" tabindex="-1">Schedule.</h1>
-          <p class="page-description">配信スケジュール</p>
+          <p class="eyebrow">See You On Stream</p>
+          <h1 tabindex="-1">Schedule.</h1>
+          <p>配信スケジュール</p>
         </header>
-
-        <section class="schedule-board">
+        <div class="schedule-board">
           <div class="schedule-board-heading">
-            <h2>ON AIR SCHEDULE</h2>
-            <p>JST / 日本時間</p>
+            <span>ON AIR SCHEDULE</span>
+            <span>JST / 日本時間</span>
           </div>
-          <div id="scheduleList" class="schedule-body"></div>
-        </section>
+          <div class="schedule-body" id="scheduleList"></div>
+        </div>
       </div>
     </section>
 
@@ -410,44 +430,27 @@
       <div class="container">
         <header class="page-heading">
           <p class="eyebrow">For Our Community</p>
-          <h1 class="page-title" tabindex="-1">Guideline.</h1>
-          <p class="page-description">みんなで楽しく過ごすために</p>
+          <h1 tabindex="-1">Guideline.</h1>
+          <p>配信のルール・各種タグ・二次創作について</p>
         </header>
 
         <section>
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Hashtags</p>
-              <h2>各種タグ</h2>
-            </div>
+          <div class="sub-heading">
+            <p class="eyebrow">Hashtags</p><h2>各種タグ</h2>
           </div>
-          <div id="tagGrid" class="card-grid tag-grid"></div>
+          <div class="tag-grid" id="tagGrid"></div>
         </section>
 
         <div class="rule-grid content-section">
-          <section class="panel stream-rules">
+          <section class="panel rule-card">
             <p class="eyebrow">Stream Rules</p>
             <h2>配信でのルール</h2>
-
             <ul class="rule-list">
-              <li>
-                タイトルに【参加型】とある場合のみ、
-                配信のコメントで参加希望を受け付けます。
-              </li>
-              <li>
-                チート・グリッチの使用、配信妨害は、
-                参加中であっても退室・ブロックさせていただきます。
-              </li>
-              <li>
-                年齢制限のあるゲームを多くプレイしているため、
-                18歳未満の方の参加は基本的にお断りしています。
-              </li>
-              <li>
-                コラボ以外のときに、他の配信者さんのお名前を出したり、
-                鳩行為をしたりしないようにしてください。
-              </li>
+              <li>タイトルに【参加型】とある場合のみ、配信のコメントで参加希望を受け付けます。</li>
+              <li>チート・グリッチ使用・配信妨害は、参加中でも退室・ブロックさせていただきます。</li>
+              <li>年齢制限の多いゲームをよくプレイしているため、18歳未満の方の参加は基本お断りしています。</li>
+              <li>コラボ以外の時に他の配信者さんのお名前を出すことや、鳩行為はお控えください。</li>
             </ul>
-
             <p class="notice">
               「○○さんが配信しているからそっちへ行くね」
               「○○さんがこう言っていたよ」などのコメント<br>
@@ -456,40 +459,32 @@
             </p>
           </section>
 
-          <section class="panel">
+          <section class="panel rule-card">
             <p class="eyebrow">Clips</p>
             <h2>切り抜き動画について</h2>
-            <p class="featured-tag">#甘犬クリップ</p>
+            <p>切り抜き動画の概要欄には、下記の情報を掲載してください。</p>
 
-            <p>
-              切り抜き動画を公開する際は、概要欄に
-              下記のYouTubeチャンネルURLとXアカウントURLの
-              掲載をお願いします。
-            </p>
+            <div id="clipResources"></div>
 
-            <div id="clipResources" class="copy-resource-list"></div>
+            <div class="featured-tag">
+              <span>切り抜きタグ</span><strong>#甘犬クリップ</strong>
+            </div>
           </section>
 
-          <section class="panel">
+          <section class="panel rule-card">
             <p class="eyebrow">Fan Art</p>
-            <h2>二次創作・ファンアート</h2>
-            <p class="featured-tag">#甘犬いらすと</p>
-
+            <h2>二次創作・ファンアートについて</h2>
             <ul class="rule-list">
-              <li>
-                服装の変更・アクセサリーの追加などもOKです。
-                「新衣装を考えてみた！」などの作品は、
-                今後の新衣装制作の参考にさせていただく場合があります。
-              </li>
-              <li>
-                描いてくださったファンアートは、サムネイルや
-                今後の活動に使用させていただく場合があります。
-              </li>
-              <li>
-                活動への使用がNGの場合は、その旨を
-                一言記載していただけると助かります。
-              </li>
+              <li>服装の変更・アクセサリーの追加などもOKです。</li>
+              <li>新衣装のアイデアなどは、今後の衣装制作で参考にさせていただく場合があります。</li>
+              <li>描いてくださったFAは、サムネイルや今後の活動に使用させていただく場合があります。</li>
             </ul>
+            <p class="notice">
+              活動への使用がNGの場合は、その旨を一言記載していただけると助かります。
+            </p>
+            <div class="featured-tag">
+              <span>ファンアートタグ</span><strong>#甘犬いらすと</strong>
+            </div>
           </section>
         </div>
       </div>
@@ -499,14 +494,14 @@
     <section class="page" data-page="credits" hidden>
       <div class="container">
         <header class="page-heading">
-          <p class="eyebrow">With Special Thanks</p>
-          <h1 class="page-title" tabindex="-1">Credits.</h1>
-          <p class="page-description">
-            配信・動画で使用している楽曲や素材のクレジット
-          </p>
+          <p class="eyebrow">With Thanks</p>
+          <h1 tabindex="-1">Credits.</h1>
+          <p>配信で使用している楽曲・素材のクレジット</p>
         </header>
-
-        <div id="creditSections" class="credit-sections"></div>
+        <p class="intro">
+          配信で使用している楽曲・素材を、項目別に掲載しています。
+        </p>
+        <div class="credit-sections" id="creditSections"></div>
       </div>
     </section>
 
@@ -514,54 +509,49 @@
     <section class="page" data-page="works" hidden>
       <div class="container">
         <header class="page-heading">
-          <p class="eyebrow">Activities & Collaborations</p>
-          <h1 class="page-title" tabindex="-1">Works.</h1>
-          <p class="page-description">
-            お仕事・コラボ・イベント出演などの活動実績
-          </p>
+          <p class="eyebrow">Collaborations & Events</p>
+          <h1 tabindex="-1">Works.</h1>
+          <p>これまでの企業案件・コラボ・出演実績</p>
         </header>
 
-        <div
-          id="worksFilters"
-          class="works-category-buttons"
-          role="group"
-          aria-label="実績のカテゴリー"
-        ></div>
+        <div class="works-category-buttons" id="worksFilters"
+             role="group" aria-label="実績のカテゴリ"></div>
 
-        <p id="worksCount" class="works-count" role="status" aria-live="polite"></p>
-        <div id="worksGrid" class="works-grid"></div>
+        <p class="result-count" id="worksCount"
+           role="status" aria-live="polite"></p>
+
+        <div class="works-grid" id="worksGrid"></div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section class="page" data-page="contact" hidden>
-      <div class="container reading-container">
+      <div class="container container--reading">
         <header class="page-heading">
           <p class="eyebrow">Business Inquiries</p>
-          <h1 class="page-title" tabindex="-1">Contact.</h1>
-          <p class="page-description">企業様・お仕事のお問い合わせ</p>
+          <h1 tabindex="-1">Contact.</h1>
+          <p>企業様・お仕事に関するお問い合わせ</p>
         </header>
 
-        <section class="panel contact-panel">
+        <div class="panel contact-panel">
           <p class="eyebrow">Work & Collaboration</p>
           <h2>お仕事・コラボのご連絡について</h2>
-          <p id="contactDescription"></p>
-
-          <p class="notice">
-            お仕事・コラボに関係のない私的なメールに関しましては、
-            ご連絡をお返しいたしません。あらかじめご了承ください。
+          <p id="contactDescription">
+            リットリンクに記載のメール、またはXのDMからご連絡ください。
           </p>
-
-          <div id="contactButtons" class="button-group"></div>
-        </section>
+          <p class="notice">
+            お仕事・コラボに関係のない私的なメールには、ご返信いたしません。
+          </p>
+          <div class="button-group contact-buttons" id="contactButtons"></div>
+        </div>
       </div>
     </section>
 
     <noscript>
       <div class="container">
-        <p class="panel">
-          ページの切り替えや各種情報の表示にはJavaScriptを使用しています。
-          ブラウザのJavaScriptを有効にしてください。
+        <p class="notice">
+          各ページの表示にはJavaScriptが必要です。
+          ブラウザの設定でJavaScriptを有効にしてください。
         </p>
       </div>
     </noscript>
@@ -569,20 +559,13 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p class="footer-name">AMAINU MOKA</p>
-
-      <p class="copyright">
-        © <span id="copyrightYear"></span> Amainu Moka
-      </p>
-
+      <a class="footer-brand" href="#home">AMAINU MOKA</a>
+      <p>© <span id="copyrightYear"></span> 甘犬もか</p>
       <a class="text-link" href="#contact">
-        <span>Contact</span>
-        <svg class="paw-icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"></use></svg>
+        お問い合わせ
+        <svg class="paw" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-paw"/></svg>
       </a>
     </div>
   </footer>
-
-  <div id="pageTransition" class="page-transition" aria-hidden="true"></div>
-  <div id="cursorLayer" class="cursor-layer" aria-hidden="true"></div>
 </body>
 </html>
