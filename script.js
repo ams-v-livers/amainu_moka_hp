@@ -197,32 +197,32 @@ const creatorData = [
 const linkData = [
   {
     title: "YouTube",
-    label: "配信・動画・ショート",
+    label: "LIVE/動画",
     url: "https://youtube.com/@amainu_moka",
   },
   {
     title: "Twitch",
-    label: "ライブ配信",
+    label: "LIVE",
     url: "https://www.twitch.tv/amainu_moka",
   },
   {
     title: "TikTok",
-    label: "ライブ配信・動画",
+    label: "LIVE/動画",
     url: "https://www.tiktok.com/@amainu.moka",
   },
   {
     title: "Instagram",
-    label: "写真・日々の投稿",
+    label: "メディア投稿",
     url: "https://www.instagram.com/moka_ocd/",
   },
   {
     title: "X",
-    label: "活動のお知らせ・日々の投稿",
+    label: "活動のお知らせ/日々の投稿",
     url: xAccountURL,
   },
   {
     title: "FANBOX",
-    label: "活動のご支援",
+    label: "FANBOX限定情報/限定グッズ紹介",
     url: "https://amainu-moka.fanbox.cc",
   },
   {
@@ -232,7 +232,7 @@ const linkData = [
   },
   {
     title: "ファンサーバー",
-    label: "Discord / あまりすのコミュニティ",
+    label: "Discord / あまりすのコミュニティサーバー",
     url: "https://discord.gg/sE7q4yhxyq",
   },
   {
@@ -793,10 +793,7 @@ function renderProfile() {
    ================================================== */
 
 function renderLinks() {
-  /*
-   * リットリンク・どねるはLinksから削除済み。
-   * Contactではリットリンクを継続使用します。
-   */
+
   const items = [...linkData];
 
   $("#linkGrid").innerHTML = items.map(
@@ -1116,10 +1113,6 @@ function renderSchedule() {
       "配信予定を読み込めませんでした。最新情報はXをご確認ください。"
     );
 
-    $("#homeSchedule").innerHTML = externalLink(
-      "最新情報を見る",
-      xAccountURL
-    );
 
     return;
   }
