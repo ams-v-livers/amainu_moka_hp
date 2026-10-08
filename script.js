@@ -1,11 +1,12 @@
+
 "use strict";
 
 /* ==================================================
    画像・リンク設定
 
    画像例：
-   main: "images/moka-main.png"
-   image: "images/yamato.png"
+   main: "dist/moka-top-lying.png"
+   image: "dist/yamato.png"
 
    空欄の場合は画像枠を表示します。
    ================================================== */
@@ -13,7 +14,7 @@
 const siteConfig = {
   /* 画像の場所：dist にある場合は "dist/名前.png" と記入 */
   images: {
-    logo: "",      // 左上と起動時に共用
+    logo: "logo.png",      // 左上・起動時・ブラウザタブで共用
     main: "",      // 例: "dist/moka-top-lying.png"
     profile: "",   // 空欄なら main と同じ
   },
@@ -346,13 +347,29 @@ function applyImageStyle(container, styleKey) {
 }
 
 function initializeLogo() {
+  // 元のロゴ画像をそのまま共用。画像の加工・置換は行いません。
   const url = safeImageURL(siteConfig.images.logo);
-  if (!url) return;
+  if (!url) {
+    console.warn("ロゴのパスが未設定です。siteConfig.images.logo に既存ロゴのパスを設定してください。");
+    return;
+  }
+
+  const favicon = $("#siteFavicon");
+  if (favicon) {
+    favicon.href = url;
+    if (/\.svg(?:[?#]|$)/i.test(url)) favicon.type = "image/svg+xml";
+    else if (/\.png(?:[?#]|$)/i.test(url)) favicon.type = "image/png";
+    else favicon.removeAttribute("type");
+  }
+
   [$("#brandMark"), $("#openingLogo")].forEach((element) => {
     if (!element) return;
     const img = new Image();
     img.alt = "";
-    img.onerror = () => { element.textContent = "M."; };
+    img.decoding = "async";
+    img.addEventListener("error", () => {
+      console.error("ロゴ画像を読み込めません:", url);
+    }, { once: true });
     img.src = url;
     element.replaceChildren(img);
   });
@@ -455,6 +472,7 @@ async function loadPageData() {
 function renderProfile() {
   applyImageStyle($("#heroImage"), "main");
   applyImageStyle($("#profileImage"), "profile");
+
   mountImage(
     $("#heroImage"),
     siteConfig.images.main,
@@ -844,6 +862,7 @@ function renderSchedule() {
 
 /* ==================================================
    クレジット
+   Worksと同じカードデザイン
    ================================================== */
 
 function renderCredits() {
@@ -919,467 +938,3 @@ function renderCredits() {
 /* ==================================================
    実績カテゴリ
    ================================================== */
-
-let selectedWorkCategory = "すべて";
-
-function initializeWorks() {
-  const categories = [
-    ["すべて", "ALL"],
-    ["メディア", "メディア"],
-    ["PR", "PR"],
-    ["グッズ", "グッズ"],
-    ["イベント", "イベント"],
-    ["ビジョン・広告", "ビジョン・広告"],
-  ];
-
-  $("#worksFilters").innerHTML = categories.map(([value, label]) => `
-    <button class="filter-button" type="button"
-            data-work-category="${escapeHTML(value)}"
-            aria-pressed="${value === selectedWorkCategory}"
-            aria-controls="worksGrid">
-      ${escapeHTML(label)}
-    </button>
-  `).join("");
-
-  $("#worksFilters").addEventListener("click", (event) => {
-    const button = event.target.closest("button[data-work-category]");
-    if (!button) return;
-
-    const next = button.dataset.workCategory;
-    if (next === selectedWorkCategory) return;
-
-    selectedWorkCategory = next;
-    renderWorks(true);
-  });
-}
-
-function renderWorks(animate = false) {
-  const grid = $("#worksGrid");
-  const state = dataState.works;
-
-  $("#worksFilters").querySelectorAll("button").forEach((button) => {
-    button.setAttribute(
-      "aria-pressed",
-      String(button.dataset.workCategory === selectedWorkCategory)
-    );
-  });
-
-  if (!state.loaded) {
-    $("#worksCount").textContent = "";
-    grid.innerHTML = emptyPanel("実績を読み込んでいます。");
-    return;
-  }
-
-  if (state.error) {
-    $("#worksCount").textContent = "";
-    grid.innerHTML = emptyPanel("実績を読み込めませんでした。");
-    return;
-  }
-
-  const items = state.items.filter((item) =>
-    selectedWorkCategory === "すべて" ||
-    item.category === selectedWorkCategory
-  );
-
-  $("#worksCount").textContent =
-    `${items.length}件 / 全${state.items.length}件`;
-
-  grid.innerHTML = items.length
-    ? items.map((item) => `
-        <article class="work-card">
-          <div class="work-meta">
-            <span class="badge">${escapeHTML(item.category)}</span>
-            ${item.date ? `<span>${escapeHTML(item.date)}</span>` : ""}
-          </div>
-          <h2>${escapeHTML(item.title)}</h2>
-          <p class="eyebrow">${escapeHTML(item.client)}</p>
-          <p>${escapeHTML(item.text)}</p>
-
-          ${
-            Array.isArray(item.links) && item.links.length
-              ? `
-                <div class="work-links">
-                  ${item.links.map((link) =>
-                    externalLink(link.label, link.url)
-                  ).join("")}
-                </div>
-              `
-              : ""
-          }
-        </article>
-      `).join("")
-    : emptyPanel("このカテゴリの実績はありません。");
-
-  if (animate && !reducedMotion.matches && grid.animate) {
-    grid.animate(
-      [
-        { opacity: 0, transform: "translateY(8px)" },
-        { opacity: 1, transform: "translateY(0)" },
-      ],
-      { duration: 380, easing: "cubic-bezier(.22,1,.36,1)" }
-    );
-  }
-}
-
-/* ==================================================
-   ページ切り替え・文字送り
-   ================================================== */
-
-function initializeNavigation() {
-  const pages = Array.from(document.querySelectorAll(".page"));
-  const nav = $("#siteNav");
-  const menu = $("#menuButton");
-  const desktop = matchMedia("(min-width: 1201px)");
-  const originals = new WeakMap();
-
-  let currentPage = null;
-
-  function closeMenu() {
-    nav.classList.remove("is-open");
-    menu.setAttribute("aria-expanded", "false");
-    menu.setAttribute("aria-label", "メニューを開く");
-  }
-
-  function restoreHeading(heading) {
-    if (!heading || !originals.has(heading)) return;
-
-    heading.replaceChildren(
-      ...originals.get(heading).map((node) => node.cloneNode(true))
-    );
-  }
-
-  function typeHeading(heading) {
-    if (!heading) return;
-
-    if (!originals.has(heading)) {
-      originals.set(
-        heading,
-        Array.from(heading.childNodes).map((node) =>
-          node.cloneNode(true)
-        )
-      );
-    }
-
-    restoreHeading(heading);
-    if (reducedMotion.matches) return;
-
-    const walker = document.createTreeWalker(
-      heading,
-      NodeFilter.SHOW_TEXT
-    );
-
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-
-    const length = Math.max(
-      1,
-      Array.from(heading.textContent.trim()).length
-    );
-
-    const interval = Math.min(42, 600 / length);
-    let index = 0;
-
-    nodes.forEach((node) => {
-      const fragment = document.createDocumentFragment();
-
-      Array.from(node.nodeValue).forEach((character) => {
-        if (/\s/.test(character)) {
-          fragment.appendChild(document.createTextNode(character));
-          return;
-        }
-
-        const span = document.createElement("span");
-        span.className = "heading-character";
-        span.textContent = character;
-        span.style.setProperty(
-          "--character-delay",
-          `${index++ * interval}ms`
-        );
-
-        fragment.appendChild(span);
-      });
-
-      node.replaceWith(fragment);
-    });
-  }
-
-  function route(initial = false) {
-    const requested = location.hash.slice(1) || "home";
-
-    if (requested === "main") {
-      $("#main").focus({ preventScroll: true });
-      return;
-    }
-
-    const next =
-      pages.find((page) => page.dataset.page === requested) ||
-      pages.find((page) => page.dataset.page === "home");
-
-    if (next === currentPage) {
-      closeMenu();
-      return;
-    }
-
-    pages.forEach((page) => {
-      page.hidden = page !== next;
-      page.classList.remove("is-entering");
-    });
-
-    currentPage = next;
-
-    nav.querySelectorAll("a").forEach((link) => {
-      if (link.hash === `#${next.dataset.page}`) {
-        link.setAttribute("aria-current", "page");
-      } else {
-        link.removeAttribute("aria-current");
-      }
-    });
-
-    closeMenu();
-
-    const heading = $(".page-heading h1", next);
-    const name = next.dataset.page;
-
-    document.title = name === "home"
-      ? "甘犬もか | AMAINU MOKA"
-      : `${name.charAt(0).toUpperCase() + name.slice(1)} | 甘犬もか`;
-
-    if (!initial && !reducedMotion.matches) {
-      const transition = $("#pagePawTransition");
-      if (transition) {
-        transition.classList.remove("is-active");
-        void transition.offsetWidth;
-        transition.classList.add("is-active");
-        window.setTimeout(() => transition.classList.remove("is-active"), 650);
-      }
-    }
-
-    if (!initial) {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      heading?.focus({ preventScroll: true });
-    }
-
-    typeHeading(heading);
-
-    if (!reducedMotion.matches) {
-      void next.offsetWidth;
-      next.classList.add("is-entering");
-    }
-  }
-
-  menu.addEventListener("click", () => {
-    const open = menu.getAttribute("aria-expanded") !== "true";
-
-    nav.classList.toggle("is-open", open);
-    menu.setAttribute("aria-expanded", String(open));
-    menu.setAttribute(
-      "aria-label",
-      open ? "メニューを閉じる" : "メニューを開く"
-    );
-  });
-
-  nav.addEventListener("click", (event) => {
-    if (event.target.closest("a")) closeMenu();
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest(".site-header")) closeMenu();
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && nav.classList.contains("is-open")) {
-      closeMenu();
-      menu.focus();
-    }
-  });
-
-  desktop.addEventListener("change", () => {
-    if (desktop.matches) closeMenu();
-  });
-
-  reducedMotion.addEventListener("change", () => {
-    if (!reducedMotion.matches) return;
-
-    pages.forEach((page) => {
-      page.classList.remove("is-entering");
-      restoreHeading($(".page-heading h1", page));
-    });
-  });
-
-  pages.forEach((page) => {
-    page.addEventListener("animationend", (event) => {
-      if (event.target === page && event.animationName === "page-enter") {
-        page.classList.remove("is-entering");
-      }
-    });
-  });
-
-  window.addEventListener("hashchange", () => route(false));
-  route(true);
-}
-
-/* ==================================================
-   肉球カーソル
-   ================================================== */
-
-function initializeCursor() {
-  const finePointer = matchMedia(
-    "(hover: hover) and (pointer: fine)"
-  );
-
-  const namespace = "http://www.w3.org/2000/svg";
-  const layer = document.createElement("div");
-
-  layer.className = "cursor-layer";
-  layer.setAttribute("aria-hidden", "true");
-  document.body.appendChild(layer);
-
-  const paws = Array.from({ length: 7 }, (_, index) => {
-    const svg = document.createElementNS(namespace, "svg");
-    const use = document.createElementNS(namespace, "use");
-
-    svg.setAttribute("viewBox", "0 0 32 32");
-    svg.setAttribute("focusable", "false");
-    svg.classList.add("cursor-paw");
-    use.setAttribute("href", "#icon-paw");
-
-    svg.appendChild(use);
-    layer.appendChild(svg);
-
-    return {
-      element: svg,
-      x: 0,
-      y: 0,
-      life: 0,
-      rotation: index % 2 ? 18 : -18,
-    };
-  });
-
-  let index = 0;
-  let frame = 0;
-  let lastFrame = 0;
-  let lastSpawn = 0;
-  let lastX = null;
-  let lastY = null;
-
-  function enabled() {
-    return finePointer.matches &&
-      !reducedMotion.matches &&
-      !document.hidden;
-  }
-
-  function clear() {
-    if (frame) cancelAnimationFrame(frame);
-
-    frame = 0;
-    lastFrame = 0;
-    lastSpawn = 0;
-    lastX = null;
-    lastY = null;
-
-    paws.forEach((item) => {
-      item.life = 0;
-      item.element.style.opacity = "0";
-    });
-  }
-
-  function draw(time) {
-    const delta = lastFrame ? Math.min(time - lastFrame, 50) : 16;
-    lastFrame = time;
-
-    let active = false;
-
-    paws.forEach((item) => {
-      if (item.life <= 0) return;
-
-      item.life = Math.max(0, item.life - delta / 850);
-      const progress = 1 - item.life;
-
-      item.element.style.opacity = String(item.life * .17);
-      item.element.style.transform =
-        `translate3d(${item.x - 15}px,${item.y - 15 - progress * 14}px,0) ` +
-        `rotate(${item.rotation}deg) scale(${.8 + progress * .25})`;
-
-      if (item.life > 0) active = true;
-    });
-
-    if (active && enabled()) {
-      frame = requestAnimationFrame(draw);
-    } else {
-      frame = 0;
-      lastFrame = 0;
-    }
-  }
-
-  document.addEventListener("pointermove", (event) => {
-    if (!enabled() || event.pointerType !== "mouse") return;
-
-    const now = performance.now();
-    if (now - lastSpawn < 95) return;
-
-    if (
-      lastX !== null &&
-      Math.hypot(event.clientX - lastX, event.clientY - lastY) < 24
-    ) return;
-
-    lastSpawn = now;
-    lastX = event.clientX;
-    lastY = event.clientY;
-
-    const item = paws[index];
-    item.x = event.clientX + 18;
-    item.y = event.clientY + 22;
-    item.life = 1;
-
-    index = (index + 1) % paws.length;
-
-    if (!frame) frame = requestAnimationFrame(draw);
-  }, { passive: true });
-
-  document.documentElement.addEventListener("pointerleave", clear);
-  window.addEventListener("blur", clear);
-  finePointer.addEventListener("change", clear);
-  reducedMotion.addEventListener("change", clear);
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) clear();
-  });
-}
-
-/* ==================================================
-   初期化
-   ================================================== */
-
-function initialize() {
-  populateCreditData();
-  initializeLogo();
-  initializeOpening();
-  renderProfile();
-  renderLinks();
-  initializeCopyLinks();
-  renderCredits();
-  initializeWorks();
-
-  renderNews();
-  renderSchedule();
-  renderWorks();
-
-  initializeNavigation();
-  initializeCursor();
-
-  $("#copyrightYear").textContent = new Date().getFullYear();
-
-  loadPageData();
-
-  window.setInterval(() => {
-    if (!document.hidden && dataState.schedule.loaded) {
-      renderSchedule();
-    }
-  }, 60 * 1000);
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initialize, { once: true });
-} else {
-  initialize();
-}
