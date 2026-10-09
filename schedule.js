@@ -20,7 +20,7 @@ window.MOKA_SCHEDULE = {
       start: "2026-10-09T22:00:00+09:00",
       title: "＃APEX リハビリ中…🐕 大会出るってマ？",
       platform: "Twitch",
-      url: ""
+      url: "https://www.twitch.tv/amainu_moka"
     },
     {
       start: "2026-10-11T22:00:00+09:00",
@@ -32,7 +32,7 @@ window.MOKA_SCHEDULE = {
       start: "2026-10-13T21:00:00+09:00",
       title: "さくやきんカップ Vol.6 ＃APEX 大会に出る事になりました！【時間未定】",
       platform: "Twitch",
-      url: ""
+      url: "https://www.twitch.tv/amainu_moka"
     }
   ],
 };
