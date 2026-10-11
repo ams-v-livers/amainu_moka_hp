@@ -24,9 +24,9 @@ window.MOKA_SCHEDULE = {
     },
     {
       start: "2026-10-11T22:00:00+09:00",
-      title: "＃みつめ 片方にしかない異変を探し出せ…！ 爆笑か恐怖、どちらが勝つのか… 夢乃ねるちゃんとコラボ💜【時間未定】",
-      platform: "Twitch / YouTube（未定）",
-      url: ""
+      title: "＃みつめ 片方にしかない異変を探し出せ…！ 爆笑か恐怖、どちらが勝つのか… 夢乃ねるちゃんとコラボ💜",
+      platform: "YouTube",
+      url: "https://youtube.com/live/xuyIAoXHdE0?feature=share"
     },
     {
       start: "2026-10-13T21:00:00+09:00",
