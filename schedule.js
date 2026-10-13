@@ -30,7 +30,7 @@ window.MOKA_SCHEDULE = {
     },
     {
       start: "2026-10-13T21:00:00+09:00",
-      title: "さくやきんカップ Vol.6 ＃APEX 大会に出る事になりました！【時間未定】",
+      title: "さくやきんカップ Vol.6 ＃APEX 大会に出る事になりました！",
       platform: "Twitch",
       url: "https://www.twitch.tv/amainu_moka"
     }
