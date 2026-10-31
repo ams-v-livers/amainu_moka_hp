@@ -1,26 +1,16 @@
-
 "use strict";
 
 /* ==================================================
    画像・リンク設定
-
-   画像例：
-   main: "dist/moka-main.png"
-   image: "dist/yamato.png"
-
-   空欄の場合は画像枠を表示します。
    ================================================== */
 
-
 const siteConfig = {
-  /* 画像設定 */
   images: {
     logo: "dist/logo.png",
     main: "dist/moka-main.png",
     profile: "dist/moka-profile.png",
   },
 
-  /* 画像の表示位置・拡大率 */
   imageStyles: {
     // TOP：寝転びイラスト
     main: {
@@ -29,28 +19,24 @@ const siteConfig = {
       scale: 1.22,
     },
 
-    // プロフィール
     profile: {
       fit: "contain",
       position: "center",
       scale: 1,
     },
 
-    // やまと
     yamato: {
       fit: "contain",
       position: "center",
       scale: 1,
     },
 
-    // はる
     haru: {
       fit: "contain",
       position: "center",
       scale: 1,
     },
 
-    // キャラクター資料
     gallery: {
       fit: "contain",
       position: "center",
@@ -58,7 +44,6 @@ const siteConfig = {
     },
   },
 
-  /* 一緒に暮らしている猫 */
   partners: [
     {
       relation: "兄",
@@ -78,7 +63,6 @@ const siteConfig = {
     },
   ],
 
-  /* キャラクターギャラリー */
   gallery: [
     {
       title: "キャラクター紹介",
@@ -102,13 +86,9 @@ const siteConfig = {
     },
   ],
 
-  /* 企業様向けお問い合わせ */
   litlinkUrl: "https://lit.link/amainumoka",
-
-  /* お問い合わせフォーム */
   businessFormUrl: "",
 };
-
 
 /* ==================================================
    クレジットデータ
@@ -159,7 +139,6 @@ const xAccountURL =
 
 /* ==================================================
    制作者情報
-   正式なXアカウントに修正
    ================================================== */
 
 const creatorData = [
@@ -185,13 +164,6 @@ const creatorData = [
 
 /* ==================================================
    Linksページ
-
-   削除：
-   ・Lit.Link
-   ・どねる
-
-   Lit.Link自体のURL設定は残しているため、
-   Contactページでは引き続き使用できます。
    ================================================== */
 
 const linkData = [
@@ -298,6 +270,9 @@ const dataState = {
   },
 };
 
+/* お知らせの自動非表示用タイマー */
+let newsExpiryTimer = null;
+
 /* ==================================================
    URL検証
    ================================================== */
@@ -336,8 +311,11 @@ function safeImageURL(value) {
 
 function paw() {
   return `
-    <svg class="paw" viewBox="0 0 32 32"
-         aria-hidden="true" focusable="false">
+    <svg
+      class="paw"
+      viewBox="0 0 32 32"
+      aria-hidden="true"
+      focusable="false">
       <use href="#icon-paw"/>
     </svg>
   `;
@@ -353,10 +331,11 @@ function externalLink(
   if (!url) return "";
 
   return `
-    <a class="${escapeHTML(className)}"
-       href="${escapeHTML(url)}"
-       target="_blank"
-       rel="noopener noreferrer">
+    <a
+      class="${escapeHTML(className)}"
+      href="${escapeHTML(url)}"
+      target="_blank"
+      rel="noopener noreferrer">
       ${escapeHTML(label)}
       ${paw()}
     </a>
@@ -436,9 +415,6 @@ function applyImageStyle(container, styleKey) {
 
 /* ==================================================
    ロゴ表示
-
-   左上・起動画面・ブラウザタブで
-   同じ logo.png を使用します。
    ================================================== */
 
 function initializeLogo() {
@@ -650,8 +626,6 @@ function renderProfile() {
     "プロフィールビジュアル"
   );
 
-  /* 制作に携わった方々 */
-
   $("#creatorGrid").innerHTML = creatorData.map(
     (item, index) => `
       <a
@@ -677,8 +651,6 @@ function renderProfile() {
     `
   ).join("");
 
-  /* キャラクターギャラリー */
-
   const gallery = $("#galleryGrid");
   gallery.replaceChildren();
 
@@ -689,19 +661,12 @@ function renderProfile() {
     const imageContainer = document.createElement("div");
     imageContainer.className = "gallery-image";
 
-    applyImageStyle(
-      imageContainer,
-      "gallery"
-    );
+    applyImageStyle(imageContainer, "gallery");
 
     const caption = document.createElement("figcaption");
     caption.textContent = item.title;
 
-    figure.append(
-      imageContainer,
-      caption
-    );
-
+    figure.append(imageContainer, caption);
     gallery.appendChild(figure);
 
     mountImage(
@@ -711,8 +676,6 @@ function renderProfile() {
       item.title
     );
   });
-
-  /* やまと・はる */
 
   const list = $("#partnerList");
   list.replaceChildren();
@@ -742,17 +705,8 @@ function renderProfile() {
     const japanese = document.createElement("strong");
     japanese.textContent = item.name;
 
-    name.append(
-      english,
-      japanese
-    );
-
-    card.append(
-      relation,
-      slot,
-      name
-    );
-
+    name.append(english, japanese);
+    card.append(relation, slot, name);
     list.appendChild(card);
 
     function placeholder(message) {
@@ -778,9 +732,7 @@ function renderProfile() {
     image.decoding = "async";
 
     image.addEventListener("error", () => {
-      placeholder(
-        "画像を読み込めませんでした"
-      );
+      placeholder("画像を読み込めませんでした");
     }, { once: true });
 
     image.src = url;
@@ -793,7 +745,6 @@ function renderProfile() {
    ================================================== */
 
 function renderLinks() {
-
   const items = [...linkData];
 
   $("#linkGrid").innerHTML = items.map(
@@ -817,8 +768,6 @@ function renderLinks() {
     `
   ).join("");
 
-  /* ガイドライン用タグ */
-
   $("#tagGrid").innerHTML = tagData.map(
     ([label, tag]) => `
       <div class="tag-card">
@@ -827,8 +776,6 @@ function renderLinks() {
       </div>
     `
   ).join("");
-
-  /* 企業様向けお問い合わせ */
 
   const formURL = safeURL(
     siteConfig.businessFormUrl
@@ -974,8 +921,7 @@ function initializeCopyLinks() {
       }
 
       if (copied) {
-        status.textContent =
-          "URLをコピーしました。";
+        status.textContent = "URLをコピーしました。";
 
         button.focus({
           preventScroll: true
@@ -1001,56 +947,104 @@ function initializeCopyLinks() {
 }
 
 /* ==================================================
-   お知らせ
-   ================================================== */
+   お知らせ / 表示期限
 
-/* ==================================================
-   お知らせ
+   news.js の各お知らせに追加：
+   expiresAt: "2026-11-05T00:00:00+09:00"
+
+   指定日時以降はトップ・一覧の両方で非表示。
+   expiresAt がないお知らせは継続して表示。
    ================================================== */
 
 function renderNews() {
+  window.clearTimeout(newsExpiryTimer);
+  newsExpiryTimer = null;
+
   const state = dataState.news;
+  const newsList = $("#newsList");
+  const homeNews = $("#homeNews");
+
+  if (!newsList || !homeNews) {
+    return;
+  }
 
   if (!state.loaded) {
-    $("#newsList").innerHTML = emptyPanel(
+    newsList.innerHTML = emptyPanel(
       "お知らせを読み込んでいます。"
     );
 
-    $("#homeNews").innerHTML =
+    homeNews.innerHTML =
       '<p class="empty">お知らせを読み込んでいます。</p>';
 
     return;
   }
 
   if (state.error) {
-    $("#newsList").innerHTML = emptyPanel(
+    newsList.innerHTML = emptyPanel(
       "お知らせを読み込めませんでした。"
     );
 
-    $("#homeNews").innerHTML =
+    homeNews.innerHTML =
       '<p class="empty">お知らせを読み込めませんでした。</p>';
 
     return;
   }
 
-  const items = [...state.items].sort((a, b) =>
-    String(b.date || "").localeCompare(
-      String(a.date || "")
+  const now = Date.now();
+
+  const items = state.items
+    .filter((item) => {
+      const expiry = validDate(item.expiresAt);
+
+      return !expiry || expiry.getTime() > now;
+    })
+    .sort((a, b) =>
+      String(b.date || "").localeCompare(
+        String(a.date || "")
+      )
+    );
+
+  /* 次の表示期限で自動更新 */
+
+  const upcomingExpiries = items
+    .map((item) =>
+      validDate(item.expiresAt)?.getTime()
     )
-  );
+    .filter((time) =>
+      Number.isFinite(time) && time > now
+    );
+
+  if (upcomingExpiries.length) {
+    const nextExpiry = Math.min(
+      ...upcomingExpiries
+    );
+
+    const delay = Math.min(
+      Math.max(
+        nextExpiry - Date.now() + 50,
+        50
+      ),
+      2147483647
+    );
+
+    newsExpiryTimer = window.setTimeout(
+      renderNews,
+      delay
+    );
+  }
 
   if (!items.length) {
-    $("#newsList").innerHTML = emptyPanel(
+    newsList.innerHTML = emptyPanel(
       "現在、掲載中のお知らせはありません。"
     );
 
-    $("#homeNews").innerHTML =
+    homeNews.innerHTML =
       '<p class="empty">新しいお知らせは、こちらに掲載します。</p>';
 
     return;
   }
 
-  $("#newsList").innerHTML = items.map((item) => `
+  newsList.innerHTML = items.map((item) => `
     <article class="news-card">
       <div class="news-meta">
         <time>
@@ -1073,7 +1067,7 @@ function renderNews() {
     </article>
   `).join("");
 
-  $("#homeNews").innerHTML = items.slice(0, 3).map((item) => `
+  homeNews.innerHTML = items.slice(0, 3).map((item) => `
     <article class="news-preview">
       <div class="news-meta">
         <time>
@@ -1112,7 +1106,6 @@ function renderSchedule() {
     $("#scheduleList").innerHTML = emptyPanel(
       "配信予定を読み込めませんでした。最新情報はXをご確認ください。"
     );
-
 
     return;
   }
@@ -1215,11 +1208,6 @@ function renderSchedule() {
 
 /* ==================================================
    Credits / カテゴリフィルター
-
-   Worksと同じクラスを使用するため、
-   ボタンの色・サイズ・デザインを統一します。
-
-   ALL / BGM / 効果音 / 画像・GIF素材 / その他
    ================================================== */
 
 let selectedCreditCategory = "all";
@@ -1241,6 +1229,7 @@ function initializeCredits() {
 
   if (!filters) {
     filters = document.createElement("div");
+
     filters.id = "creditsFilters";
     filters.className = "works-category-buttons";
 
@@ -1281,25 +1270,17 @@ function initializeCredits() {
 
     const nextCategory = button.dataset.creditCategory;
 
-    if (
-      nextCategory === selectedCreditCategory
-    ) {
+    if (nextCategory === selectedCreditCategory) {
       return;
     }
 
     selectedCreditCategory = nextCategory;
-
     renderCredits();
   });
 }
 
 /* ==================================================
    Credits / 表示処理
-
-   ALL：すべてのカテゴリを表示
-   その他：選択したカテゴリのみ表示
-
-   登録内容は credits.js から取得します。
    ================================================== */
 
 function renderCredits() {
@@ -1307,8 +1288,6 @@ function renderCredits() {
   const filters = $("#creditsFilters");
 
   if (!sections) return;
-
-  /* 選択状態を更新 */
 
   if (filters) {
     filters.querySelectorAll(
@@ -1330,8 +1309,6 @@ function renderCredits() {
     ["visual", "画像・GIF素材", "Images & GIFs"],
     ["other", "その他クレジット", "Other Credits"],
   ];
-
-  /* ALL以外の場合は指定カテゴリのみ */
 
   const visibleGroups = groups.filter(([key]) =>
     selectedCreditCategory === "all" ||
@@ -1444,10 +1421,6 @@ function renderCredits() {
     }
   ).join("");
 }
-
-/* ==================================================
-   Works / 実績カテゴリ
-   ================================================== */
 
 /* ==================================================
    Works / カテゴリフィルター
@@ -1637,8 +1610,6 @@ function initializeNavigation() {
 
   let currentPage = null;
 
-  /* メニューを閉じる */
-
   function closeMenu() {
     nav.classList.remove("is-open");
 
@@ -1653,13 +1624,8 @@ function initializeNavigation() {
     );
   }
 
-  /* 見出しの文字を元に戻す */
-
   function restoreHeading(heading) {
-    if (
-      !heading ||
-      !originals.has(heading)
-    ) {
+    if (!heading || !originals.has(heading)) {
       return;
     }
 
@@ -1669,8 +1635,6 @@ function initializeNavigation() {
       )
     );
   }
-
-  /* 見出しの文字送りアニメーション */
 
   function typeHeading(heading) {
     if (!heading) return;
@@ -1725,21 +1689,15 @@ function initializeNavigation() {
         (character) => {
           if (/\s/.test(character)) {
             fragment.appendChild(
-              document.createTextNode(
-                character
-              )
+              document.createTextNode(character)
             );
             return;
           }
 
-          const span =
-            document.createElement("span");
+          const span = document.createElement("span");
 
-          span.className =
-            "heading-character";
-
-          span.textContent =
-            character;
+          span.className = "heading-character";
+          span.textContent = character;
 
           span.style.setProperty(
             "--character-delay",
@@ -1754,8 +1712,6 @@ function initializeNavigation() {
     });
   }
 
-  /* ページ表示処理 */
-
   function route(initial = false) {
     const requested =
       location.hash.slice(1) || "home";
@@ -1769,12 +1725,10 @@ function initializeNavigation() {
 
     const next =
       pages.find(
-        (page) =>
-          page.dataset.page === requested
+        (page) => page.dataset.page === requested
       ) ||
       pages.find(
-        (page) =>
-          page.dataset.page === "home"
+        (page) => page.dataset.page === "home"
       );
 
     if (next === currentPage) {
@@ -1782,88 +1736,48 @@ function initializeNavigation() {
       return;
     }
 
-    /* 表示ページの切り替え */
-
     pages.forEach((page) => {
       page.hidden = page !== next;
-      page.classList.remove(
-        "is-entering"
-      );
+      page.classList.remove("is-entering");
     });
 
     currentPage = next;
 
-    /* ナビゲーションの選択状態 */
-
-    nav.querySelectorAll("a").forEach(
-      (link) => {
-        if (
-          link.hash ===
-          `#${next.dataset.page}`
-        ) {
-          link.setAttribute(
-            "aria-current",
-            "page"
-          );
-        } else {
-          link.removeAttribute(
-            "aria-current"
-          );
-        }
+    nav.querySelectorAll("a").forEach((link) => {
+      if (link.hash === `#${next.dataset.page}`) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
       }
-    );
+    });
 
     closeMenu();
 
-    const heading = $(
-      ".page-heading h1",
-      next
-    );
+    const heading = $(".page-heading h1", next);
+    const name = next.dataset.page;
 
-    const name =
-      next.dataset.page;
+    document.title = name === "home"
+      ? "甘犬もか | AMAINU MOKA"
+      : `${
+          name.charAt(0).toUpperCase() +
+          name.slice(1)
+        } | 甘犬もか`;
 
-    document.title =
-      name === "home"
-        ? "甘犬もか | AMAINU MOKA"
-        : `${
-            name.charAt(0).toUpperCase() +
-            name.slice(1)
-          } | 甘犬もか`;
-
-    /* ページ移動時の肉球アニメーション */
-
-    if (
-      !initial &&
-      !reducedMotion.matches
-    ) {
-      const transition = $(
-        "#pagePawTransition"
-      );
+    if (!initial && !reducedMotion.matches) {
+      const transition = $("#pagePawTransition");
 
       if (transition) {
-        transition.classList.remove(
-          "is-active"
-        );
+        transition.classList.remove("is-active");
 
         void transition.offsetWidth;
 
-        transition.classList.add(
-          "is-active"
-        );
+        transition.classList.add("is-active");
 
-        window.setTimeout(
-          () => {
-            transition.classList.remove(
-              "is-active"
-            );
-          },
-          650
-        );
+        window.setTimeout(() => {
+          transition.classList.remove("is-active");
+        }, 650);
       }
     }
-
-    /* スクロール位置とフォーカス */
 
     if (!initial) {
       window.scrollTo({
@@ -1879,139 +1793,83 @@ function initializeNavigation() {
 
     typeHeading(heading);
 
-    /* ページ登場アニメーション */
-
     if (!reducedMotion.matches) {
       void next.offsetWidth;
-
-      next.classList.add(
-        "is-entering"
-      );
+      next.classList.add("is-entering");
     }
   }
 
-  /* スマートフォン用メニュー */
+  menu.addEventListener("click", () => {
+    const open =
+      menu.getAttribute("aria-expanded") !== "true";
 
-  menu.addEventListener(
-    "click",
-    () => {
-      const open =
-        menu.getAttribute(
-          "aria-expanded"
-        ) !== "true";
+    nav.classList.toggle("is-open", open);
 
-      nav.classList.toggle(
-        "is-open",
-        open
-      );
+    menu.setAttribute(
+      "aria-expanded",
+      String(open)
+    );
 
-      menu.setAttribute(
-        "aria-expanded",
-        String(open)
-      );
-
-      menu.setAttribute(
-        "aria-label",
-        open
-          ? "メニューを閉じる"
-          : "メニューを開く"
-      );
-    }
-  );
-
-  nav.addEventListener(
-    "click",
-    (event) => {
-      if (
-        event.target.closest("a")
-      ) {
-        closeMenu();
-      }
-    }
-  );
-
-  document.addEventListener(
-    "click",
-    (event) => {
-      if (
-        !event.target.closest(
-          ".site-header"
-        )
-      ) {
-        closeMenu();
-      }
-    }
-  );
-
-  document.addEventListener(
-    "keydown",
-    (event) => {
-      if (
-        event.key === "Escape" &&
-        nav.classList.contains(
-          "is-open"
-        )
-      ) {
-        closeMenu();
-        menu.focus();
-      }
-    }
-  );
-
-  /* 画面幅が変わったらメニューを閉じる */
-
-  desktop.addEventListener(
-    "change",
-    () => {
-      if (desktop.matches) {
-        closeMenu();
-      }
-    }
-  );
-
-  /* アニメーション軽減設定 */
-
-  reducedMotion.addEventListener(
-    "change",
-    () => {
-      if (
-        !reducedMotion.matches
-      ) {
-        return;
-      }
-
-      pages.forEach((page) => {
-        page.classList.remove(
-          "is-entering"
-        );
-
-        restoreHeading(
-          $(".page-heading h1", page)
-        );
-      });
-    }
-  );
-
-  /* アニメーション終了時の後処理 */
-
-  pages.forEach((page) => {
-    page.addEventListener(
-      "animationend",
-      (event) => {
-        if (
-          event.target === page &&
-          event.animationName ===
-            "page-enter"
-        ) {
-          page.classList.remove(
-            "is-entering"
-          );
-        }
-      }
+    menu.setAttribute(
+      "aria-label",
+      open
+        ? "メニューを閉じる"
+        : "メニューを開く"
     );
   });
 
-  /* URL変更時のページ更新 */
+  nav.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".site-header")) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      nav.classList.contains("is-open")
+    ) {
+      closeMenu();
+      menu.focus();
+    }
+  });
+
+  desktop.addEventListener("change", () => {
+    if (desktop.matches) {
+      closeMenu();
+    }
+  });
+
+  reducedMotion.addEventListener("change", () => {
+    if (!reducedMotion.matches) {
+      return;
+    }
+
+    pages.forEach((page) => {
+      page.classList.remove("is-entering");
+
+      restoreHeading(
+        $(".page-heading h1", page)
+      );
+    });
+  });
+
+  pages.forEach((page) => {
+    page.addEventListener("animationend", (event) => {
+      if (
+        event.target === page &&
+        event.animationName === "page-enter"
+      ) {
+        page.classList.remove("is-entering");
+      }
+    });
+  });
 
   window.addEventListener(
     "hashchange",
@@ -2020,10 +1878,6 @@ function initializeNavigation() {
 
   route(true);
 }
-
-/* ==================================================
-   肉球カーソル
-   ================================================== */
 
 /* ==================================================
    肉球カーソル
@@ -2118,7 +1972,7 @@ function initializeCursor() {
       const progress = 1 - item.life;
 
       item.element.style.opacity = String(
-        item.life * .17
+        item.life * 0.17
       );
 
       item.element.style.transform =
@@ -2127,7 +1981,7 @@ function initializeCursor() {
         `${item.y - 15 - progress * 14}px,` +
         `0) ` +
         `rotate(${item.rotation}deg) ` +
-        `scale(${.8 + progress * .25})`;
+        `scale(${0.8 + progress * 0.25})`;
 
       if (item.life > 0) {
         active = true;
@@ -2192,81 +2046,51 @@ function initializeCursor() {
     clear
   );
 
-  window.addEventListener(
-    "blur",
-    clear
-  );
+  window.addEventListener("blur", clear);
+  finePointer.addEventListener("change", clear);
+  reducedMotion.addEventListener("change", clear);
 
-  finePointer.addEventListener(
-    "change",
-    clear
-  );
-
-  reducedMotion.addEventListener(
-    "change",
-    clear
-  );
-
-  document.addEventListener(
-    "visibilitychange",
-    () => {
-      if (document.hidden) {
-        clear();
-      }
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      clear();
     }
-  );
+  });
 }
 
 /* ==================================================
    サイト全体の初期化
-
-   Creditsのカテゴリボタンを追加したため、
-   initializeCredits() を実行します。
-
-   それ以外の初期化処理は維持します。
    ================================================== */
 
 function initialize() {
-  /* クレジットデータ */
   populateCreditData();
 
-  /* ロゴ・起動アニメーション */
   initializeLogo();
   initializeOpening();
 
-  /* プロフィール・各種リンク */
   renderProfile();
   renderLinks();
 
-  /* ガイドラインのコピー機能 */
   initializeCopyLinks();
 
-  /* Creditsのカテゴリボタン */
   initializeCredits();
-
-  /* Creditsの表示 */
   renderCredits();
 
-  /* Worksのカテゴリボタン */
   initializeWorks();
 
-  /* データ読み込み前の初期表示 */
   renderNews();
   renderSchedule();
   renderWorks();
 
-  /* ページ移動・肉球カーソル */
   initializeNavigation();
   initializeCursor();
 
-  /* フッターの年を自動更新 */
   $("#copyrightYear").textContent =
     new Date().getFullYear();
 
-  /* お知らせ・予定・実績データ */
   loadPageData();
 
   /* 配信予定を1分ごとに更新 */
+
   window.setInterval(() => {
     if (
       !document.hidden &&
@@ -2275,6 +2099,30 @@ function initialize() {
       renderSchedule();
     }
   }, 60 * 1000);
+
+  /* 別タブ・バックグラウンドから戻った際に期限を確認 */
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && dataState.news.loaded) {
+      renderNews();
+    }
+  });
+
+  /* スリープ復帰やウィンドウへの復帰時にも確認 */
+
+  window.addEventListener("focus", () => {
+    if (!document.hidden && dataState.news.loaded) {
+      renderNews();
+    }
+  });
+
+  /* ブラウザの戻る操作などで復元された際にも確認 */
+
+  window.addEventListener("pageshow", () => {
+    if (dataState.news.loaded) {
+      renderNews();
+    }
+  });
 }
 
 /* ==================================================
