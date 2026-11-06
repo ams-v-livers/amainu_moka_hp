@@ -15,7 +15,6 @@
 
 window.MOKA_WORKS = {
   items: [
-    },
     {
       client: "バーチャル物産展",
       category: "グッズ",
