@@ -1,4 +1,3 @@
-
 /* ==================================================
    配信スケジュール専用ファイル
 
@@ -18,8 +17,9 @@ window.MOKA_SCHEDULE = {
   items: [
     {
       start: "2026-11-14T22:00:00+09:00",
-      title: "#TJA4RUST  帰って来たぞおお！私のRUSTの原点のスト鯖へ！",
-      platform: "YouTubeh",
+      title: "#TJA4RUST 帰って来たぞおお！私のRUSTの原点のスト鯖へ！",
+      platform: "YouTube",
       url: "https://youtube.com/live/8NxyUObpgDo?feature=share"
-    },
-
+    }
+  ]
+};
