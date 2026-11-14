@@ -17,16 +17,9 @@
 window.MOKA_SCHEDULE = {
   items: [
     {
-      start: "2026-10-09T22:00:00+09:00",
-      title: "＃APEX リハビリ中…🐕 大会出るってマ？",
-      platform: "Twitch",
-      url: "https://www.twitch.tv/amainu_moka"
+      start: "2026-11-14T22:00:00+09:00",
+      title: "#TJA4RUST  帰って来たぞおお！私のRUSTの原点のスト鯖へ！",
+      platform: "YouTubeh",
+      url: "https://youtube.com/live/8NxyUObpgDo?feature=share"
     },
-    {
-      start: "2026-10-14T21:30:00+09:00",
-      title: "＃BOMBANANA！ 代打で参加します！🍌",
-      platform: "Twitch",
-      url: "https://www.twitch.tv/amainu_moka"
-    }
-  ],
-};
+
