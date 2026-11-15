@@ -16,10 +16,10 @@
 window.MOKA_SCHEDULE = {
   items: [
     {
-      start: "2026-11-14T22:00:00+09:00",
-      title: "#TJA4RUST 帰って来たぞおお！私のRUSTの原点のスト鯖へ！",
+      start: "2026-11-15T19:00:00+09:00",
+      title: "#TJA4RUST DAY2 BPほしい…！",
       platform: "YouTube",
-      url: "https://youtube.com/live/8NxyUObpgDo?feature=share"
+      url: "https://youtube.com/live/Sy4Ty2qq1Ks?feature=share"
     }
   ]
 };
