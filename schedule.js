@@ -16,10 +16,10 @@
 window.MOKA_SCHEDULE = {
   items: [
     {
-      start: "2026-11-16T18:00:00+09:00",
-      title: "#TJA4RUST DAY3 クエストとモニュメントへ行きたい！！！",
+      start: "2026-11-21T18:00:00+09:00",
+      title: "#TJA4RUST LAST DAY  世界の終幕はどうなる…？",
       platform: "YouTube",
-      url: "https://youtube.com/live/pRyw6F-Rsgk?feature=share"
+      url: "https://youtube.com/live/_iTsCdqgIG0?feature=share"
     }
   ]
 };
